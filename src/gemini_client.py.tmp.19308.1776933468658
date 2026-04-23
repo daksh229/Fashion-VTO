@@ -1,0 +1,76 @@
+"""Call Gemini 2.5 Flash Image (a.k.a. 'Nano Banana') for virtual try-on generation.
+
+Requires:
+    pip install google-genai pillow
+    export GEMINI_API_KEY=...
+"""
+
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+from google import genai
+from PIL import Image
+
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+
+MODEL_NAME = "gemini-2.5-flash-image"
+TEXT_MODEL_NAME = "gemini-2.5-flash"
+
+
+def _get_client() -> genai.Client:
+    api_key = os.environ.get("api_key") or os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "No API key found. Set `api_key` (or `GEMINI_API_KEY`) in your .env file."
+        )
+    return genai.Client(api_key=api_key)
+
+
+def generate_text(prompt: str, image_paths: list[str] | None = None) -> str:
+    """Call Gemini 2.5 Flash (text+vision) and return its text response."""
+    client = _get_client()
+    contents: list = [prompt]
+    if image_paths:
+        for p in image_paths:
+            contents.append(Image.open(p))
+    response = client.models.generate_content(model=TEXT_MODEL_NAME, contents=contents)
+    return (response.text or "").strip()
+
+
+def generate_tryon(
+    person_image_path: str,
+    garment_image_path: str,
+    prompt: str,
+    output_path: str = "output.png",
+) -> str:
+    api_key = os.environ.get("api_key") or os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "No API key found. Set `api_key` (or `GEMINI_API_KEY`) in your .env file."
+        )
+
+    client = genai.Client(api_key=api_key)
+    person_img = Image.open(person_image_path)
+    garment_img = Image.open(garment_image_path)
+
+    response = client.models.generate_content(
+        model=MODEL_NAME,
+        contents=[prompt, person_img, garment_img],
+    )
+
+    for part in response.candidates[0].content.parts:
+        if part.inline_data is not None:
+            Path(output_path).write_bytes(part.inline_data.data)
+            return output_path
+
+    raise RuntimeError("Gemini response contained no image data")
+
+
+if __name__ == "__main__":
+    out = generate_tryon(
+        person_image_path="person.jpg",
+        garment_image_path="cloth/00041_00.jpg",
+        prompt="Place the garment on the person, photorealistic, natural lighting.",
+        output_path="output.png",
+    )
+    print(f"Saved: {out}")

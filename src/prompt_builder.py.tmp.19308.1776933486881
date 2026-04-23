@@ -1,0 +1,223 @@
+"""Build a detailed virtual try-on prompt from a fit-calculation dict.
+
+Two modes:
+    build_fit_prompt_llm(fit_result, garment_image_path=None)
+        -> asks Gemini 2.5 Flash (multimodal) to reason about the deltas and
+           the garment's visible style, and write a realistic ~500-word prompt.
+           More natural, style-aware, handles edge cases better. Needs API key.
+
+    build_fit_prompt(fit_result)
+        -> deterministic rule-based version. Offline fallback, no API call.
+
+Both produce a prompt suitable for Gemini 2.5 Flash Image (Nano Banana).
+"""
+
+import json
+from pathlib import Path
+
+
+def build_fit_prompt(fit_result: dict) -> str:
+    gid = fit_result.get("garment_id", "?")
+    name = fit_result.get("garment_name", "the garment")
+    size = fit_result.get("garment_size", "unspecified size")
+    fit_style = fit_result.get("garment_fit_style", "standard cut")
+    units = fit_result.get("units", "inches")
+    person = fit_result["person_dimensions"]
+    garment = fit_result["garment_dimensions"]
+    deltas = fit_result["deltas"]
+
+    fit_sections = "\n\n".join(
+        _describe(dim, deltas[dim], person.get(dim), garment.get(dim), units)
+        for dim in deltas
+    )
+    silhouette = _overall_silhouette(deltas, fit_style)
+
+    prompt = f"""\
+TASK — Produce a single photorealistic virtual try-on image. The first reference image shows the person; the second shows the garment as a flat product photo. Render the person wearing that exact garment on the upper body, with every visible design feature preserved. Keep the person's face, hair, skin tone, pose, proportions, and the original background completely unchanged. The only change to the scene is the clothing on the upper body. Do not add accessories, crops, stylization, or extra subjects.
+
+SUBJECT PROFILE — The wearer's measured upper-body dimensions are: torso length {person['length']} {units}, chest circumference {person['chest']} {units}, shoulder width {person['shoulder']} {units}, arm length {person['arm_length']} {units}. These define the body landmarks the garment must respect. Do not alter the wearer's build; the body stays as shown, and the fabric must conform to it.
+
+GARMENT PROFILE — The target piece is a "{name}" (catalog ID {gid}), labeled size {size}, intended cut: "{fit_style}". Its flat-measurement specifications are: length {garment['length']} {units}, chest {garment['chest']} {units}, shoulder-seam span {garment['shoulder']} {units}, sleeve length {garment['arm_length']} {units}. Reproduce every visible design element from the product reference — colors, logos, prints, buttons, seams, collar shape, cuff treatment, and the fabric's weight and texture — without modification.
+
+FIT ANALYSIS — For each body landmark, the delta (garment dimension minus person dimension) dictates how the fabric behaves on the body. Negative delta means the garment is smaller than the body, so the material must compress, stretch, or fail to cover. Positive delta means the garment is larger, so the material must hang loose, drape, or bunch. The render MUST physically reflect each of the following:
+
+{fit_sections}
+
+OVERALL SILHOUETTE — {silhouette}
+
+RENDERING INSTRUCTIONS — Photograph-grade realism, not illustration. Simulate true textile physics: taut fibers and tension lines where the garment is undersized; clean relaxed lines where true-to-size; soft gravity-driven folds and bunching where oversized. Match the lighting direction, color temperature, and shadow softness of the person reference. Keep skin tones accurate, edges sharp, and every printed or embroidered detail on the garment legible. No cartoon, painterly, or stylized effects; no background change; no accessory additions. Output one final image only."""
+
+    return prompt
+
+
+def _overall_silhouette(deltas: dict, fit_style: str) -> str:
+    if not deltas:
+        return f"Standard {fit_style.lower()} silhouette."
+    avg = sum(deltas.values()) / len(deltas)
+    if avg < -1.5:
+        return (
+            f"Heavily undersized relative to the wearer's body. Multiple landmarks show "
+            f"visible compression and tension, overriding the garment's intended '{fit_style}' "
+            f"cut and reading as an unintentionally bodycon, body-hugging look."
+        )
+    if avg < 0:
+        return (
+            f"Snug overall, with the fabric sitting close to the body at most landmarks. "
+            f"The silhouette reads as a tight version of the intended '{fit_style}' cut."
+        )
+    if avg <= 2:
+        return (
+            f"True-to-size fit — the garment's '{fit_style}' cut reads cleanly on the body "
+            f"with no strain and no excess fabric at any landmark."
+        )
+    if avg <= 5:
+        return (
+            f"Relaxed and comfortable — the fabric sits slightly away from the body everywhere, "
+            f"giving a gently oversized read even beyond the intended '{fit_style}' cut."
+        )
+    return (
+        f"Heavily oversized and baggy — the garment drapes well beyond the body in all directions, "
+        f"producing a streetwear-style dropped silhouette regardless of the intended '{fit_style}' cut."
+    )
+
+
+def _describe(dim: str, delta: float, person_val, garment_val, units: str) -> str:
+    header = (
+        f"• {dim.replace('_', ' ').upper()} "
+        f"(person: {person_val} {units}, garment: {garment_val} {units}, "
+        f"delta: {delta:+} {units}):"
+    )
+
+    if dim == "chest":
+        if delta < -3:
+            body = (
+                f"The garment is severely undersized at the chest. Render the fabric stretched tautly "
+                f"across the bust and upper torso with clearly visible horizontal tension lines radiating "
+                f"outward from the underarm seams. The bust contour and rib shape should read through the "
+                f"material, side seams should bow slightly outward under strain, and any buttons or closures "
+                f"should show visible pulling. The garment looks undeniably too small."
+            )
+        elif delta < 0:
+            body = (
+                f"The chest is tight. The fabric sits snug against the torso, following the bust curve "
+                f"without true stretch lines, but with no internal air between body and cloth. Any print "
+                f"or logo on the chest area should appear slightly distorted by the tension."
+            )
+        elif delta <= 2:
+            body = (
+                f"The chest is true to size. The fabric hangs straight from the shoulders to the ribcage "
+                f"with a clean vertical line, skimming the body without clinging and without puffing outward."
+            )
+        elif delta <= 5:
+            body = (
+                f"The chest is comfortably loose. Render soft drape lines falling from the bust downward, "
+                f"with a small air gap between the torso and the fabric. No tension lines anywhere."
+            )
+        else:
+            body = (
+                f"The chest is heavily oversized. Render deep vertical folds falling from the shoulder "
+                f"seams, with the fabric hanging far from the body in a pronounced tent-like silhouette."
+            )
+
+    elif dim == "shoulder":
+        if delta < -1:
+            body = (
+                f"The shoulders are significantly tight. Shoulder seams should sit inboard of the natural "
+                f"shoulder bone, pulling the sleeves upward and inward, creating strain across the upper "
+                f"back. The armhole will look high and constricted, with fabric pulled taut toward the neck."
+            )
+        elif delta < 0:
+            body = (
+                f"The shoulders are slightly tight. Seams land right at the shoulder bone with mild "
+                f"tension, and the sleeve-head area should show faint pull lines toward the neckline."
+            )
+        elif delta <= 1:
+            body = (
+                f"The shoulders are perfectly aligned. Shoulder seams sit exactly on the outer edge of "
+                f"the shoulder bone, giving a clean tailored line from neck to sleeve."
+            )
+        elif delta <= 3:
+            body = (
+                f"The shoulders drop past the body. Seams fall slightly down the upper arm, giving a "
+                f"relaxed casual line with a small amount of fabric softening at the seam."
+            )
+        else:
+            body = (
+                f"The shoulders are heavily dropped. Seams fall well down the upper arm — several "
+                f"inches past the natural shoulder edge — producing the characteristic dropped-shoulder, "
+                f"streetwear oversized silhouette, with pronounced fabric pooling at the armhole."
+            )
+
+    elif dim == "length":
+        if delta < -3:
+            body = (
+                f"The garment is far too short for the wearer's torso. Render the hem riding high on "
+                f"the torso, clearly exposing the waist and a visible section of midriff skin between "
+                f"the hem and the waistband. The look reads as an aggressively cropped or accidentally "
+                f"short fit — the waist will be fully clear and uncovered."
+            )
+        elif delta < 0:
+            body = (
+                f"The garment is short. The hem sits above the natural waistline, revealing a narrow "
+                f"strip of skin at the waist. The wearer's waistband (if visible) should show clearly "
+                f"just below the hem."
+            )
+        elif delta <= 2:
+            body = (
+                f"The length is correct. The hem sits at the natural waistline, properly covering the "
+                f"torso with a clean horizontal line across the waist."
+            )
+        elif delta <= 5:
+            body = (
+                f"The garment runs long. The hem drops past the hips and fully covers the waistband, "
+                f"with a small amount of fabric pooling near the hips."
+            )
+        else:
+            body = (
+                f"The garment is much longer than standard. The hem falls to mid-thigh, creating an "
+                f"elongated, tunic-like silhouette with visible vertical folds along the torso."
+            )
+
+    elif dim == "arm_length":
+        if delta < -2:
+            body = (
+                f"The sleeves are significantly short. Render the sleeve hems riding up the arm, ending "
+                f"well short of their intended hem point — clearly visible forearm (or upper arm, for "
+                f"short sleeves) exposed beyond the cuff."
+            )
+        elif delta < 0:
+            body = (
+                f"The sleeves are a touch short. The hem ends slightly before the intended landmark "
+                f"(wrist for long sleeves, mid-bicep for short), but only by a small visible margin."
+            )
+        elif delta <= 2:
+            body = (
+                f"The sleeves end at the correct landmark — exactly where the garment's cut intends them "
+                f"to finish on the arm."
+            )
+        else:
+            body = (
+                f"The sleeves are long. Fabric bunches at the cuff or extends past the wrist, with the "
+                f"hem partially covering the back of the hand."
+            )
+
+    else:
+        body = f"Delta at this landmark is {delta:+} {units}; reflect that magnitude in fabric behavior."
+
+    return f"{header} {body}"
+
+
+if __name__ == "__main__":
+    sample = {
+        "garment_id": "G2",
+        "garment_name": "Adidas Navy Striped Bodysuit",
+        "garment_size": "S",
+        "garment_fit_style": "Bodycon",
+        "units": "inches",
+        "person_dimensions": {"length": 26, "chest": 36, "shoulder": 15, "arm_length": 9},
+        "garment_dimensions": {"length": 28, "chest": 32, "shoulder": 14, "arm_length": 7},
+        "deltas": {"length": 2, "chest": -4, "shoulder": -1, "arm_length": -2},
+    }
+    out = build_fit_prompt(sample)
+    print(out)
+    print(f"\n--- word count: {len(out.split())} words ---")
