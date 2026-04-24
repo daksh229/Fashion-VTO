@@ -30,7 +30,7 @@ from src.prompt_builder import build_fit_prompt, build_meta_prompt
 from src.gemini_client import generate_tryon
 from src.groq_client import generate_text_stream
 
-CLOTH_DIR = PROJECT_ROOT / "cloth"
+CLOTH_DIR = PROJECT_ROOT / "cloth_3D"
 CATALOG_PATH = CLOTH_DIR / "garments.json"
 OUTPUT_DIR = PROJECT_ROOT / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)

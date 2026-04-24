@@ -8,7 +8,7 @@ Delta = garment_dimension - person_dimension
 import json
 from pathlib import Path
 
-CATALOG_PATH = Path(__file__).resolve().parent.parent / "cloth" / "garments.json"
+CATALOG_PATH = Path(__file__).resolve().parent.parent / "cloth_3D" / "garments.json"
 
 
 def calculate_fit(person_dimensions: dict, cloth_id: str, catalog_path: Path = CATALOG_PATH) -> dict:

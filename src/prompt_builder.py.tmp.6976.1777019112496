@@ -194,9 +194,7 @@ def build_fit_prompt(fit_result: dict) -> str:
     silhouette = _overall_silhouette(deltas, fit_style)
 
     prompt = f"""\
-IDENTITY LOCK — The person in the output image is the person from REFERENCE A and no one else. Their face, hair, skin tone, earrings/accessories, and body must match REFERENCE A exactly. REFERENCE B's model is a garment-design reference ONLY; her face, hair, and body MUST NOT appear in the output. If the output person's face does not match REFERENCE A's face, the result is incorrect. This rule overrides every other consideration in this prompt.
-
-TASK — Produce a single photorealistic virtual try-on image from two inputs: REFERENCE A (the user's photo, which is ALSO the canvas — start from this image) and REFERENCE B (an on-body photo of a different model, used ONLY as a garment-design reference). Edit REFERENCE A so the user wears the garment from REFERENCE B, on the {body_zone}.
+TASK — Produce a single photorealistic virtual try-on image from two inputs: REFERENCE A (the user's photo) and REFERENCE B (an on-body photo of a different model wearing the target garment). Render the user from REFERENCE A dressed in the garment from REFERENCE B on the {body_zone}.
 
 FROM REFERENCE A — take and preserve unchanged: face, hair, skin tone, pose and arm position, body proportions, camera angle, lighting, background, and all {other_zone} clothing and accessories the user is already wearing.
 

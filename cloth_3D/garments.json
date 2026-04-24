@@ -1,0 +1,261 @@
+{
+  "units": "inches",
+  "notes": "On-body / 3D reference set. Each image shows the garment worn on a model — use this as the authoritative visual source for the designed look (sleeve length, hem position, neckline, silhouette). Dimensions are visual estimates and should not override what the reference image shows. Tops use {length, chest, shoulder, arm_length}.",
+  "garments": [
+    {
+      "id": "G1",
+      "name": "Levi's White Batwing Logo Tee",
+      "category": "Top",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Slim",
+      "image": "00000_00.jpg",
+      "path": "00000_00.jpg",
+      "dimensions": {
+        "length": 25,
+        "chest": 34,
+        "shoulder": 14,
+        "arm_length": 7
+      }
+    },
+    {
+      "id": "G2",
+      "name": "Black Pleated Keyhole Blouse",
+      "category": "Top",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "image": "00014_00.jpg",
+      "path": "00014_00.jpg",
+      "dimensions": {
+        "length": 26,
+        "chest": 40,
+        "shoulder": 16,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "G3",
+      "name": "Adidas Navy 3-Stripe Bodysuit",
+      "category": "Top",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Bodycon",
+      "image": "00026_00.jpg",
+      "path": "00026_00.jpg",
+      "dimensions": {
+        "length": 28,
+        "chest": 32,
+        "shoulder": 14,
+        "arm_length": 7
+      }
+    },
+    {
+      "id": "G4",
+      "name": "Adidas Blue 3-Stripe Tee",
+      "category": "Top",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Slim",
+      "image": "00030_00.jpg",
+      "path": "00030_00.jpg",
+      "dimensions": {
+        "length": 24,
+        "chest": 34,
+        "shoulder": 14,
+        "arm_length": 8
+      }
+    },
+    {
+      "id": "G5",
+      "name": "Lee Black Logo Tee",
+      "category": "Top",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "image": "00038_00.jpg",
+      "path": "00038_00.jpg",
+      "dimensions": {
+        "length": 25,
+        "chest": 36,
+        "shoulder": 15,
+        "arm_length": 8
+      }
+    },
+    {
+      "id": "G6",
+      "name": "Tommy Hilfiger White Logo Tee",
+      "category": "Top",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "image": "00041_00.jpg",
+      "path": "00041_00.jpg",
+      "dimensions": {
+        "length": 26,
+        "chest": 38,
+        "shoulder": 15,
+        "arm_length": 9
+      }
+    },
+    {
+      "id": "G7",
+      "name": "Black Boatneck Bell-Sleeve Top",
+      "category": "Top",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "image": "00047_00.jpg",
+      "path": "00047_00.jpg",
+      "dimensions": {
+        "length": 25,
+        "chest": 40,
+        "shoulder": 16,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "G8",
+      "name": "Navy Long-Sleeve Crew",
+      "category": "Top",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Slim",
+      "image": "00050_00.jpg",
+      "path": "00050_00.jpg",
+      "dimensions": {
+        "length": 26,
+        "chest": 36,
+        "shoulder": 15,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "G9",
+      "name": "Pink Ribbed Ruffle-Collar Polo",
+      "category": "Top",
+      "type": "Polo",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Fitted",
+      "image": "00109_00.jpg",
+      "path": "00109_00.jpg",
+      "dimensions": {
+        "length": 24,
+        "chest": 34,
+        "shoulder": 14,
+        "arm_length": 11
+      }
+    },
+    {
+      "id": "G10",
+      "name": "White Graphic Long-Sleeve Crop",
+      "category": "Top",
+      "type": "Sweatshirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "image": "00117_00.jpg",
+      "path": "00117_00.jpg",
+      "dimensions": {
+        "length": 18,
+        "chest": 40,
+        "shoulder": 17,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "G11",
+      "name": "Guess Green Logo Tee",
+      "category": "Top",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Slim",
+      "image": "00143_00.jpg",
+      "path": "00143_00.jpg",
+      "dimensions": {
+        "length": 24,
+        "chest": 33,
+        "shoulder": 14,
+        "arm_length": 7
+      }
+    },
+    {
+      "id": "G12",
+      "name": "Black Square-Neck Bell-Sleeve Top",
+      "category": "Top",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Bodycon",
+      "image": "00149_00.jpg",
+      "path": "00149_00.jpg",
+      "dimensions": {
+        "length": 23,
+        "chest": 32,
+        "shoulder": 13,
+        "arm_length": 25
+      }
+    },
+    {
+      "id": "G13",
+      "name": "Calvin Klein Jeans Pink Crop Long-Sleeve",
+      "category": "Top",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "image": "00164_00.jpg",
+      "path": "00164_00.jpg",
+      "dimensions": {
+        "length": 20,
+        "chest": 36,
+        "shoulder": 15,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "G14",
+      "name": "Cream Lace-Insert Puff-Sleeve Blouse",
+      "category": "Top",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "image": "00166_00.jpg",
+      "path": "00166_00.jpg",
+      "dimensions": {
+        "length": 25,
+        "chest": 40,
+        "shoulder": 16,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "G15",
+      "name": "Black Embroidered Peasant Blouse",
+      "category": "Top",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "image": "00188_00.jpg",
+      "path": "00188_00.jpg",
+      "dimensions": {
+        "length": 24,
+        "chest": 42,
+        "shoulder": 17,
+        "arm_length": 23
+      }
+    }
+  ]
+}
