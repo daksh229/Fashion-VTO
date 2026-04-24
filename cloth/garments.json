@@ -1,10 +1,11 @@
 {
   "units": "inches",
-  "notes": "Dimensions are visual estimates based on garment images — verify against actual product specs before use.",
+  "notes": "Dimensions are visual estimates based on garment images — verify against actual product specs before use. Tops use {length, chest, shoulder, arm_length}; bottoms use {waist, hip, thigh, inseam}.",
   "garments": [
     {
       "id": "G1",
       "name": "Black Pleated Long-Sleeve Blouse",
+      "category": "Top",
       "type": "Blouse",
       "gender": "Women",
       "size": "M",
@@ -21,6 +22,7 @@
     {
       "id": "G2",
       "name": "Adidas Navy Striped Bodysuit",
+      "category": "Top",
       "type": "Bodysuit",
       "gender": "Women",
       "size": "S",
@@ -37,6 +39,7 @@
     {
       "id": "G3",
       "name": "Adidas Blue 3-Stripe Tee",
+      "category": "Top",
       "type": "T-Shirt",
       "gender": "Women",
       "size": "S",
@@ -53,6 +56,7 @@
     {
       "id": "G4",
       "name": "Black Ribbed Button Henley",
+      "category": "Top",
       "type": "Henley",
       "gender": "Women",
       "size": "M",
@@ -69,6 +73,7 @@
     {
       "id": "G5",
       "name": "Lee Black Logo Tee",
+      "category": "Top",
       "type": "T-Shirt",
       "gender": "Women",
       "size": "S",
@@ -85,6 +90,7 @@
     {
       "id": "G6",
       "name": "Calvin Klein Grey Logo Tee",
+      "category": "Top",
       "type": "T-Shirt",
       "gender": "Women",
       "size": "S",
@@ -101,6 +107,7 @@
     {
       "id": "G7",
       "name": "Tommy Hilfiger White Logo Tee",
+      "category": "Top",
       "type": "T-Shirt",
       "gender": "Women",
       "size": "M",
@@ -117,6 +124,7 @@
     {
       "id": "G8",
       "name": "Levi's White Batwing Tee",
+      "category": "Top",
       "type": "T-Shirt",
       "gender": "Women",
       "size": "M",
@@ -133,6 +141,7 @@
     {
       "id": "G9",
       "name": "Blue Color-Block Polo",
+      "category": "Top",
       "type": "Polo",
       "gender": "Women",
       "size": "S",
@@ -149,6 +158,7 @@
     {
       "id": "G10",
       "name": "Gucci White Logo Tee",
+      "category": "Top",
       "type": "T-Shirt",
       "gender": "Women",
       "size": "XXL",
@@ -165,6 +175,7 @@
     {
       "id": "G11",
       "name": "Red Gingham Long-Sleeve Shirt",
+      "category": "Top",
       "type": "Shirt",
       "gender": "Women",
       "size": "XXXL",
@@ -176,6 +187,74 @@
         "chest": 52,
         "shoulder": 21,
         "arm_length": 26
+      }
+    },
+    {
+      "id": "G12",
+      "name": "Grey Slim-Fit Chinos",
+      "category": "Bottom",
+      "type": "Chinos",
+      "gender": "Men",
+      "size": "M (30)",
+      "fit_style": "Slim",
+      "image": "download (4).jfif",
+      "path": "download (4).jfif",
+      "dimensions": {
+        "waist": 32,
+        "hip": 38,
+        "thigh": 22,
+        "inseam": 32
+      }
+    },
+    {
+      "id": "G13",
+      "name": "Tan Pleated Cropped Trousers",
+      "category": "Bottom",
+      "type": "Trousers",
+      "gender": "Men",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "image": "download (5).jfif",
+      "path": "download (5).jfif",
+      "dimensions": {
+        "waist": 32,
+        "hip": 40,
+        "thigh": 24,
+        "inseam": 26
+      }
+    },
+    {
+      "id": "G14",
+      "name": "Beige Cargo Shorts",
+      "category": "Bottom",
+      "type": "Shorts",
+      "gender": "Men",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "image": "download (6).jfif",
+      "path": "download (6).jfif",
+      "dimensions": {
+        "waist": 32,
+        "hip": 40,
+        "thigh": 24,
+        "inseam": 8
+      }
+    },
+    {
+      "id": "G15",
+      "name": "Beige Jogger Pants",
+      "category": "Bottom",
+      "type": "Joggers",
+      "gender": "Men",
+      "size": "M (30)",
+      "fit_style": "Slim Tapered",
+      "image": "images.jfif",
+      "path": "images.jfif",
+      "dimensions": {
+        "waist": 30,
+        "hip": 38,
+        "thigh": 22,
+        "inseam": 30
       }
     }
   ]

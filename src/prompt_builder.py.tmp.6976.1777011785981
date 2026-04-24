@@ -93,15 +93,6 @@ LENGTH (torso, {units}):
   +3 to +6  -> tunic length, hem at upper thigh, vertical folds.
   beyond +6 -> very long, hem to mid-thigh or knee, dress-like silhouette.
 
-ARM / SLEEVE (sleeve length, {units}):
-  0 to ±1   -> sleeve hem at the intended landmark.
-  -1 to -3  -> sleeve clearly short, visible exposure beyond the cuff.
-  -3 to -6  -> very short, sleeve barely covers the upper arm/shoulder, looks like a cropped or cap sleeve regardless of the original sleeve type.
-  beyond -6 -> sleeve barely exists, garment reads as nearly sleeveless on this wearer. Keep it plausible.
-  +1 to +3  -> long, fabric bunches at the cuff.
-  +3 to +6  -> very long, sleeve covers the wrist and partial back of hand.
-  beyond +6 -> extreme, sleeve fully covers the hand or extends past the fingertips.
-
 WAIST (waistband circumference, {units}) — bottoms only:
   0 to ±1   -> waistband sits cleanly on the natural waist, no pull.
   -1 to -3  -> snug at the waistband, slight indentation, sits without belt.
@@ -152,10 +143,11 @@ INTENT MODULATION — interpret each band against the cut ("{fit_style}") AND th
 
 WHAT YOUR OUTPUT PROMPT MUST DO:
 1. Open with a clear TASK line: render a photorealistic try-on of this specific person wearing this specific garment; preserve face, hair, skin tone, pose, background; only the {body_zone} clothing changes (do NOT alter clothing on the other body zone).
-2. Explicitly instruct the image model to preserve every visible design detail from the garment reference image it will receive separately: print/logo/color blocking, collar/waistband shape, sleeve/leg type, fabric weight, seams, cuffs/hems, pockets, and texture.
-3. Go through EACH delta in the dimension table above using the band that the actual numeric delta falls into. Be concrete and physical. Do not blur band boundaries — a -4 must read as "clearly tight with visible tension lines", a -10 must read as "heavily strained", a -20 must read as "fabric at maximum stretch, clearly the wrong size", and so on. Skip dimensions that aren't in the table.
-4. Add an OVERALL SILHOUETTE sentence synthesizing the combined impression and naming the dominant problem area (or confirming a clean fit).
-5. Close with RENDERING instructions: photograph-grade realism, match lighting and shadow softness of the person reference, no painterly/cartoon/stylized effects, single final image only, no added accessories, no background changes, and the result must remain a physically plausible photo even when deltas are extreme.
+2. State explicitly that the garment is worn UNTUCKED. The hem falls naturally at its designed length on this specific wearer. Never tuck the garment into pants, skirts, shorts, or any waistband, belt, or paperbag detail on the lower body. If the hem lands above the wearer's natural waist, show bare midriff between the hem and the lower-body garment — do NOT hide the hem under a waistband or belt to "make it look styled".
+3. Explicitly instruct the image model to preserve every visible design detail from the garment reference image EXACTLY as shown: print/logo/color blocking, collar/neckline shape, sleeve style AND sleeve length (do NOT lengthen, shorten, or replace sleeves based on any fit analysis), cuff style, hem shape, waistband detail, fabric weight, seams, pockets, and texture. The model must NOT invent any design element that is not visible in the product reference — no new collars, no new sleeve types, no new hems, no new closures.
+4. Go through EACH delta in the dimension table above using the band that the actual numeric delta falls into. Be concrete and physical. Do not blur band boundaries — a -4 must read as "clearly tight with visible tension lines", a -10 must read as "heavily strained", a -20 must read as "fabric at maximum stretch, clearly the wrong size", and so on. Skip dimensions that aren't in the table.
+5. Add an OVERALL SILHOUETTE sentence synthesizing the combined impression and naming the dominant problem area (or confirming a clean fit).
+6. Close with RENDERING instructions: photograph-grade realism, match lighting and shadow softness of the person reference, no painterly/cartoon/stylized effects, single final image only, no added accessories, no background changes, and the result must remain a physically plausible photo even when deltas are extreme.
 
 LENGTH: 450-600 words. Cohesive paragraphs, not bullet lists (except the per-landmark fit analysis may use short bulleted lines if that reads cleaner).
 

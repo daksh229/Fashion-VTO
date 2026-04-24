@@ -13,7 +13,6 @@ Flow:
 import os
 import sys
 import json
-import time
 from pathlib import Path
 from datetime import datetime
 
@@ -49,182 +48,89 @@ def save_uploaded_person(uploaded_file) -> Path:
     return TEMP_PERSON_PATH
 
 
-def stream_words(text: str, delay: float = 0.02):
-    for word in text.split(" "):
-        yield word + " "
-        time.sleep(delay)
-
-
-DINO_GAME_HTML = """
+STATUS_STREAM_HTML = """
 <!doctype html>
 <html>
 <head>
 <style>
   html, body { margin: 0; padding: 0; background: transparent; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  .wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0; }
-  .hud { display: flex; justify-content: space-between; width: 600px; max-width: 95vw; color: #444; font-size: 13px; }
-  canvas { background: #fafafa; border: 1px solid #e6e6e6; border-radius: 6px; max-width: 95vw; touch-action: manipulation; }
-  .hint { color: #888; font-size: 12px; }
+  .card {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 18px; padding: 36px 24px; margin: 0 auto; max-width: 640px;
+    background: #ffffff; border: 1px solid #ececec; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .spinner {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 3px solid rgba(255, 75, 75, 0.15);
+    border-top-color: #ff4b4b;
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .status {
+    font-size: 16px; color: #2c2c2c; min-height: 24px;
+    text-align: center; max-width: 540px; line-height: 1.4;
+    transition: opacity 0.45s ease;
+  }
+  .status.fade { opacity: 0; }
+  .meta {
+    font-size: 11px; color: #999; letter-spacing: 0.08em;
+    text-transform: uppercase; font-variant-numeric: tabular-nums;
+  }
+  .dot {
+    display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+    background: #ff4b4b; margin: 0 3px; animation: pulse 1.2s ease-in-out infinite;
+  }
+  .dot:nth-child(2) { animation-delay: 0.15s; }
+  .dot:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="hud">
-    <span id="status">Press <b>Space</b> or <b>tap</b> to jump &nbsp;·&nbsp; <b>↓</b> to duck</span>
-    <span>Score: <b id="score">0</b> &nbsp;·&nbsp; HI <b id="hi">0</b></span>
+<div class="card">
+  <div class="spinner"></div>
+  <div id="status" class="status">Analyzing your body measurements…</div>
+  <div class="meta">
+    elapsed <span id="elapsed">0:00</span>
+    &nbsp;·&nbsp;
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
   </div>
-  <canvas id="game" width="600" height="180"></canvas>
-  <div class="hint">A little something to do while your try-on renders.</div>
 </div>
 <script>
 (function(){
-  const cvs = document.getElementById('game');
-  const ctx = cvs.getContext('2d');
-  const W = cvs.width, H = cvs.height;
-  const GROUND_Y = H - 30;
-  const scoreEl = document.getElementById('score');
-  const hiEl = document.getElementById('hi');
-  const statusEl = document.getElementById('status');
+  const messages = [
+    "Analyzing your body measurements…",
+    "Calculating fit deltas across every landmark…",
+    "Tailoring the garment to your frame…",
+    "Studying how the fabric will tension, drape, and fold…",
+    "Drafting fit-aware rendering instructions for the image model…",
+    "Composing the final try-on scene…",
+    "Sending the brief to the image model for a photorealistic render…",
+    "Polishing lighting, seams, and texture detail…",
+    "Finalizing your virtual try-on…",
+  ];
+  const el = document.getElementById('status');
+  const elapsedEl = document.getElementById('elapsed');
+  let i = 0;
+  const start = Date.now();
 
-  let hi = parseInt(localStorage.getItem('dino_hi') || '0', 10);
-  hiEl.textContent = hi;
-
-  const dino = {
-    x: 50, y: GROUND_Y - 40, w: 28, h: 40,
-    vy: 0, onGround: true, ducking: false,
-  };
-  const GRAVITY = 0.7;
-  const JUMP_V = -12.5;
-
-  let obstacles = [];
-  let clouds = [];
-  let frame = 0;
-  let speed = 5;
-  let score = 0;
-  let gameOver = false;
-  let started = false;
-
-  function reset(){
-    obstacles = []; clouds = []; frame = 0; speed = 5; score = 0;
-    gameOver = false; dino.y = GROUND_Y - 40; dino.vy = 0; dino.onGround = true; dino.ducking = false;
-    statusEl.innerHTML = 'Press <b>Space</b> or <b>tap</b> to jump &nbsp;·&nbsp; <b>↓</b> to duck';
+  function rotate(){
+    el.classList.add('fade');
+    setTimeout(() => {
+      i = (i + 1) % messages.length;
+      el.textContent = messages[i];
+      el.classList.remove('fade');
+    }, 450);
   }
+  setInterval(rotate, 2800);
 
-  function jump(){
-    if (gameOver) { reset(); started = true; return; }
-    if (dino.onGround) { dino.vy = JUMP_V; dino.onGround = false; started = true; }
+  function tick(){
+    const s = Math.floor((Date.now() - start) / 1000);
+    const m = Math.floor(s / 60);
+    elapsedEl.textContent = m + ':' + String(s % 60).padStart(2, '0');
   }
-  function duckOn(){ if (dino.onGround) { dino.ducking = true; dino.h = 22; dino.y = GROUND_Y - 22; } }
-  function duckOff(){ if (dino.ducking) { dino.ducking = false; dino.h = 40; dino.y = GROUND_Y - 40; } }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); jump(); }
-    if (e.code === 'ArrowDown') { e.preventDefault(); duckOn(); }
-  });
-  document.addEventListener('keyup', (e) => {
-    if (e.code === 'ArrowDown') { duckOff(); }
-  });
-  cvs.addEventListener('mousedown', jump);
-  cvs.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); }, {passive: false});
-
-  function spawn(){
-    if (frame % Math.max(45, 90 - Math.floor(speed * 4)) === 0 && Math.random() < 0.7) {
-      const isBird = Math.random() < 0.25 && score > 200;
-      if (isBird) {
-        const flyY = Math.random() < 0.5 ? GROUND_Y - 55 : GROUND_Y - 30;
-        obstacles.push({ x: W + 10, y: flyY, w: 28, h: 18, type: 'bird', flap: 0 });
-      } else {
-        const big = Math.random() < 0.4;
-        const w = big ? 22 : 14;
-        const h = big ? 38 : 28;
-        obstacles.push({ x: W + 10, y: GROUND_Y - h, w, h, type: 'cactus' });
-      }
-    }
-    if (frame % 110 === 0) {
-      clouds.push({ x: W + 10, y: 20 + Math.random() * 50, w: 36 });
-    }
-  }
-
-  function rectsHit(a, b){
-    return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
-  }
-
-  function step(){
-    if (started && !gameOver) {
-      frame++;
-      score++;
-      if (frame % 200 === 0) speed += 0.4;
-      dino.vy += GRAVITY;
-      dino.y += dino.vy;
-      const floor = GROUND_Y - dino.h;
-      if (dino.y >= floor) { dino.y = floor; dino.vy = 0; dino.onGround = true; }
-
-      spawn();
-      for (const o of obstacles) o.x -= speed;
-      for (const c of clouds) c.x -= speed * 0.4;
-      obstacles = obstacles.filter(o => o.x + o.w > -10);
-      clouds = clouds.filter(c => c.x + c.w > -10);
-
-      for (const o of obstacles) {
-        const dHit = { x: dino.x + 3, y: dino.y + 3, w: dino.w - 6, h: dino.h - 6 };
-        if (rectsHit(dHit, o)) {
-          gameOver = true;
-          if (score > hi) { hi = score; localStorage.setItem('dino_hi', hi); hiEl.textContent = hi; }
-          statusEl.innerHTML = '<b>Game over</b> — press <b>Space</b> or <b>tap</b> to play again';
-        }
-      }
-      scoreEl.textContent = Math.floor(score / 4);
-    }
-    draw();
-    requestAnimationFrame(step);
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#bbb';
-    for (const c of clouds) {
-      ctx.beginPath();
-      ctx.arc(c.x, c.y, 8, 0, Math.PI*2);
-      ctx.arc(c.x+10, c.y+2, 10, 0, Math.PI*2);
-      ctx.arc(c.x+22, c.y, 7, 0, Math.PI*2);
-      ctx.fill();
-    }
-    ctx.strokeStyle = '#888';
-    ctx.beginPath();
-    ctx.moveTo(0, GROUND_Y + 1);
-    ctx.lineTo(W, GROUND_Y + 1);
-    ctx.stroke();
-
-    ctx.fillStyle = '#444';
-    if (dino.ducking) {
-      ctx.fillRect(dino.x, dino.y, 36, dino.h);
-      ctx.fillRect(dino.x + 30, dino.y - 4, 8, 8);
-    } else {
-      ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
-      ctx.fillRect(dino.x + dino.w - 4, dino.y - 6, 12, 10);
-      ctx.fillStyle = '#fafafa';
-      ctx.fillRect(dino.x + dino.w + 2, dino.y - 3, 2, 2);
-      ctx.fillStyle = '#444';
-      ctx.fillRect(dino.x - 4, dino.y + dino.h - 6, 6, 4);
-      ctx.fillRect(dino.x + dino.w - 8, dino.y + dino.h - 6, 6, 4);
-    }
-
-    for (const o of obstacles) {
-      if (o.type === 'cactus') {
-        ctx.fillStyle = '#3b6b3b';
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-        ctx.fillRect(o.x - 4, o.y + 6, 4, o.h * 0.4);
-        ctx.fillRect(o.x + o.w, o.y + 10, 4, o.h * 0.35);
-      } else {
-        ctx.fillStyle = '#666';
-        const wing = (Math.floor(frame / 8) % 2 === 0) ? -6 : 6;
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-        ctx.fillRect(o.x + 4, o.y + wing, 16, 4);
-      }
-    }
-  }
-
-  step();
+  setInterval(tick, 1000);
+  tick();
 })();
 </script>
 </body>
@@ -232,8 +138,8 @@ DINO_GAME_HTML = """
 """
 
 
-def render_dino_game():
-    components.html(DINO_GAME_HTML, height=240, scrolling=False)
+def render_status_stream():
+    components.html(STATUS_STREAM_HTML, height=220, scrolling=False)
 
 
 # ---------------- Page config ----------------
@@ -270,10 +176,18 @@ with st.sidebar:
     )
 
     st.subheader("Your measurements (inches)")
+
+    st.markdown("**Upper body** — used for tops")
     length = st.number_input("Length (torso)", min_value=10.0, max_value=40.0, value=26.0, step=0.5)
     chest = st.number_input("Chest", min_value=20.0, max_value=60.0, value=36.0, step=0.5)
     shoulder = st.number_input("Shoulder", min_value=10.0, max_value=30.0, value=15.0, step=0.5)
     arm_length = st.number_input("Arm length", min_value=5.0, max_value=30.0, value=9.0, step=0.5)
+
+    st.markdown("**Lower body** — used for pants / shorts")
+    waist = st.number_input("Waist", min_value=20.0, max_value=60.0, value=32.0, step=0.5)
+    hip = st.number_input("Hip", min_value=24.0, max_value=70.0, value=38.0, step=0.5)
+    thigh = st.number_input("Thigh", min_value=14.0, max_value=40.0, value=22.0, step=0.5)
+    inseam = st.number_input("Inseam (leg)", min_value=10.0, max_value=40.0, value=30.0, step=0.5)
 
     if st.button("Load Wardrobe →", type="primary", use_container_width=True):
         if uploaded is None:
@@ -286,6 +200,10 @@ with st.sidebar:
                 "chest": chest,
                 "shoulder": shoulder,
                 "arm_length": arm_length,
+                "waist": waist,
+                "hip": hip,
+                "thigh": thigh,
+                "inseam": inseam,
             }
             st.session_state.wardrobe_loaded = True
             st.session_state.last_result = None
@@ -318,10 +236,17 @@ with col_a:
     st.image(st.session_state.person_image_path, caption="You", width=220)
 with col_b:
     st.subheader("Your dimensions")
-    pd_cols = st.columns(4)
     pd = st.session_state.person_dimensions
-    for c, (label, val) in zip(pd_cols, pd.items()):
-        c.metric(label.replace("_", " ").title(), f'{val}"')
+    top_keys = ["length", "chest", "shoulder", "arm_length"]
+    bot_keys = ["waist", "hip", "thigh", "inseam"]
+    st.caption("Upper body")
+    top_cols = st.columns(4)
+    for c, k in zip(top_cols, top_keys):
+        c.metric(k.replace("_", " ").title(), f'{pd[k]}"')
+    st.caption("Lower body")
+    bot_cols = st.columns(4)
+    for c, k in zip(bot_cols, bot_keys):
+        c.metric(k.replace("_", " ").title(), f'{pd[k]}"')
 
 st.divider()
 
@@ -340,16 +265,16 @@ for i in range(0, len(garments), cols_per_row):
                 img_path = CLOTH_DIR / garment["path"]
                 st.image(str(img_path), use_container_width=True)
                 st.markdown(f"**{garment['name']}**")
+                cat = garment.get("category", "Top")
                 st.caption(
-                    f"{garment['id']} · {garment['type']} · "
+                    f"{garment['id']} · {cat} · {garment['type']} · "
                     f"Size {garment['size']} · {garment['fit_style']}"
                 )
                 d = garment["dimensions"]
+                pairs = [f'{k.replace("_", " ").title()}: <b>{v}"</b>' for k, v in d.items()]
+                rows = [" · ".join(pairs[i:i + 2]) for i in range(0, len(pairs), 2)]
                 st.markdown(
-                    f"<small>"
-                    f"Length: <b>{d['length']}\"</b> · Chest: <b>{d['chest']}\"</b><br>"
-                    f"Shoulder: <b>{d['shoulder']}\"</b> · Arm: <b>{d['arm_length']}\"</b>"
-                    f"</small>",
+                    "<small>" + "<br>".join(rows) + "</small>",
                     unsafe_allow_html=True,
                 )
                 if st.button("Try Now", key=f"try_{garment['id']}", use_container_width=True):
@@ -362,17 +287,16 @@ if st.session_state.selected_garment_id:
     st.divider()
 
     status_box = st.empty()
-    game_box = st.empty()
+    stream_box = st.empty()
     error_box = st.empty()
 
     status_box.markdown(
-        f"### ✨ Generating your try-on for **{gid}**…\n"
-        f"<span style='color:#888'>This usually takes 30–60 seconds. "
-        f"Play the mini-game below while you wait.</span>",
+        f"### Generating your try-on for **{gid}**\n"
+        f"<span style='color:#888'>This usually takes 30–60 seconds.</span>",
         unsafe_allow_html=True,
     )
-    with game_box.container():
-        render_dino_game()
+    with stream_box.container():
+        render_status_stream()
 
     fit = calculate_fit(st.session_state.person_dimensions, gid)
     garment_img_path = str(CLOTH_DIR / fit["image_path"])
@@ -404,7 +328,7 @@ if st.session_state.selected_garment_id:
         st.session_state.last_result = None
 
     status_box.empty()
-    game_box.empty()
+    stream_box.empty()
     st.session_state.selected_garment_id = None
 
 # ---------------- Result display ----------------

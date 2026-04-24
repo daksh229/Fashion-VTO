@@ -13,7 +13,7 @@ from PIL import Image
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
-MODEL_NAME = "gemini-3.1-flash-image-preview"
+MODEL_NAME = "gemini-2.5-flash-image"
 
 
 def _get_client() -> genai.Client:

@@ -31,6 +31,8 @@ def calculate_fit(person_dimensions: dict, cloth_id: str, catalog_path: Path = C
         "garment_name": garment["name"],
         "garment_size": garment.get("size"),
         "garment_fit_style": garment.get("fit_style"),
+        "garment_category": garment.get("category", "Top"),
+        "garment_type": garment.get("type"),
         "image_path": garment["path"],
         "units": catalog.get("units", "inches"),
         "person_dimensions": person_dimensions,

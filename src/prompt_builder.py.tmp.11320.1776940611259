@@ -102,58 +102,16 @@ ARM / SLEEVE (sleeve length, {units}):
   +3 to +6  -> very long, sleeve covers the wrist and partial back of hand.
   beyond +6 -> extreme, sleeve fully covers the hand or extends past the fingertips.
 
-WAIST (waistband circumference, {units}) — bottoms only:
-  0 to ±1   -> waistband sits cleanly on the natural waist, no pull.
-  -1 to -3  -> snug at the waistband, slight indentation, sits without belt.
-  -3 to -6  -> tight, waistband presses into the skin, visible pull at the closure.
-  -6 to -10 -> heavily strained, fly/button gaping, fabric folds radiating from the closure.
-  beyond -10 -> at maximum stretch / closure cannot fully fasten — describe it as the wrong size, keep it plausible.
-  +1 to +3  -> loose, waistband sits slightly low, would benefit from a belt.
-  +3 to +6  -> clearly loose, waistband sags below the natural waist.
-  beyond +6 -> drowning at the waist, fabric bunches under any belt and the pant is in danger of falling.
-
-HIP (hip circumference, {units}) — bottoms only:
-  0 to ±1   -> garment skims the hip cleanly.
-  -1 to -3  -> snug across the hip, fabric in close contact, no air gap.
-  -3 to -6  -> tight, side seams under load, visible tension lines at the upper outer thigh.
-  -6 to -10 -> heavily strained, contour reads through the cloth, pockets pull open.
-  beyond -10 -> at maximum stretch, plausibly too small.
-  +1 to +3  -> relaxed at the hip, soft drape.
-  +3 to +6  -> loose, fabric clearly off the hip with vertical folds.
-  beyond +6 -> oversized at the hip, baggy/tent silhouette.
-
-THIGH (thigh circumference, {units}) — bottoms only:
-  0 to ±1   -> skim fit at the thigh.
-  -1 to -3  -> snug at the thigh, fabric follows the muscle.
-  -3 to -6  -> tight, visible horizontal tension lines across the thigh, clear muscle contour.
-  -6 to -10 -> heavily strained, fabric pulled to the limit across the thigh, side seams under load.
-  beyond -10 -> at maximum stretch.
-  +1 to +3  -> straight-leg drape, fabric just off the thigh.
-  +3 to +6  -> wide-leg, fabric clearly off the thigh with soft vertical folds.
-  beyond +6 -> very wide / palazzo silhouette regardless of intended cut.
-
-INSEAM (leg length from crotch to hem, {units}) — bottoms only:
-  0 to ±1   -> hem lands at the intended landmark on the foot/ankle.
-  -1 to -3  -> hem rides above the ankle, slight ankle exposure.
-  -3 to -6  -> cropped — hem at the lower calf or upper ankle, clear ankle exposure.
-  -6 to -10 -> very cropped — hem at the mid-calf, reads as deliberately short on a regular pant.
-  -10 to -20 -> hem at the knee or upper calf — only sensible if the garment is a Shorts/Bermudas type. Otherwise reads as the wrong size.
-  beyond -20 -> hem above the knee — only sensible for shorts. For full-length pants this is the wrong size; describe it as the garment being far too short.
-  +1 to +3  -> hem stacks slightly on the shoe.
-  +3 to +6  -> hem pools heavily at the ankle, multiple folds.
-  beyond +6 -> hem drags on the ground.
-
-INTENT MODULATION — interpret each band against the cut ("{fit_style}") AND the garment type:
-- A small negative chest/hip/thigh delta on a Bodycon/Slim cut is intentional and reads sleek and tailored.
+INTENT MODULATION — interpret each band against the cut ("{fit_style}"):
+- A small negative chest delta on a Bodycon/Slim cut is intentional and reads sleek and tailored.
 - The same delta on a Relaxed/Oversized/Boxy cut reads as unintentionally tight and strained.
-- A positive delta on an Oversized/Wide-Leg cut reads as the intended drape; on a Slim/Fitted cut it reads as the wrong size.
-- A very negative inseam delta on a Shorts/Cropped type is the intended cut, not a fit problem — describe the hem position factually and call it out as the intended length.
+- A positive delta on an Oversized cut reads as the intended drape; on a Slim/Fitted cut it reads as the wrong size.
 - Always describe what the wearer would actually look like, not just the abstract physics.
 
 WHAT YOUR OUTPUT PROMPT MUST DO:
-1. Open with a clear TASK line: render a photorealistic try-on of this specific person wearing this specific garment; preserve face, hair, skin tone, pose, background; only the {body_zone} clothing changes (do NOT alter clothing on the other body zone).
-2. Explicitly instruct the image model to preserve every visible design detail from the garment reference image it will receive separately: print/logo/color blocking, collar/waistband shape, sleeve/leg type, fabric weight, seams, cuffs/hems, pockets, and texture.
-3. Go through EACH delta in the dimension table above using the band that the actual numeric delta falls into. Be concrete and physical. Do not blur band boundaries — a -4 must read as "clearly tight with visible tension lines", a -10 must read as "heavily strained", a -20 must read as "fabric at maximum stretch, clearly the wrong size", and so on. Skip dimensions that aren't in the table.
+1. Open with a clear TASK line: render a photorealistic try-on of this specific person wearing this specific garment; preserve face, hair, skin tone, pose, background; only the upper-body clothing changes.
+2. Explicitly instruct the image model to preserve every visible design detail from the garment reference image it will receive separately: print/logo/color blocking, collar shape, sleeve type, fabric weight, seams, cuffs, and texture.
+3. Go through EACH of the 4 deltas (length, chest, shoulder, arm) using the band that the actual numeric delta falls into above. Be concrete and physical. Do not blur band boundaries — a -4 must read as "clearly tight with visible tension lines", a -10 must read as "heavily strained bodycon", a -20 must read as "fabric at maximum stretch, clearly the wrong size", and so on.
 4. Add an OVERALL SILHOUETTE sentence synthesizing the combined impression and naming the dominant problem area (or confirming a clean fit).
 5. Close with RENDERING instructions: photograph-grade realism, match lighting and shadow softness of the person reference, no painterly/cartoon/stylized effects, single final image only, no added accessories, no background changes, and the result must remain a physically plausible photo even when deltas are extreme.
 
@@ -167,21 +125,10 @@ def build_fit_prompt(fit_result: dict) -> str:
     name = fit_result.get("garment_name", "the garment")
     size = fit_result.get("garment_size", "unspecified size")
     fit_style = fit_result.get("garment_fit_style", "standard cut")
-    category = fit_result.get("garment_category", "Top")
     units = fit_result.get("units", "inches")
     person = fit_result["person_dimensions"]
     garment = fit_result["garment_dimensions"]
     deltas = fit_result["deltas"]
-
-    body_zone = "upper body" if category == "Top" else "lower body"
-    other_zone = "lower body" if category == "Top" else "upper body"
-
-    person_line = ", ".join(
-        f"{dim.replace('_', ' ')} {person.get(dim)} {units}" for dim in deltas
-    )
-    garment_line = ", ".join(
-        f"{dim.replace('_', ' ')} {garment.get(dim)} {units}" for dim in deltas
-    )
 
     fit_sections = "\n\n".join(
         _describe(dim, deltas[dim], person.get(dim), garment.get(dim), units)
@@ -190,11 +137,11 @@ def build_fit_prompt(fit_result: dict) -> str:
     silhouette = _overall_silhouette(deltas, fit_style)
 
     prompt = f"""\
-TASK — Produce a single photorealistic virtual try-on image. The first reference image shows the person; the second shows the garment as a flat product photo. Render the person wearing that exact garment on the {body_zone}, with every visible design feature preserved. Keep the person's face, hair, skin tone, pose, proportions, the {other_zone} clothing, and the original background completely unchanged. The only change to the scene is the clothing on the {body_zone}. Do not add accessories, crops, stylization, or extra subjects.
+TASK — Produce a single photorealistic virtual try-on image. The first reference image shows the person; the second shows the garment as a flat product photo. Render the person wearing that exact garment on the upper body, with every visible design feature preserved. Keep the person's face, hair, skin tone, pose, proportions, and the original background completely unchanged. The only change to the scene is the clothing on the upper body. Do not add accessories, crops, stylization, or extra subjects.
 
-SUBJECT PROFILE — The wearer's measured {body_zone} dimensions are: {person_line}. These define the body landmarks the garment must respect. Do not alter the wearer's build; the body stays as shown, and the fabric must conform to it.
+SUBJECT PROFILE — The wearer's measured upper-body dimensions are: torso length {person['length']} {units}, chest circumference {person['chest']} {units}, shoulder width {person['shoulder']} {units}, arm length {person['arm_length']} {units}. These define the body landmarks the garment must respect. Do not alter the wearer's build; the body stays as shown, and the fabric must conform to it.
 
-GARMENT PROFILE — The target piece is a "{name}" (catalog ID {gid}, category {category}), labeled size {size}, intended cut: "{fit_style}". Its flat-measurement specifications are: {garment_line}. Reproduce every visible design element from the product reference — colors, logos, prints, buttons, seams, collar/waistband shape, cuffs/hems, pockets, and the fabric's weight and texture — without modification.
+GARMENT PROFILE — The target piece is a "{name}" (catalog ID {gid}), labeled size {size}, intended cut: "{fit_style}". Its flat-measurement specifications are: length {garment['length']} {units}, chest {garment['chest']} {units}, shoulder-seam span {garment['shoulder']} {units}, sleeve length {garment['arm_length']} {units}. Reproduce every visible design element from the product reference — colors, logos, prints, buttons, seams, collar shape, cuff treatment, and the fabric's weight and texture — without modification.
 
 FIT ANALYSIS — For each body landmark, the delta (garment dimension minus person dimension) dictates how the fabric behaves on the body. Negative delta means the garment is smaller than the body, so the material must compress, stretch, or fail to cover. Positive delta means the garment is larger, so the material must hang loose, drape, or bunch. The render MUST physically reflect each of the following:
 
@@ -436,178 +383,6 @@ def _describe(dim: str, delta: float, person_val, garment_val, units: str) -> st
             body = (
                 f"The sleeves are extremely long. The cuff falls past the fingertips with heavy bunching all "
                 f"along the forearm, producing an exaggerated oversized look."
-            )
-
-    elif dim == "waist":
-        if delta <= -10:
-            body = (
-                f"The waistband is far too small to fasten cleanly. Render the closure clearly straining or "
-                f"unable to fully meet, with deep fabric folds radiating from the fly and the band cutting into "
-                f"the skin. Keep the render plausible: the wrong size, not torn."
-            )
-        elif delta <= -6:
-            body = (
-                f"The waistband is heavily strained. Render visible gaping at the fly or button, fabric folds "
-                f"radiating outward, and a clear indentation where the band presses into the skin."
-            )
-        elif delta <= -3:
-            body = (
-                f"The waistband is tight. Render visible pull at the closure, the band pressing into the skin, "
-                f"and faint stress lines around the fly."
-            )
-        elif delta < -1:
-            body = (
-                f"The waistband is snug. The band sits in close contact with the natural waist with no gap and "
-                f"a slight indentation, but no straining lines."
-            )
-        elif delta <= 1:
-            body = (
-                f"The waistband sits cleanly at the natural waist with no pull and no slack."
-            )
-        elif delta <= 3:
-            body = (
-                f"The waistband is loose. The pant sits slightly low on the waist, with a clear gap that "
-                f"would benefit from a belt."
-            )
-        elif delta <= 6:
-            body = (
-                f"The waistband is clearly loose. The band sags below the natural waist with visible slack and "
-                f"the pant rides low without support."
-            )
-        else:
-            body = (
-                f"The waistband is dramatically loose — the wearer is drowning at the waist. Without a belt, "
-                f"the pant would not stay up; render heavy bunching at any belt and an obviously wrong-size fit."
-            )
-
-    elif dim == "hip":
-        if delta <= -10:
-            body = (
-                f"The garment is far too small at the hip — fabric is at its maximum stretch. Render the cloth "
-                f"pulled taut across the hip with the silhouette of the body reading clearly through, side "
-                f"seams under heavy load, and any pockets pulled wide open. Keep it plausible."
-            )
-        elif delta <= -6:
-            body = (
-                f"The hip is heavily strained. Render visible tension lines from the upper outer thigh, body "
-                f"contour reading through the cloth, and pockets gaping under load."
-            )
-        elif delta <= -3:
-            body = (
-                f"The hip is clearly tight. Side seams under load with faint tension lines at the upper outer "
-                f"thigh and the body contour starting to read through the fabric."
-            )
-        elif delta < -1:
-            body = (
-                f"The hip is snug. The fabric sits in close contact across the hip with no air gap, but with "
-                f"no visible stretch lines."
-            )
-        elif delta <= 1:
-            body = (
-                f"The hip is true to size — the garment skims the hip cleanly with no strain and no excess."
-            )
-        elif delta <= 3:
-            body = (
-                f"The hip is relaxed. A small air gap separates the fabric from the hip with soft straight "
-                f"drape."
-            )
-        elif delta <= 6:
-            body = (
-                f"The hip is loose. Soft vertical folds fall from the waistband, with the fabric clearly off "
-                f"the hip."
-            )
-        else:
-            body = (
-                f"The hip is heavily oversized. Render deep vertical folds from the waistband, with a baggy, "
-                f"tent-leaning silhouette around the hip and upper thigh."
-            )
-
-    elif dim == "thigh":
-        if delta <= -10:
-            body = (
-                f"The thigh is dramatically constricted — fabric is at maximum stretch across the leg. Render "
-                f"clear muscle contour through the cloth, horizontal tension lines wrapping the thigh, and side "
-                f"seams under heavy load. Keep it plausible: too small, not torn."
-            )
-        elif delta <= -6:
-            body = (
-                f"The thigh is heavily strained. Render pronounced horizontal tension lines across the thigh, "
-                f"with the muscle contour reading clearly through the fabric."
-            )
-        elif delta <= -3:
-            body = (
-                f"The thigh is clearly tight. Render faint horizontal tension lines across the front of the "
-                f"thigh and the leg contour starting to read through the cloth."
-            )
-        elif delta < -1:
-            body = (
-                f"The thigh is snug. The fabric follows the muscle with light contact and no visible stretch "
-                f"lines."
-            )
-        elif delta <= 1:
-            body = (
-                f"The thigh is true to size — straight, clean drape from hip to knee with no clinging and no "
-                f"excess."
-            )
-        elif delta <= 3:
-            body = (
-                f"The thigh is relaxed. The fabric falls in a clean straight-leg line with a small air gap "
-                f"around the thigh."
-            )
-        elif delta <= 6:
-            body = (
-                f"The thigh is loose. The fabric sits visibly off the leg with soft vertical folds along the "
-                f"outer thigh, reading as a wide-leg drape."
-            )
-        else:
-            body = (
-                f"The thigh is heavily oversized — the leg silhouette is wide and palazzo-leaning regardless "
-                f"of the intended cut, with deep vertical folds from hip to knee."
-            )
-
-    elif dim == "inseam":
-        if delta <= -20:
-            body = (
-                f"The leg length is at the shorts/Bermuda range relative to a full-length pant. Render the hem "
-                f"above the knee or at mid-thigh — if the garment is intended as shorts, this reads as the "
-                f"intended length; otherwise it reads as far too short."
-            )
-        elif delta <= -10:
-            body = (
-                f"The hem sits at or near the knee. Render the lower leg fully exposed below the hem; this "
-                f"reads as a Bermuda or knee-length cut on this wearer."
-            )
-        elif delta <= -6:
-            body = (
-                f"The hem is well above the ankle, sitting around the mid-calf. Render a clear length of bare "
-                f"lower leg between hem and shoe."
-            )
-        elif delta <= -3:
-            body = (
-                f"The hem is cropped — sitting at the lower calf or upper ankle, with the ankle clearly "
-                f"exposed above the shoe."
-            )
-        elif delta < -1:
-            body = (
-                f"The hem rides slightly above the ankle bone with a small visible band of bare ankle."
-            )
-        elif delta <= 1:
-            body = (
-                f"The hem lands at the intended landmark on the foot — clean break at the shoe with no "
-                f"excess pooling."
-            )
-        elif delta <= 3:
-            body = (
-                f"The hem stacks slightly on the shoe with a small fold at the ankle."
-            )
-        elif delta <= 6:
-            body = (
-                f"The hem pools heavily at the ankle with multiple folds breaking over the shoe."
-            )
-        else:
-            body = (
-                f"The hem drags on the ground beyond the shoe, with the excess fabric pooling and folding "
-                f"around the foot."
             )
 
     else:

@@ -93,15 +93,6 @@ LENGTH (torso, {units}):
   +3 to +6  -> tunic length, hem at upper thigh, vertical folds.
   beyond +6 -> very long, hem to mid-thigh or knee, dress-like silhouette.
 
-ARM / SLEEVE (sleeve length, {units}):
-  0 to ±1   -> sleeve hem at the intended landmark.
-  -1 to -3  -> sleeve clearly short, visible exposure beyond the cuff.
-  -3 to -6  -> very short, sleeve barely covers the upper arm/shoulder, looks like a cropped or cap sleeve regardless of the original sleeve type.
-  beyond -6 -> sleeve barely exists, garment reads as nearly sleeveless on this wearer. Keep it plausible.
-  +1 to +3  -> long, fabric bunches at the cuff.
-  +3 to +6  -> very long, sleeve covers the wrist and partial back of hand.
-  beyond +6 -> extreme, sleeve fully covers the hand or extends past the fingertips.
-
 WAIST (waistband circumference, {units}) — bottoms only:
   0 to ±1   -> waistband sits cleanly on the natural waist, no pull.
   -1 to -3  -> snug at the waistband, slight indentation, sits without belt.
