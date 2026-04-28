@@ -1,257 +1,299 @@
 # Hybrid Body Measurement Approach
 > Estimate body measurements from a photo using pose estimation + user-provided reference inputs.
+> **Status:** Implemented in `src/measurement/` and wired into the Streamlit app (`app.py`).
 
 ---
 
 ## Overview
 
-The hybrid approach combines **open-source pose estimation** (MediaPipe Pose) with **user-supplied reference measurements** (height, and optionally shoulder/waist) to produce accurate body measurements without requiring expensive 3D scanning hardware or paid APIs.
+The hybrid approach combines **open-source pose estimation** (MediaPipe Pose Landmarker, Tasks API) with **user-supplied reference measurements** (height, and optionally shoulder width / waist circumference) to produce body measurements without 3D scanning hardware or paid APIs.
 
 The core idea:
-- Pose estimation gives us **body landmark positions in pixels**
-- User-provided height gives us a **pixel-to-cm scale factor**
-- Optional shoulder/waist inputs act as **correction anchors** to improve accuracy
+- Pose estimation gives **2D body landmark positions in pixels**
+- User-provided height gives a **pixel-to-cm scale factor**
+- Optional shoulder/waist inputs act as **regional correction multipliers**
+- An optional **side photo** unlocks depth-aware circumferences via ellipse approximation
 
-The measurement set covers **both upper and lower body** so the same pipeline can fit tops (shirts, jackets) and bottoms (jeans, pants) as the wardrobe expands.
+Measurements cover **both upper and lower body** so the pipeline serves shirts/jackets and pants/jeans from a single detection.
 
----
-
-## Requirements
-
-### 1. Functional Requirements
-
-| # | Requirement | Priority |
-|---|-------------|----------|
-| F1 | Accept 1 frontal full-body photo (JPEG/PNG) | Must have |
-| F2 | Accept 1 optional side-profile photo for depth-based measurements | Nice to have |
-| F3 | Accept user height as mandatory reference input (cm or ft/in) | Must have |
-| F4 | Accept optional shoulder width and waist circumference as correction inputs | Nice to have |
-| F5 | Detect and return 33 body pose landmarks from the image | Must have |
-| F6 | Calculate pixel-to-cm scale ratio using the height reference | Must have |
-| F7 | Output the following measurements: | Must have |
-|   | **Upper body** | |
-|   | — Shoulder width | |
-|   | — Chest width (frontal estimate) | |
-|   | — Arm length (shoulder to wrist) | |
-|   | — Torso length (shoulder to hip) | |
-|   | **Lower body** (for pants / jeans) | |
-|   | — Waist width | |
-|   | — Hip width | |
-|   | — Inseam (crotch to ankle) | |
-|   | — Outseam (hip to ankle, outer leg) | |
-|   | — Thigh width (frontal estimate) | |
-| F8 | Return a confidence score (0–1) per measurement | Nice to have |
-| F9 | Flag if body is not fully visible or pose detection failed | Must have |
+> **Dimensionality note:** measurements are computed in **2D** (frontal projection) — see [`engine._dist`](src/measurement/engine.py#L24-L25). MediaPipe's `z` coordinate is captured but **not used** by any measurement. Circumferences are **2.5D**: a frontal width plus a side-photo depth (or a fixed `0.78 × width` fallback) fed into Ramanujan's ellipse-perimeter approximation. There is no SMPL or true 3D body model.
 
 ---
 
-### 2. Technical Requirements
-
-| # | Requirement | Detail |
-|---|-------------|--------|
-| T1 | **Pose estimation library** | MediaPipe Pose (Google) — free, 33 landmarks, runs locally |
-| T2 | **Language & runtime** | Python 3.9+ |
-| T3 | **Backend framework** | FastAPI (recommended) or Flask |
-| T4 | **Image preprocessing** | Resize to standard height, convert to RGB, optional background removal via `rembg` |
-| T5 | **Segmentation (optional)** | `rembg` or `Segment Anything` for cleaner silhouette |
-| T6 | **Scale calibration module** | Maps pixel distance (head-to-toe landmarks) → known height in cm |
-| T7 | **Measurement engine** | Euclidean distance between landmark pairs, multiplied by scale factor |
-| T8 | **Correction module** | Applies user-supplied shoulder/waist to adjust scale or offset per region |
-| T9 | **API interface** | REST endpoint: `POST /measure` accepting multipart image + JSON inputs |
-| T10 | **Frontend** | Simple HTML form or React component — photo upload + input fields |
-| T11 | **Output format** | JSON response with measurement names, values (cm), and confidence scores |
-
----
-
-### 3. Data / Input Requirements
-
-#### Photo Requirements
-- **Angle**: Straight-on frontal (and optionally a 90° side view)
-- **Lighting**: Even, no harsh shadows — natural light preferred
-- **Clothing**: Tight-fitting or form-fitting (baggy clothes reduce accuracy)
-- **Background**: Plain or contrasting with the person
-- **Pose**: Standing upright, arms slightly away from body, feet shoulder-width apart
-- **Full body visible**: Head to toe must be in frame
-- **Resolution**: Minimum 480×640px, recommended 720p or higher
-
-#### Reference Inputs
-| Input | Type | Required | Notes |
-|-------|------|----------|-------|
-| Height | number (cm or ft/in) | **Yes** | Primary scale anchor |
-| Shoulder width | number (cm) | No | Correction anchor for upper body |
-| Waist circumference | number (cm) | No | Correction anchor for mid-body |
-
----
-
-### 4. Non-Functional Requirements
-
-| # | Requirement | Target |
-|---|-------------|--------|
-| NF1 | Processing time | < 5 seconds per image |
-| NF2 | Accuracy | ±2–3 cm margin of error for major measurements |
-| NF3 | Offline capability | Core ML pipeline must run without internet access |
-| NF4 | Privacy | Images must not be stored server-side without explicit user consent |
-| NF5 | GDPR compliance | Provide image deletion option post-processing |
-| NF6 | Scalability | API should handle concurrent requests via async workers |
-| NF7 | Platform support | Works on Linux, macOS, Windows; deployable via Docker |
-
----
-
-## Architecture
+## Implemented Architecture
 
 ```
-User
+Streamlit UI (app.py)
  │
- ├─── Frontal photo (+ optional side photo)
- ├─── Height (mandatory)
- └─── Shoulder / Waist (optional)
+ ├─── Frontal photo (upload or st.camera_input)
+ ├─── Side photo (optional, upload or camera)
+ ├─── Height in cm or ft/in (mandatory)
+ └─── Optional anchors: shoulder width, waist circumference
          │
          ▼
-┌─────────────────────────────────────────┐
-│           Preprocessing Layer           │
-│  • Resize & normalize image             │
-│  • Background removal (optional)        │
-│  • Validate full-body visibility        │
-└────────────────┬────────────────────────┘
+┌────────────────────────────────────────────────┐
+│ src/measurement/preprocess.py                  │
+│ • PIL decode + EXIF transpose (phone rotation) │
+│ • Convert to RGB ndarray                       │
+│ • Reject < 480 px on either side               │
+└────────────────┬───────────────────────────────┘
+                 ▼
+┌────────────────────────────────────────────────┐
+│ src/measurement/pose.py                        │
+│ • MediaPipe Tasks PoseLandmarker (lite model)  │
+│ • Auto-downloads .task file to                 │
+│   ~/.cache/mediapipe/ on first run             │
+│ • Returns 33 named landmarks                   │
+│   (e.g. "left_shoulder") in pixel coords       │
+│ • Annotated PNG produced for the UI            │
+└────────────────┬───────────────────────────────┘
+                 ▼
+┌────────────────────────────────────────────────┐
+│ src/measurement/scale.py                       │
+│ • Primary: pixel(nose→heel) × 1.087            │
+│   ≈ true crown-to-heel pixel height            │
+│ • Fallback: shoulder anchor (if feet hidden)   │
+│ • Computes shoulder_correction +               │
+│   waist_correction multipliers                 │
+└────────────────┬───────────────────────────────┘
+                 ▼
+┌────────────────────────────────────────────────┐
+│ src/measurement/engine.py                      │
+│ • Widths: 2D Euclidean × cm_per_pixel          │
+│ • Lengths: sum of 2D segments (more-visible    │
+│   side wins for arm and inseam)                │
+│ • Circumferences: ellipse perimeter from       │
+│   width + side-depth (or 0.78×width fallback)  │
+│ • Derived thigh width = 0.575 × hip width      │
+│ • Per-measurement confidence (visibility-based)│
+└────────────────┬───────────────────────────────┘
+                 ▼
+┌────────────────────────────────────────────────┐
+│ src/measurement/catalog_mapping.py             │
+│ • Map raw measurements → catalog dimension     │
+│   keys per category (top vs. bottom)           │
+│ • Category-aware fit_relevant_keys dispatch    │
+└────────────────┬───────────────────────────────┘
+                 ▼
+        Sidebar verification panel
+       (always-editable number_inputs +
+        🟢/🟡/🔴 confidence badges)
                  │
                  ▼
-┌─────────────────────────────────────────┐
-│        Pose Estimation (MediaPipe)      │
-│  • Detect 33 body landmarks             │
-│  • Extract (x, y) pixel coordinates     │
-│  • Compute visibility scores            │
-└────────────────┬────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────┐
-│         Scale Calibration Module        │
-│  • Pixel height = distance(nose → heel) │
-│  • Scale = real_height_cm / pixel_height│
-└────────────────┬────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────┐
-│         Measurement Engine              │
-│  • Compute Euclidean distances between  │
-│    relevant landmark pairs              │
-│  • Multiply by scale factor             │
-│  • Apply correction from optional inputs│
-└────────────────┬────────────────────────┘
-                 │
-                 ▼
-┌─────────────────────────────────────────┐
-│            Output Layer                 │
-│  • JSON with measurements + confidence  │
-│  • Annotated image (optional)           │
-└─────────────────────────────────────────┘
+        Load Wardrobe → fit_calculator
+                       → prompt_builder
+                       → gemini_client.generate_tryon (bytes in-memory)
 ```
+
+`run_measurement_pipeline` in [`pipeline.py`](src/measurement/pipeline.py) is the single entry point that stitches preprocess → pose → scale → engine and folds layer errors into `result.warnings` instead of raising — the UI always renders something and lets the user fall back to manual entry.
 
 ---
 
-## Landmark Pairs Used for Each Measurement
+## Locked Design Decisions (2026-04-28)
 
-| Measurement | Landmarks Used | Notes |
-|-------------|---------------|-------|
-| Shoulder width | Left shoulder ↔ Right shoulder | Direct horizontal distance |
-| Chest width | Chest-level horizontal estimate | Interpolated between shoulders |
-| Torso length | Mid-shoulder ↔ Mid-hip | Vertical distance |
-| Arm length | Shoulder → Elbow → Wrist | Sum of two segments |
-| Waist width | Left hip ↔ Right hip (adjusted) | Approx at waist level (above hip line) |
-| Hip width | Left hip ↔ Right hip | Direct horizontal distance |
-| Inseam | Mid-hip → Knee → Ankle | Crotch line to ankle, sum of two segments |
-| Outseam | Hip → Ankle (outer leg) | Hip landmark to ankle landmark vertically |
-| Thigh width | Hip-width × body-ratio factor | No direct landmark — estimated (~0.55–0.6 × hip width) |
+| # | Decision | Rationale |
+|---|----------|-----------|
+| 1 | Manual entry kept as permanent fallback (sidebar toggle: *Skip detection — enter manually*) | Escape hatch for low-confidence detections and users without a webcam |
+| 2 | After detection, detected values are shown as **always-editable** `st.number_input` widgets | Last-moment human verification before "Load Wardrobe" |
+| 3 | **Side photo is in v1** (not deferred) | Real depth >> heuristic depth for circumferences |
+| 4 | Depth fallback (no side photo): fixed **0.78 × width** ratio | Average chest/waist depth-to-width ratio for adult populations |
+| 5 | Height calibration: nose-to-heel × **1.087** | Adds back the ~8% nose-to-crown segment without segmentation; hair/hat-robust |
+| 6 | Catalog migrated **inches → cm** | Aligns with pipeline's natural unit; removed a class of conversion bugs |
+| 7 | Garment schema: `category: "top" \| "bottom"` + explicit `fit_relevant_keys` | Calculator and prompt builder dispatch by category, only consider relevant dimensions |
+| 8 | Photos handled **in-memory only** (no `output/_person_temp.png` write) | `gemini_client.generate_tryon` accepts bytes for person_image |
+| 9 | Lower-body scope (waist, hip, inseam, outseam, thigh) shipped now | Pants/jeans wardrobe expansion is imminent |
 
-> For circumference (chest, waist, hip), a **depth factor** is applied using body-type ratios or side-photo depth measurements. Without a side photo, an average depth-to-width ratio (typically 0.7–0.8) is used as an approximation.
-
----
-
-## Tech Stack Summary
-
-```
-Backend:      Python 3.9+  |  FastAPI  |  Uvicorn
-ML / Vision:  MediaPipe Pose  |  OpenCV  |  NumPy
-Segmentation: rembg (optional)
-Frontend:     React (or plain HTML)
-Deployment:   Docker  |  Linux server or cloud VM
-```
+See `memory/project_body_measurement_flow.md` for the source-of-truth project memo.
 
 ---
 
-## Python Dependencies
+## Pose Backend
+
+- **Library:** `mediapipe>=0.10.0` — **Tasks API** (`mp.tasks.vision.PoseLandmarker`).
+- **Why Tasks, not Solutions?** Newer MediaPipe wheels (0.10.30+) on Windows ship only the Tasks API; the legacy `mp.solutions.pose` module is gone.
+- **Model:** `pose_landmarker_lite.task` (float16). Downloaded once from `storage.googleapis.com/mediapipe-models/...` to `~/.cache/mediapipe/` on first run.
+- **Detector caching:** instantiation is heavy, so the Streamlit UI memoizes it with `@st.cache_resource` and passes `pose_solution=` into the pipeline.
+- **Mode:** `RunningMode.IMAGE`, `num_poses=1`, all confidence thresholds 0.5.
+
+---
+
+## Landmarks → Measurements (as implemented)
+
+Visibility threshold = **0.5**. Each measurement is computed only if all required landmarks pass.
+
+### Upper body
+
+| Catalog key | Internal field | Computation |
+|---|---|---|
+| `shoulder` | `shoulder_width_cm` | Euclidean(L_shoulder, R_shoulder) × scale × `shoulder_correction` |
+| `chest` (circumference) | `chest_circumference_cm` | Ellipse perimeter from `chest_width_cm` (= 0.92 × shoulder line) and side-depth between shoulders, or `0.78 × width` fallback |
+| `arm_length` | `arm_length_cm` | (shoulder→elbow) + (elbow→wrist) on the **higher-visibility** side, × scale × `shoulder_correction` |
+| `length` (torso) | `torso_length_cm` | Vertical pixel delta between mid-shoulder and mid-hip × scale |
+
+### Lower body
+
+| Catalog key | Internal field | Computation |
+|---|---|---|
+| `waist` (circumference) | `waist_circumference_cm` | Ellipse perimeter from `waist_width_cm` (= 0.92 × hip line × `waist_correction`) and side-depth between hips |
+| `hip` (circumference) | `hip_circumference_cm` | Ellipse perimeter from hip width and side-depth (same depth as waist) |
+| `inseam` | `inseam_cm` | (hip→knee) + (knee→ankle) on the higher-visibility side × scale |
+| `outseam` | `outseam_cm` | Vertical pixel delta hip → ankle × scale (used as `length` for bottoms) |
+| `thigh` (circumference) | `thigh_circumference_cm` | Width = `0.575 × hip_width`; depth = `0.78 × thigh_width`; ellipse perimeter |
+
+> Width-only attributes (`chest_width_cm`, `waist_width_cm`, `hip_width_cm`, `thigh_width_cm`) remain on the `Measurements` dataclass for completeness, but the catalog mapping uses circumferences for fit comparison.
+
+---
+
+## Scale Calibration Detail
+
+```python
+# src/measurement/scale.py
+NOSE_TO_CROWN_FACTOR = 1.087
+HEIGHT_MIN_CM = 100.0
+HEIGHT_MAX_CM = 230.0
+```
+
+1. **Validate** height is in `[100, 230]` cm.
+2. **Primary** (`method = "nose_to_heel_corrected"`): if `max(left_heel_v, right_heel_v) ≥ 0.5` and `nose_v ≥ 0.3`, use the more-visible heel and compute
+   `pixel_height = |heel.y − nose.y| × 1.087`.
+3. **Fallback** (`method = "shoulder_anchor"`): if feet aren't visible **and** the user supplied a shoulder anchor, calibrate from shoulder pixels directly.
+4. **Hard fail**: feet hidden and no shoulder anchor → `MeasurementError` is raised and surfaced as a UI error.
+5. **Regional corrections:**
+   - `shoulder_correction = shoulder_cm / measured_shoulder_cm` (only applied when calibrated by feet)
+   - `waist_correction = implied_waist_width / measured_hip_width`, where `implied_waist_width` is solved from the user's circumference using Ramanujan #1: `W ≈ 2C / (π·(1+ratio))`
+
+These multipliers are applied per-region inside the engine — they don't rescale the whole image.
+
+---
+
+## Confidence Model
+
+Per-measurement confidences flow through the pipeline as a `dict[str, float]`:
+
+- **Direct measurements** (shoulder, hip width, arm, inseam, torso): mean of the contributing landmarks' visibilities.
+- **Width-derived chest/waist**: visibilities × **0.9** penalty (interpolation noise).
+- **Derived thigh**: fixed `THIGH_DERIVED_CONFIDENCE = 0.6` (no direct landmark).
+- **Circumferences without a side photo**: multiplied by `DERIVED_CIRCUMFERENCE_PENALTY = 0.85` to reflect the fixed-ratio assumption.
+- **UI rendering:** thresholds → 🟢 ≥ 0.85, 🟡 ≥ 0.6, 🔴 below.
+
+---
+
+## Catalog Integration
+
+`measurements_to_person_dimensions(m, fit_relevant_keys, category)` in [`catalog_mapping.py`](src/measurement/catalog_mapping.py) projects raw measurements to the keys the garment catalog uses, with `category="top" | "bottom"` deciding the key map:
+
+```
+TOP    : length → torso_length_cm
+         chest  → chest_circumference_cm
+         shoulder → shoulder_width_cm
+         arm_length → arm_length_cm
+
+BOTTOM : length → outseam_cm
+         waist → waist_circumference_cm
+         hip → hip_circumference_cm
+         inseam → inseam_cm
+         outseam → outseam_cm
+         thigh → thigh_circumference_cm
+```
+
+`confidence_for_catalog_keys` mirrors this so each catalog key carries the right confidence into the verification panel.
+
+---
+
+## Sidebar UX (app.py)
+
+```
+[ Skip detection — enter manually ] (toggle, persists in session_state)
+   ↓ ON                            ↓ OFF
+manual 4-input form         ┌──────────────────────────────────┐
+                            │ 1. Frontal photo  (upload | cam) │
+                            │ 2. Side photo (optional)         │
+                            │ 3. Reference height (cm | ft/in) │
+                            │ 4. Optional correction anchors   │
+                            │    • Shoulder width              │
+                            │    • Waist circumference         │
+                            │ [ Detect Measurements ]          │
+                            ├──────────────────────────────────┤
+                            │ Verify measurements              │
+                            │ • 4 always-editable inputs       │
+                            │ • 🟢/🟡/🔴 confidence per row    │
+                            │ • warnings shown above           │
+                            │ • collapsible "Detected pose"    │
+                            │   image with skeleton overlay    │
+                            └──────────────────────────────────┘
+                            [ Load Wardrobe → ] (primary)
+```
+
+After detection completes, stale `verify_*` widget keys are cleared from `st.session_state` so each new run renders fresh values.
+
+---
+
+## Image Preprocessing Notes
+
+- **EXIF transpose** is critical: phone JPEGs commonly carry orientation metadata that viewers honor but PIL/MediaPipe ignore unless explicitly applied. Without `ImageOps.exif_transpose`, MediaPipe sees a sideways body and the pose either fails or maps shoulders to hips.
+- **No background removal** in v1. `rembg` was on the original wishlist but isn't required for the current accuracy target — landmark detection is robust to plain backgrounds.
+- **Min size 480 px** on either side; smaller images get a clear `MeasurementError`.
+
+---
+
+## Tech Stack (current)
+
+```
+Frontend / runtime : Streamlit  (long-running server, NOT serverless)
+Pose backend       : mediapipe ≥ 0.10  (Tasks API, lite model)
+Image I/O          : Pillow + OpenCV
+Numerics           : NumPy
+Try-on generation  : google-genai (Gemini Nano Banana)
+Prompt synthesis   : groq (optional toggle in sidebar)
+Config             : python-dotenv
+```
+
+`requirements.txt` (live):
 
 ```txt
+streamlit>=1.36
+google-genai>=0.3.0
+Pillow>=10.0
+python-dotenv>=1.0
+pandas>=2.0
+groq
 mediapipe>=0.10.0
 opencv-python>=4.8.0
 numpy>=1.24.0
-fastapi>=0.100.0
-uvicorn>=0.23.0
-pillow>=10.0.0
-rembg>=2.0.50       # optional: background removal
-python-multipart    # for file upload in FastAPI
 ```
 
 ---
 
-## Sample API Contract
+## Deployment Notes
 
-### Endpoint
-```
-POST /measure
-Content-Type: multipart/form-data
-```
-
-### Request
-```
-frontal_image   : file      (required)
-side_image      : file      (optional)
-height_cm       : float     (required)
-shoulder_cm     : float     (optional)
-waist_cm        : float     (optional)
-```
-
-### Response
-```json
-{
-  "status": "success",
-  "measurements": {
-    "shoulder_width_cm": 42.3,
-    "chest_width_cm": 38.1,
-    "arm_length_cm": 61.2,
-    "torso_length_cm": 52.4,
-    "waist_width_cm": 33.5,
-    "hip_width_cm": 39.8,
-    "inseam_cm": 79.1,
-    "outseam_cm": 102.7,
-    "thigh_width_cm": 22.4
-  },
-  "confidence": {
-    "shoulder_width": 0.94,
-    "waist_width": 0.87,
-    "inseam": 0.91
-  },
-  "warnings": []
-}
-```
+- **Vercel is incompatible.** Streamlit needs a long-running server with WebSocket session state; Vercel's Python runtime is serverless-only and looks for an `app` ASGI/WSGI export. Build fails with `No python entrypoint found`.
+- **Recommended targets:** Streamlit Community Cloud, Hugging Face Spaces, Render, Railway, or Fly.io. Run command:
+  ```
+  streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+  ```
 
 ---
 
 ## Known Limitations
 
-- **Baggy clothing** reduces measurement accuracy significantly
-- **Single frontal photo** cannot produce true circumference — depth estimation is approximate
-- **Pose detection fails** in poor lighting or when body is partially out of frame
-- **Accuracy degrades** for very tall/short individuals if landmark visibility is low
+- **2D-only.** Limb foreshortening from off-axis stance reads as shorter measurements. The pipeline assumes the subject faces the camera squarely.
+- **Baggy clothing** still inflates widths because pose landmarks anchor to silhouette joints.
+- **Single frontal photo** can't produce true circumference — without a side photo, depth defaults to `0.78 × width` (chest/waist/hip) or `0.78 × thigh_width` (thigh).
+- **Pose detection fails** in poor lighting or with body partially out of frame; the pipeline raises `MeasurementError` and the UI prompts a retake.
+- **Tall/short outliers** may exceed the `[100, 230] cm` validator — adjust `HEIGHT_MIN_CM`/`HEIGHT_MAX_CM` in [`scale.py`](src/measurement/scale.py) if needed.
+- **Streamlit deprecation noise:** seven `use_container_width=True` call sites in [`app.py`](app.py) will need to migrate to `width="stretch"` before Streamlit removes the old kwarg.
+- **MediaPipe console spam:** native code emits `portable_clearcut_uploader.cc` errors when its telemetry endpoint rate-limits. Functionally harmless. Silence with `GLOG_minloglevel=3` in the environment.
 
 ---
 
-## Accuracy Improvement Roadmap
+## Roadmap
 
-1. **Phase 1 (MVP):** Frontal photo + height → width-based measurements
-2. **Phase 2:** Add side photo → depth-aware circumference estimation
-3. **Phase 3:** Collect user-verified measurements to fine-tune scale correction model
-4. **Phase 4:** Train a custom regression model on top of landmark features for higher accuracy
+1. **MVP (shipped):** frontal + height → all width-based measurements + ellipse circumferences with fixed-ratio depth.
+2. **Side-photo depth (shipped):** optional second photo for accurate chest/waist/hip circumferences.
+3. **Lower-body wardrobe:** pants/jeans entries in `cloth/garments.json` using the bottom key map (in progress).
+4. **Calibration learning:** collect user edits from the verification panel as ground truth; fit a per-region scale correction model.
+5. **Optional 3D upgrade:** swap `pose_landmarker_lite` for the full model and start using `z` for limb foreshortening correction. (Not on the immediate roadmap.)
 
 ---
 
-*Last updated: April 2026*
+*Last updated: 2026-04-28*
