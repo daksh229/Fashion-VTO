@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./venv/Scripts/python.exe -c \"import mediapipe; print\\('version:', mediapipe.__version__\\); print\\('file:', mediapipe.__file__\\); print\\('attrs:', [a for a in dir\\(mediapipe\\) if not a.startswith\\('_'\\)][:20]\\)\")",
+      "Bash(./venv/Scripts/python.exe -c \"import sys; print\\(sys.version\\)\")",
+      "Bash(./venv/Scripts/python.exe -c \"from mediapipe.tasks import python; from mediapipe.tasks.python import vision; print\\('PoseLandmarker:', hasattr\\(vision, 'PoseLandmarker'\\)\\); print\\('PoseLandmarkerOptions:', hasattr\\(vision, 'PoseLandmarkerOptions'\\)\\); print\\('RunningMode:', hasattr\\(vision, 'RunningMode'\\)\\)\")"
+    ]
+  }
+}

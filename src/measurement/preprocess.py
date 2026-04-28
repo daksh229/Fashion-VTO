@@ -1,0 +1,36 @@
+"""Image decoding, EXIF rotation, and basic validation for the measurement pipeline.
+
+All image input enters as raw bytes (from `st.file_uploader` / `st.camera_input`)
+and is converted to an RGB numpy array for downstream layers. EXIF orientation
+matters because phone cameras commonly produce rotated JPEGs that look correct
+in viewers but feed sideways to MediaPipe.
+"""
+
+from __future__ import annotations
+
+from io import BytesIO
+
+import numpy as np
+from PIL import Image, ImageOps
+
+from .types import MeasurementError
+
+
+def decode_image(image_bytes: bytes, min_dimension: int = 480) -> np.ndarray:
+    if not image_bytes:
+        raise MeasurementError("No image data provided.")
+
+    try:
+        pil_img = Image.open(BytesIO(image_bytes))
+        pil_img = ImageOps.exif_transpose(pil_img)
+        pil_img = pil_img.convert("RGB")
+    except Exception as e:
+        raise MeasurementError(f"Could not decode image: {e}")
+
+    w, h = pil_img.size
+    if w < min_dimension or h < min_dimension:
+        raise MeasurementError(
+            f"Image is too small ({w}x{h}). Minimum {min_dimension}px on each side."
+        )
+
+    return np.asarray(pil_img)

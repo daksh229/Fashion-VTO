@@ -1,6 +1,6 @@
 {
-  "units": "inches",
-  "notes": "Dimensions are visual estimates based on garment images — verify against actual product specs before use.",
+  "units": "cm",
+  "notes": "Dimensions are visual estimates based on garment images, in centimetres. Chest/waist/hip values are circumferences. Verify against actual product specs before use.",
   "garments": [
     {
       "id": "G1",
@@ -9,13 +9,15 @@
       "gender": "Women",
       "size": "M",
       "fit_style": "Relaxed",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "00014_00.jpg",
       "path": "00014_00.jpg",
       "dimensions": {
-        "length": 26,
-        "chest": 40,
-        "shoulder": 16,
-        "arm_length": 23
+        "length": 66,
+        "chest": 102,
+        "shoulder": 41,
+        "arm_length": 58
       }
     },
     {
@@ -25,13 +27,15 @@
       "gender": "Women",
       "size": "S",
       "fit_style": "Bodycon",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "00026_00.jpg",
       "path": "00026_00.jpg",
       "dimensions": {
-        "length": 28,
-        "chest": 32,
-        "shoulder": 14,
-        "arm_length": 7
+        "length": 71,
+        "chest": 81,
+        "shoulder": 36,
+        "arm_length": 18
       }
     },
     {
@@ -41,13 +45,15 @@
       "gender": "Women",
       "size": "S",
       "fit_style": "Slim",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "00030_00.jpg",
       "path": "00030_00.jpg",
       "dimensions": {
-        "length": 24,
-        "chest": 34,
-        "shoulder": 14,
-        "arm_length": 8
+        "length": 61,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 20
       }
     },
     {
@@ -57,13 +63,15 @@
       "gender": "Women",
       "size": "M",
       "fit_style": "Fitted",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "00036_00.jpg",
       "path": "00036_00.jpg",
       "dimensions": {
-        "length": 24,
-        "chest": 36,
-        "shoulder": 15,
-        "arm_length": 11
+        "length": 61,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 28
       }
     },
     {
@@ -73,13 +81,15 @@
       "gender": "Women",
       "size": "S",
       "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "00038_00.jpg",
       "path": "00038_00.jpg",
       "dimensions": {
-        "length": 25,
-        "chest": 36,
-        "shoulder": 15,
-        "arm_length": 8
+        "length": 64,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 20
       }
     },
     {
@@ -89,13 +99,15 @@
       "gender": "Women",
       "size": "S",
       "fit_style": "Slim",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "00040_00.jpg",
       "path": "00040_00.jpg",
       "dimensions": {
-        "length": 24,
-        "chest": 34,
-        "shoulder": 14,
-        "arm_length": 8
+        "length": 61,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 20
       }
     },
     {
@@ -105,13 +117,15 @@
       "gender": "Women",
       "size": "M",
       "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "00041_00.jpg",
       "path": "00041_00.jpg",
       "dimensions": {
-        "length": 26,
-        "chest": 38,
-        "shoulder": 15,
-        "arm_length": 9
+        "length": 66,
+        "chest": 97,
+        "shoulder": 38,
+        "arm_length": 23
       }
     },
     {
@@ -121,13 +135,15 @@
       "gender": "Women",
       "size": "M",
       "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "cloth.jpg",
       "path": "cloth.jpg",
       "dimensions": {
-        "length": 25,
-        "chest": 38,
-        "shoulder": 15,
-        "arm_length": 8
+        "length": 64,
+        "chest": 97,
+        "shoulder": 38,
+        "arm_length": 20
       }
     },
     {
@@ -137,13 +153,15 @@
       "gender": "Women",
       "size": "S",
       "fit_style": "Slim Fit",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "09163_00.jpg",
       "path": "09163_00.jpg",
       "dimensions": {
-        "length": 25,
-        "chest": 34,
-        "shoulder": 14,
-        "arm_length": 8
+        "length": 64,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 20
       }
     },
     {
@@ -153,13 +171,15 @@
       "gender": "Women",
       "size": "XXL",
       "fit_style": "Oversized",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "09166_00.jpg",
       "path": "09166_00.jpg",
       "dimensions": {
-        "length": 30,
-        "chest": 48,
-        "shoulder": 20,
-        "arm_length": 11
+        "length": 76,
+        "chest": 122,
+        "shoulder": 51,
+        "arm_length": 28
       }
     },
     {
@@ -169,13 +189,15 @@
       "gender": "Women",
       "size": "XXXL",
       "fit_style": "Relaxed",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
       "image": "09176_00.jpg",
       "path": "09176_00.jpg",
       "dimensions": {
-        "length": 30,
-        "chest": 52,
-        "shoulder": 21,
-        "arm_length": 26
+        "length": 76,
+        "chest": 132,
+        "shoulder": 53,
+        "arm_length": 66
       }
     }
   ]

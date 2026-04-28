@@ -1,13 +1,21 @@
 """Fit-Aware Virtual Try-On — Streamlit frontend.
 
 Flow:
-    1. User uploads photo + enters 4 body dimensions in the sidebar.
-    2. Clicks "Load Wardrobe" → grid of all garments from cloth/garments.json.
-    3. Clicks "Try Now" on a garment:
+    1. User picks photo source (upload or camera) and provides a frontal photo
+       (optional side photo for circumference accuracy).
+    2. User enters height (mandatory pixel→cm scale anchor) plus optional
+       shoulder/waist correction anchors.
+    3. "Detect Measurements" runs the MediaPipe pipeline; results are shown
+       as editable inputs in the sidebar for last-moment user verification.
+    4. "Load Wardrobe" → grid of all garments from cloth/garments.json.
+    5. "Try Now" on a garment:
         - fit_calculator.calculate_fit()  -> deltas
         - Groq writes the detailed prompt (or rule-based fallback is used)
         - gemini_client.generate_tryon()    -> saves image to output/
-    4. Final try-on image is displayed alongside person + garment.
+    6. Final try-on image is displayed alongside person + garment.
+
+Manual fallback: a sidebar checkbox bypasses detection entirely and shows the
+classic 4-input form.
 """
 
 import os
@@ -18,8 +26,6 @@ from pathlib import Path
 from datetime import datetime
 
 import streamlit as st
-import streamlit.components.v1 as components
-from PIL import Image
 from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).parent
@@ -30,12 +36,18 @@ from src.fit_calculator import calculate_fit
 from src.prompt_builder import build_fit_prompt, build_meta_prompt
 from src.gemini_client import generate_tryon
 from src.groq_client import generate_text_stream
+from src.measurement import (
+    MeasurementError,
+    _create_pose_solution,
+    confidence_for_catalog_keys,
+    measurements_to_person_dimensions,
+    run_measurement_pipeline,
+)
 
 CLOTH_DIR = PROJECT_ROOT / "cloth"
 CATALOG_PATH = CLOTH_DIR / "garments.json"
 OUTPUT_DIR = PROJECT_ROOT / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)
-TEMP_PERSON_PATH = OUTPUT_DIR / "_person_temp.png"
 
 
 @st.cache_data
@@ -44,9 +56,9 @@ def load_catalog():
         return json.load(f)
 
 
-def save_uploaded_person(uploaded_file) -> Path:
-    Image.open(uploaded_file).convert("RGB").save(TEMP_PERSON_PATH)
-    return TEMP_PERSON_PATH
+@st.cache_resource
+def get_pose_solution():
+    return _create_pose_solution(model_complexity=1)
 
 
 def stream_words(text: str, delay: float = 0.02):
@@ -55,185 +67,75 @@ def stream_words(text: str, delay: float = 0.02):
         time.sleep(delay)
 
 
-DINO_GAME_HTML = """
-<!doctype html>
-<html>
-<head>
+def confidence_badge(conf: float) -> str:
+    if conf >= 0.8:
+        return "🟢"
+    if conf >= 0.6:
+        return "🟡"
+    return "🔴"
+
+
+TAILORING_HTML = """
 <style>
-  html, body { margin: 0; padding: 0; background: transparent; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  .wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0; }
-  .hud { display: flex; justify-content: space-between; width: 600px; max-width: 95vw; color: #444; font-size: 13px; }
-  canvas { background: #fafafa; border: 1px solid #e6e6e6; border-radius: 6px; max-width: 95vw; touch-action: manipulation; }
-  .hint { color: #888; font-size: 12px; }
+  .tailoring-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 22px;
+    background: linear-gradient(90deg, #f8f9fb, #eef2f8, #f8f9fb);
+    background-size: 200% 100%;
+    border: 1px solid #e1e4ea;
+    border-radius: 10px;
+    animation: tailor-shimmer 3.2s ease-in-out infinite;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .tailor-icon {
+    font-size: 22px;
+    animation: tailor-pulse 1.6s ease-in-out infinite;
+  }
+  .tailor-msg-stack {
+    position: relative;
+    height: 22px;
+    flex: 1;
+    overflow: hidden;
+  }
+  .tailor-msg {
+    position: absolute;
+    inset: 0;
+    font-size: 15px;
+    color: #2a2f3a;
+    font-weight: 500;
+    opacity: 0;
+    animation: tailor-rotate 16s ease-in-out infinite;
+    white-space: nowrap;
+  }
+  .tailor-msg.m1 { animation-delay: 0s; }
+  .tailor-msg.m2 { animation-delay: 4s; }
+  .tailor-msg.m3 { animation-delay: 8s; }
+  .tailor-msg.m4 { animation-delay: 12s; }
+  @keyframes tailor-rotate {
+    0%, 25%, 100% { opacity: 0; transform: translateY(8px); }
+    3%, 22% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes tailor-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  @keyframes tailor-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 </style>
-</head>
-<body>
-<div class="wrap">
-  <div class="hud">
-    <span id="status">Press <b>Space</b> or <b>tap</b> to jump &nbsp;·&nbsp; <b>↓</b> to duck</span>
-    <span>Score: <b id="score">0</b> &nbsp;·&nbsp; HI <b id="hi">0</b></span>
+<div class="tailoring-wrap">
+  <span class="tailor-icon">&#9986;&#65039;</span>
+  <div class="tailor-msg-stack">
+    <span class="tailor-msg m1">AI is tailoring the garment to your measurements&hellip;</span>
+    <span class="tailor-msg m2">Matching fabric drape to your silhouette&hellip;</span>
+    <span class="tailor-msg m3">Preserving every print, stitch, and color&hellip;</span>
+    <span class="tailor-msg m4">Rendering your final try-on&hellip;</span>
   </div>
-  <canvas id="game" width="600" height="180"></canvas>
-  <div class="hint">A little something to do while your try-on renders.</div>
 </div>
-<script>
-(function(){
-  const cvs = document.getElementById('game');
-  const ctx = cvs.getContext('2d');
-  const W = cvs.width, H = cvs.height;
-  const GROUND_Y = H - 30;
-  const scoreEl = document.getElementById('score');
-  const hiEl = document.getElementById('hi');
-  const statusEl = document.getElementById('status');
-
-  let hi = parseInt(localStorage.getItem('dino_hi') || '0', 10);
-  hiEl.textContent = hi;
-
-  const dino = {
-    x: 50, y: GROUND_Y - 40, w: 28, h: 40,
-    vy: 0, onGround: true, ducking: false,
-  };
-  const GRAVITY = 0.7;
-  const JUMP_V = -12.5;
-
-  let obstacles = [];
-  let clouds = [];
-  let frame = 0;
-  let speed = 5;
-  let score = 0;
-  let gameOver = false;
-  let started = false;
-
-  function reset(){
-    obstacles = []; clouds = []; frame = 0; speed = 5; score = 0;
-    gameOver = false; dino.y = GROUND_Y - 40; dino.vy = 0; dino.onGround = true; dino.ducking = false;
-    statusEl.innerHTML = 'Press <b>Space</b> or <b>tap</b> to jump &nbsp;·&nbsp; <b>↓</b> to duck';
-  }
-
-  function jump(){
-    if (gameOver) { reset(); started = true; return; }
-    if (dino.onGround) { dino.vy = JUMP_V; dino.onGround = false; started = true; }
-  }
-  function duckOn(){ if (dino.onGround) { dino.ducking = true; dino.h = 22; dino.y = GROUND_Y - 22; } }
-  function duckOff(){ if (dino.ducking) { dino.ducking = false; dino.h = 40; dino.y = GROUND_Y - 40; } }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); jump(); }
-    if (e.code === 'ArrowDown') { e.preventDefault(); duckOn(); }
-  });
-  document.addEventListener('keyup', (e) => {
-    if (e.code === 'ArrowDown') { duckOff(); }
-  });
-  cvs.addEventListener('mousedown', jump);
-  cvs.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); }, {passive: false});
-
-  function spawn(){
-    if (frame % Math.max(45, 90 - Math.floor(speed * 4)) === 0 && Math.random() < 0.7) {
-      const isBird = Math.random() < 0.25 && score > 200;
-      if (isBird) {
-        const flyY = Math.random() < 0.5 ? GROUND_Y - 55 : GROUND_Y - 30;
-        obstacles.push({ x: W + 10, y: flyY, w: 28, h: 18, type: 'bird', flap: 0 });
-      } else {
-        const big = Math.random() < 0.4;
-        const w = big ? 22 : 14;
-        const h = big ? 38 : 28;
-        obstacles.push({ x: W + 10, y: GROUND_Y - h, w, h, type: 'cactus' });
-      }
-    }
-    if (frame % 110 === 0) {
-      clouds.push({ x: W + 10, y: 20 + Math.random() * 50, w: 36 });
-    }
-  }
-
-  function rectsHit(a, b){
-    return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
-  }
-
-  function step(){
-    if (started && !gameOver) {
-      frame++;
-      score++;
-      if (frame % 200 === 0) speed += 0.4;
-      dino.vy += GRAVITY;
-      dino.y += dino.vy;
-      const floor = GROUND_Y - dino.h;
-      if (dino.y >= floor) { dino.y = floor; dino.vy = 0; dino.onGround = true; }
-
-      spawn();
-      for (const o of obstacles) o.x -= speed;
-      for (const c of clouds) c.x -= speed * 0.4;
-      obstacles = obstacles.filter(o => o.x + o.w > -10);
-      clouds = clouds.filter(c => c.x + c.w > -10);
-
-      for (const o of obstacles) {
-        const dHit = { x: dino.x + 3, y: dino.y + 3, w: dino.w - 6, h: dino.h - 6 };
-        if (rectsHit(dHit, o)) {
-          gameOver = true;
-          if (score > hi) { hi = score; localStorage.setItem('dino_hi', hi); hiEl.textContent = hi; }
-          statusEl.innerHTML = '<b>Game over</b> — press <b>Space</b> or <b>tap</b> to play again';
-        }
-      }
-      scoreEl.textContent = Math.floor(score / 4);
-    }
-    draw();
-    requestAnimationFrame(step);
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#bbb';
-    for (const c of clouds) {
-      ctx.beginPath();
-      ctx.arc(c.x, c.y, 8, 0, Math.PI*2);
-      ctx.arc(c.x+10, c.y+2, 10, 0, Math.PI*2);
-      ctx.arc(c.x+22, c.y, 7, 0, Math.PI*2);
-      ctx.fill();
-    }
-    ctx.strokeStyle = '#888';
-    ctx.beginPath();
-    ctx.moveTo(0, GROUND_Y + 1);
-    ctx.lineTo(W, GROUND_Y + 1);
-    ctx.stroke();
-
-    ctx.fillStyle = '#444';
-    if (dino.ducking) {
-      ctx.fillRect(dino.x, dino.y, 36, dino.h);
-      ctx.fillRect(dino.x + 30, dino.y - 4, 8, 8);
-    } else {
-      ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
-      ctx.fillRect(dino.x + dino.w - 4, dino.y - 6, 12, 10);
-      ctx.fillStyle = '#fafafa';
-      ctx.fillRect(dino.x + dino.w + 2, dino.y - 3, 2, 2);
-      ctx.fillStyle = '#444';
-      ctx.fillRect(dino.x - 4, dino.y + dino.h - 6, 6, 4);
-      ctx.fillRect(dino.x + dino.w - 8, dino.y + dino.h - 6, 6, 4);
-    }
-
-    for (const o of obstacles) {
-      if (o.type === 'cactus') {
-        ctx.fillStyle = '#3b6b3b';
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-        ctx.fillRect(o.x - 4, o.y + 6, 4, o.h * 0.4);
-        ctx.fillRect(o.x + o.w, o.y + 10, 4, o.h * 0.35);
-      } else {
-        ctx.fillStyle = '#666';
-        const wing = (Math.floor(frame / 8) % 2 === 0) ? -6 : 6;
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-        ctx.fillRect(o.x + 4, o.y + wing, 16, 4);
-      }
-    }
-  }
-
-  step();
-})();
-</script>
-</body>
-</html>
 """
-
-
-def render_dino_game():
-    components.html(DINO_GAME_HTML, height=240, scrolling=False)
 
 
 # ---------------- Page config ----------------
@@ -245,8 +147,8 @@ st.set_page_config(
 
 st.title("Fit-Aware Virtual Try-On")
 st.caption(
-    "Upload your photo, enter your measurements, pick a garment, "
-    "and preview how it will actually fit you — not just how it looks pasted on."
+    "Take or upload your photo, enter your height, and we'll auto-detect your "
+    "measurements. You can verify and edit them before picking a garment."
 )
 
 # ---------------- Session state ----------------
@@ -254,6 +156,9 @@ for key, default in [
     ("wardrobe_loaded", False),
     ("selected_garment_id", None),
     ("last_result", None),
+    ("measurement_result", None),
+    ("person_image_bytes", None),
+    ("person_dimensions", None),
 ]:
     if key not in st.session_state:
         st.session_state[key] = default
@@ -263,33 +168,189 @@ for key, default in [
 with st.sidebar:
     st.header("Your Details")
 
-    uploaded = st.file_uploader(
-        "Upload your photo",
-        type=["jpg", "jpeg", "png"],
-        help="Clear, front-facing, upper-body photo works best.",
+    manual_mode = st.checkbox(
+        "Skip detection — enter manually",
+        value=False,
+        help="Bypass the photo-based pipeline and enter measurements directly.",
     )
 
-    st.subheader("Your measurements (inches)")
-    length = st.number_input("Length (torso)", min_value=10.0, max_value=40.0, value=26.0, step=0.5)
-    chest = st.number_input("Chest", min_value=20.0, max_value=60.0, value=36.0, step=0.5)
-    shoulder = st.number_input("Shoulder", min_value=10.0, max_value=30.0, value=15.0, step=0.5)
-    arm_length = st.number_input("Arm length", min_value=5.0, max_value=30.0, value=9.0, step=0.5)
+    person_dimensions: dict[str, float] | None = None
+    person_image_bytes: bytes | None = None
+    category_for_input = "top"
 
-    if st.button("Load Wardrobe →", type="primary", use_container_width=True):
-        if uploaded is None:
-            st.error("Please upload your photo first.")
+    if manual_mode:
+        # ----- Manual entry path (legacy) -----
+        uploaded = st.file_uploader(
+            "Upload your photo",
+            type=["jpg", "jpeg", "png"],
+            help="Used as the person reference for try-on rendering. No measurements derived from it.",
+        )
+        st.subheader("Your measurements (cm)")
+        length_cm = st.number_input("Length / torso", min_value=20.0, max_value=120.0, value=66.0, step=0.5)
+        chest_cm = st.number_input("Chest circumference", min_value=50.0, max_value=180.0, value=91.0, step=0.5)
+        shoulder_cm_in = st.number_input("Shoulder width", min_value=20.0, max_value=80.0, value=38.0, step=0.5)
+        arm_length_cm = st.number_input("Arm length", min_value=10.0, max_value=90.0, value=23.0, step=0.5)
+
+        if uploaded is not None:
+            person_image_bytes = uploaded.getvalue()
+        person_dimensions = {
+            "length": length_cm,
+            "chest": chest_cm,
+            "shoulder": shoulder_cm_in,
+            "arm_length": arm_length_cm,
+        }
+
+    else:
+        # ----- Auto-detect path -----
+        st.subheader("1. Frontal photo")
+        frontal_source = st.radio(
+            "Source",
+            ["Upload", "Camera"],
+            horizontal=True,
+            key="frontal_src",
+        )
+        if frontal_source == "Upload":
+            frontal_file = st.file_uploader(
+                "Upload frontal photo",
+                type=["jpg", "jpeg", "png"],
+                key="frontal_upload",
+            )
         else:
-            person_path = save_uploaded_person(uploaded)
-            st.session_state.person_image_path = str(person_path)
-            st.session_state.person_dimensions = {
-                "length": length,
-                "chest": chest,
-                "shoulder": shoulder,
-                "arm_length": arm_length,
-            }
-            st.session_state.wardrobe_loaded = True
-            st.session_state.last_result = None
-            st.session_state.selected_garment_id = None
+            frontal_file = st.camera_input("Take a frontal photo", key="frontal_cam")
+
+        st.subheader("2. Side photo (optional)")
+        st.caption("Improves circumference accuracy for chest, waist, hip, thigh.")
+        side_source = st.radio(
+            "Source",
+            ["None", "Upload", "Camera"],
+            horizontal=True,
+            key="side_src",
+        )
+        if side_source == "Upload":
+            side_file = st.file_uploader(
+                "Upload side photo",
+                type=["jpg", "jpeg", "png"],
+                key="side_upload",
+            )
+        elif side_source == "Camera":
+            side_file = st.camera_input("Take a side photo", key="side_cam")
+        else:
+            side_file = None
+
+        st.subheader("3. Reference height")
+        height_unit = st.radio("Unit", ["cm", "ft/in"], horizontal=True, key="height_unit")
+        if height_unit == "cm":
+            height_cm = st.number_input("Height (cm)", 100.0, 230.0, 170.0, 0.5)
+        else:
+            ft_col, in_col = st.columns(2)
+            ft = ft_col.number_input("Feet", 3, 8, 5)
+            inch = in_col.number_input("Inches", 0.0, 11.5, 7.0, 0.5)
+            height_cm = (ft * 12 + inch) * 2.54
+
+        with st.expander("Optional correction anchors"):
+            st.caption("Leave at 0 to skip. Improves accuracy where provided.")
+            shoulder_anchor_cm = st.number_input(
+                "Shoulder width (cm)", 0.0, 80.0, 0.0, 0.5, key="shoulder_anchor"
+            )
+            waist_anchor_cm = st.number_input(
+                "Waist circumference (cm)", 0.0, 200.0, 0.0, 0.5, key="waist_anchor"
+            )
+
+        st.subheader("4. Detect")
+        detect_disabled = frontal_file is None
+        detect_clicked = st.button(
+            "Detect Measurements",
+            disabled=detect_disabled,
+            type="secondary",
+            use_container_width=True,
+        )
+
+        if detect_clicked and frontal_file is not None:
+            try:
+                with st.spinner("Detecting body landmarks…"):
+                    pose_solution = get_pose_solution()
+                    result = run_measurement_pipeline(
+                        frontal_bytes=frontal_file.getvalue(),
+                        height_cm=float(height_cm),
+                        side_bytes=side_file.getvalue() if side_file is not None else None,
+                        shoulder_cm=shoulder_anchor_cm or None,
+                        waist_cm=waist_anchor_cm or None,
+                        pose_solution=pose_solution,
+                    )
+                st.session_state.measurement_result = result
+                st.session_state.person_image_bytes = frontal_file.getvalue()
+                # Clear stale verification widget state so the freshly-detected
+                # values are shown, not whatever the widgets cached from a prior
+                # detection run.
+                for stale_key in [k for k in st.session_state if k.startswith("verify_")]:
+                    del st.session_state[stale_key]
+                st.success("Detection complete — verify the values below.")
+            except MeasurementError as e:
+                st.error(f"Detection failed: {e}")
+                st.session_state.measurement_result = None
+
+        # Always carry the latest frontal photo through (so try-on works even
+        # without re-detection).
+        if frontal_file is not None and st.session_state.person_image_bytes is None:
+            st.session_state.person_image_bytes = frontal_file.getvalue()
+        person_image_bytes = st.session_state.person_image_bytes
+
+        # ----- Verification panel -----
+        mr = st.session_state.measurement_result
+        if mr is not None:
+            st.divider()
+            st.subheader("Verify measurements")
+            st.caption("Edit any value before loading the wardrobe. Confidence: 🟢 high · 🟡 medium · 🔴 low.")
+            for w in mr.warnings:
+                st.warning(w, icon="⚠️")
+
+            # For now the catalog only has tops; expose the four top keys.
+            verification_keys = [
+                ("length", "Length / torso (cm)"),
+                ("chest", "Chest circumference (cm)"),
+                ("shoulder", "Shoulder width (cm)"),
+                ("arm_length", "Arm length (cm)"),
+            ]
+            detected = measurements_to_person_dimensions(
+                mr.measurements,
+                fit_relevant_keys=[k for k, _ in verification_keys],
+                category="top",
+            )
+            confs = confidence_for_catalog_keys(
+                mr.confidence,
+                fit_relevant_keys=[k for k, _ in verification_keys],
+            )
+
+            edited: dict[str, float] = {}
+            for key, label in verification_keys:
+                detected_val = detected.get(key)
+                conf = confs.get(key, 0.0)
+                badge = confidence_badge(conf)
+                fallback_value = float(detected_val) if detected_val else 0.0
+                edited[key] = st.number_input(
+                    f"{badge} {label} · conf {conf:.2f}",
+                    min_value=0.0,
+                    max_value=300.0,
+                    value=round(fallback_value, 1),
+                    step=0.5,
+                    key=f"verify_{key}",
+                )
+            person_dimensions = edited
+
+            if mr.annotated_image_bytes:
+                with st.expander("Detected pose"):
+                    st.image(mr.annotated_image_bytes, caption="Pose landmarks", use_container_width=True)
+
+    st.divider()
+    load_disabled = person_image_bytes is None or person_dimensions is None or not all(
+        v and v > 0 for v in person_dimensions.values()
+    )
+    if st.button("Load Wardrobe →", type="primary", use_container_width=True, disabled=load_disabled):
+        st.session_state.person_image_bytes = person_image_bytes
+        st.session_state.person_dimensions = person_dimensions
+        st.session_state.wardrobe_loaded = True
+        st.session_state.last_result = None
+        st.session_state.selected_garment_id = None
 
     st.divider()
     use_llm_prompt = st.toggle(
@@ -315,13 +376,14 @@ if not st.session_state.wardrobe_loaded:
 # Person preview
 col_a, col_b = st.columns([1, 3])
 with col_a:
-    st.image(st.session_state.person_image_path, caption="You", width=220)
+    st.image(st.session_state.person_image_bytes, caption="You", width=220)
 with col_b:
     st.subheader("Your dimensions")
     pd_cols = st.columns(4)
     pd = st.session_state.person_dimensions
+    units_label = "cm"
     for c, (label, val) in zip(pd_cols, pd.items()):
-        c.metric(label.replace("_", " ").title(), f'{val}"')
+        c.metric(label.replace("_", " ").title(), f"{val} {units_label}")
 
 st.divider()
 
@@ -329,7 +391,7 @@ st.divider()
 st.header("Available Wardrobe")
 catalog = load_catalog()
 garments = catalog["garments"]
-units = catalog.get("units", "inches")
+units = catalog.get("units", "cm")
 
 cols_per_row = 3
 for i in range(0, len(garments), cols_per_row):
@@ -345,11 +407,14 @@ for i in range(0, len(garments), cols_per_row):
                     f"Size {garment['size']} · {garment['fit_style']}"
                 )
                 d = garment["dimensions"]
+                relevant = garment.get("fit_relevant_keys", list(d.keys()))
+                spec_pairs = " · ".join(
+                    f"{k.replace('_', ' ').title()}: <b>{d[k]} {units}</b>"
+                    for k in relevant
+                    if k in d
+                )
                 st.markdown(
-                    f"<small>"
-                    f"Length: <b>{d['length']}\"</b> · Chest: <b>{d['chest']}\"</b><br>"
-                    f"Shoulder: <b>{d['shoulder']}\"</b> · Arm: <b>{d['arm_length']}\"</b>"
-                    f"</small>",
+                    f"<small>{spec_pairs}</small>",
                     unsafe_allow_html=True,
                 )
                 if st.button("Try Now", key=f"try_{garment['id']}", use_container_width=True):
@@ -362,17 +427,15 @@ if st.session_state.selected_garment_id:
     st.divider()
 
     status_box = st.empty()
-    game_box = st.empty()
+    loader_box = st.empty()
     error_box = st.empty()
 
     status_box.markdown(
-        f"### ✨ Generating your try-on for **{gid}**…\n"
-        f"<span style='color:#888'>This usually takes 30–60 seconds. "
-        f"Play the mini-game below while you wait.</span>",
+        f"### ✨ Generating your try-on for **{gid}**\n"
+        f"<span style='color:#888'>This usually takes 30–60 seconds.</span>",
         unsafe_allow_html=True,
     )
-    with game_box.container():
-        render_dino_game()
+    loader_box.markdown(TAILORING_HTML, unsafe_allow_html=True)
 
     fit = calculate_fit(st.session_state.person_dimensions, gid)
     garment_img_path = str(CLOTH_DIR / fit["image_path"])
@@ -388,7 +451,7 @@ if st.session_state.selected_garment_id:
 
     try:
         result_path = generate_tryon(
-            person_image_path=st.session_state.person_image_path,
+            person_image=st.session_state.person_image_bytes,
             garment_image_path=garment_img_path,
             prompt=prompt,
             output_path=str(output_file),
@@ -404,7 +467,7 @@ if st.session_state.selected_garment_id:
         st.session_state.last_result = None
 
     status_box.empty()
-    game_box.empty()
+    loader_box.empty()
     st.session_state.selected_garment_id = None
 
 # ---------------- Result display ----------------
@@ -414,7 +477,7 @@ if st.session_state.last_result:
     r = st.session_state.last_result
     result_cols = st.columns(3)
     with result_cols[0]:
-        st.image(st.session_state.person_image_path, caption="You", use_container_width=True)
+        st.image(st.session_state.person_image_bytes, caption="You", use_container_width=True)
     with result_cols[1]:
         g_img = CLOTH_DIR / r["fit"]["image_path"]
         st.image(str(g_img), caption=r["fit"]["garment_name"], use_container_width=True)
@@ -426,7 +489,7 @@ if st.session_state.last_result:
             f"**Garment:** {r['fit']['garment_name']} "
             f"(size {r['fit']['garment_size']}, {r['fit']['garment_fit_style']})"
         )
-        st.write("**Deltas (garment − you), inches:**")
+        st.write(f"**Deltas (garment − you), {r['fit']['units']}:**")
         st.json(r["fit"]["deltas"])
 
     with st.expander("Prompt sent to Gemini"):

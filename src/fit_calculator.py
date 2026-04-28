@@ -20,10 +20,11 @@ def calculate_fit(person_dimensions: dict, cloth_id: str, catalog_path: Path = C
         raise ValueError(f"Garment id '{cloth_id}' not found in catalog")
 
     g_dims = garment["dimensions"]
+    fit_keys = garment.get("fit_relevant_keys") or list(g_dims.keys())
     deltas = {
         key: round(g_dims[key] - person_dimensions[key], 2)
-        for key in g_dims
-        if key in person_dimensions
+        for key in fit_keys
+        if key in g_dims and key in person_dimensions
     }
 
     return {
@@ -31,15 +32,16 @@ def calculate_fit(person_dimensions: dict, cloth_id: str, catalog_path: Path = C
         "garment_name": garment["name"],
         "garment_size": garment.get("size"),
         "garment_fit_style": garment.get("fit_style"),
+        "category": garment.get("category", "top"),
         "image_path": garment["path"],
-        "units": catalog.get("units", "inches"),
-        "person_dimensions": person_dimensions,
-        "garment_dimensions": g_dims,
+        "units": catalog.get("units", "cm"),
+        "person_dimensions": {k: person_dimensions[k] for k in fit_keys if k in person_dimensions},
+        "garment_dimensions": {k: g_dims[k] for k in fit_keys if k in g_dims},
         "deltas": deltas,
     }
 
 
 if __name__ == "__main__":
-    person = {"length": 26, "chest": 36, "shoulder": 15, "arm_length": 9}
+    person = {"length": 66, "chest": 91, "shoulder": 38, "arm_length": 23}
     result = calculate_fit(person, "G2")
     print(json.dumps(result, indent=2))
