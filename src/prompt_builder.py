@@ -1,34 +1,200 @@
 """Build a detailed virtual try-on prompt from a fit-calculation dict.
 
-Two modes:
-    build_fit_prompt_llm(fit_result, garment_image_path=None)
+Front-view prompts (original two-image try-on):
+    build_fit_prompt_llm(fit_result, garment_image_path=None, view="front")
         -> asks Groq to write a realistic ~500-word prompt from the fit data
            and style instructions in the meta prompt.
            More natural, style-aware, handles edge cases better. Needs API key.
 
-    build_fit_prompt(fit_result)
+    build_fit_prompt(fit_result, view="front")
         -> deterministic rule-based version. Offline fallback, no API call.
 
-Both produce a prompt suitable for Gemini 2.5 Flash Image (Nano Banana).
+Rotate prompts (for left/back/right views, generated AFTER the front view):
+    build_rotate_prompt(fit_result, view)
+        -> compact prompt used with gemini_client.rotate_view() to rotate
+           an already-generated front try-on to a different camera angle.
+           No Groq variant — rotation prompts are short and deterministic
+           on purpose. This is the prompt used for left/back/right views
+           in the new sequential pipeline (front first, then 3 rotations
+           in parallel).
+
+All three produce prompts suitable for Gemini 2.5 Flash Image (Nano Banana).
+
+Views:
+    "front" (default) — straight-on, subject facing camera.
+    "left"            — 90° left profile, subject's left shoulder toward camera.
+    "back"            — rear view, subject facing away.
+    "right"           — 90° right profile, subject's right shoulder toward camera.
 """
 
+VALID_VIEWS = ("front", "left", "back", "right")
 
-def build_fit_prompt_llm(fit_result: dict, garment_image_path: str | None = None) -> str:
+
+# ---------- View-specific camera + consistency instructions ----------
+
+_VIEW_CAMERA_INSTRUCTIONS = {
+    "front": (
+        "CAMERA ANGLE — Straight-on front view. The subject faces the camera directly, "
+        "both shoulders visible and level, face fully visible. This is the primary "
+        "reference view; REFERENCE A's framing and camera angle are preserved as-is."
+    ),
+    "left": (
+        "CAMERA ANGLE — 90° LEFT PROFILE VIEW. The subject is rotated a quarter turn so "
+        "her left shoulder is toward the camera. Only the left side of the face, left "
+        "arm, and left side of the body are visible; the right side of the body is "
+        "occluded. The garment is seen from its left side — the side seam runs down the "
+        "center of the silhouette, one sleeve (the left) is fully visible, the other is "
+        "hidden behind the torso. Preserve the same pose, lighting, and background as "
+        "REFERENCE A; only the camera angle changes."
+    ),
+    "back": (
+        "CAMERA ANGLE — REAR / BACK VIEW. The subject is turned fully away from the "
+        "camera. The back of the garment, back of the head (hair), shoulders, and back "
+        "of the arms are visible; the face is NOT visible. Preserve the same pose, "
+        "lighting, and background as REFERENCE A; only the camera angle changes."
+    ),
+    "right": (
+        "CAMERA ANGLE — 90° RIGHT PROFILE VIEW. The subject is rotated a quarter turn "
+        "so her right shoulder is toward the camera. Only the right side of the face, "
+        "right arm, and right side of the body are visible; the left side of the body "
+        "is occluded. The garment is seen from its right side — the side seam runs "
+        "down the center of the silhouette, one sleeve (the right) is fully visible, "
+        "the other is hidden behind the torso. Preserve the same pose, lighting, and "
+        "background as REFERENCE A; only the camera angle changes."
+    ),
+}
+
+_VIEW_CONSISTENCY_LOCK = (
+    "MULTI-VIEW CONSISTENCY — This image is one of four views (front, left, back, "
+    "right) of the SAME person wearing the SAME garment. The person's identity must "
+    "be identical to the front view: same face structure, same skin tone, same hair "
+    "color and length and style, same earrings/accessories, same body proportions. "
+    "The garment must have identical color, fabric texture, print/logo design, "
+    "neckline shape, hemline position, and overall fit (tight/loose/cropped/draped) "
+    "as it would in the front view. ONLY the camera angle changes between views."
+)
+
+_BACK_VIEW_GARMENT_RULE = (
+    "BACK-OF-GARMENT RULE — REFERENCE B shows the FRONT of the garment only. For the "
+    "back of the garment: render a plausible plain back consistent with this garment "
+    "type and fabric. Do NOT mirror the front print or logo onto the back. Do NOT "
+    "repeat a plunging neckline or keyhole on the back. Do NOT invent new back "
+    "details (zippers, cutouts, graphics) that are not typical for this garment "
+    "type. The back should read as the simple, unadorned reverse side of the same "
+    "piece unless the garment type obviously demands back detail (e.g., a racerback "
+    "tank)."
+)
+
+
+def _view_block(view: str) -> str:
+    """Assemble the view-specific block that sits between IDENTITY LOCK and TASK."""
+    if view not in VALID_VIEWS:
+        raise ValueError(f"view must be one of {VALID_VIEWS}, got {view!r}")
+
+    parts = [_VIEW_CAMERA_INSTRUCTIONS[view]]
+    if view != "front":
+        parts.append(_VIEW_CONSISTENCY_LOCK)
+    if view == "back":
+        parts.append(_BACK_VIEW_GARMENT_RULE)
+    return "\n\n".join(parts)
+
+
+# ---------- Rotate prompts (for left/back/right, using front try-on as anchor) ----------
+
+_ROTATE_CAMERA = {
+    "left": (
+        "90° LEFT PROFILE VIEW. The subject is rotated a quarter turn so her "
+        "LEFT shoulder is toward the camera. Only the left side of her face, "
+        "her left arm, and the left side of her body are visible; the right "
+        "side of her body is occluded. The garment is seen from its left side."
+    ),
+    "back": (
+        "REAR / BACK VIEW. The subject is turned fully away from the camera, "
+        "180° from the front view. The back of the garment, the back of her "
+        "head (hair), her shoulders, and the back of her arms are visible. "
+        "Her face is NOT visible."
+    ),
+    "right": (
+        "90° RIGHT PROFILE VIEW. The subject is rotated a quarter turn so her "
+        "RIGHT shoulder is toward the camera. Only the right side of her face, "
+        "her right arm, and the right side of her body are visible; the left "
+        "side of her body is occluded. The garment is seen from its right side."
+    ),
+}
+
+_ROTATE_BACK_GARMENT_RULE = (
+    "BACK-OF-GARMENT RULE — REFERENCE F shows the FRONT of the garment. For "
+    "the back, render a plausible plain back consistent with this garment "
+    "type and fabric. Do NOT mirror the front print or logo onto the back. "
+    "Do NOT repeat a front neckline shape on the back. The back should read "
+    "as the simple, unadorned reverse side of the same piece."
+)
+
+
+def build_rotate_prompt(fit_result: dict, view: str) -> str:
+    """Compact prompt used with gemini_client.rotate_view() for non-front views.
+
+    The job here is much simpler than the front-view prompt: Gemini already
+    has a correct render of the person + garment (REFERENCE F). It just needs
+    to rotate the camera. We keep this prompt short and identity-focused
+    because verbose fit physics would dilute the single most important
+    instruction: "same person, same garment, just rotated."
+    """
+    if view not in ("left", "back", "right"):
+        raise ValueError(
+            f"build_rotate_prompt is only for left/back/right, got {view!r}"
+        )
+
+    name = fit_result.get("garment_name", "the garment")
+    fit_style = fit_result.get("garment_fit_style", "standard")
+    camera = _ROTATE_CAMERA[view]
+
+    back_rule = ""
+    if view == "back":
+        back_rule = f"\n\n{_ROTATE_BACK_GARMENT_RULE}"
+
+    return f"""\
+IDENTITY LOCK — The person in the output MUST be identical to the person in REFERENCE F: same face, same hair color and length and style, same skin tone, same earrings/accessories, same body proportions, same build. If a supplementary REFERENCE A is provided, use it for additional facial-feature lock. Do NOT substitute any other face. If the output face does not match REFERENCE F's face, the result is incorrect. This rule overrides every other consideration.
+
+GARMENT LOCK — The garment in the output MUST be identical to the garment in REFERENCE F: same color, same print/logo/text (in the same position and style), same neckline, same hem position, same sleeve length, same silhouette, same fabric texture, and most importantly the SAME FIT (tight/loose/cropped/draped exactly as shown in REFERENCE F). The garment is a "{name}" in an intended "{fit_style}" cut; preserve how it is already sitting on this person in REFERENCE F.
+
+CAMERA ANGLE — {camera}{back_rule}
+
+TASK — Produce ONE photorealistic image that is the same person wearing the same garment in the same scene as REFERENCE F, but rendered from the camera angle described above. This is a ROTATION of the existing scene, not a new scene. Same identity. Same garment. Same lower-body clothing. Same lighting direction and color temperature. Same background. Only the camera angle changes.
+
+DO NOT:
+- Do not change the person's face, hair color, skin tone, or body.
+- Do not change the garment's color, print, fit, or length.
+- Do not change the lower-body clothing.
+- Do not change the background or lighting.
+- Do not add or remove accessories.
+- Do not introduce a different person (e.g., the model from any reference is NOT the subject — REFERENCE F's person is the subject).
+
+RENDERING — Photograph-grade realism, matching the lighting, color grade, and overall look of REFERENCE F. Output one final image only."""
+
+
+# ---------- Public API ----------
+
+def build_fit_prompt_llm(
+    fit_result: dict,
+    garment_image_path: str | None = None,
+    view: str = "front",
+) -> str:
     """Ask Groq to write the final try-on prompt from fit + style instructions.
 
     Groq is used only for prompt-writing. Gemini Nano Banana receives the
     resulting prompt later for actual image generation.
-
-    Groq text generation is text-only in this project, so the garment image
-    path is accepted for API compatibility and ignored here.
     """
     from .groq_client import generate_text
 
-    meta_prompt = build_meta_prompt(fit_result)
+    meta_prompt = build_meta_prompt(fit_result, view=view)
     return generate_text(meta_prompt)
 
 
-def build_meta_prompt(fit_result: dict) -> str:
+def build_meta_prompt(fit_result: dict, view: str = "front") -> str:
+    if view not in VALID_VIEWS:
+        raise ValueError(f"view must be one of {VALID_VIEWS}, got {view!r}")
+
     name = fit_result.get("garment_name", "the garment")
     gid = fit_result.get("garment_id", "?")
     size = fit_result.get("garment_size", "unspecified")
@@ -46,13 +212,32 @@ def build_meta_prompt(fit_result: dict) -> str:
         for k, v in d.items()
     )
 
+    view_block = _view_block(view)
+    view_rule_for_output = (
+        "The output prompt must include a clear CAMERA ANGLE paragraph near the top "
+        f"(right after IDENTITY LOCK) stating that this is the {view.upper()} VIEW, "
+        "with the exact camera/pose description provided in the VIEW block above. "
+        + ("Since this is NOT the front view, the output prompt must also include a "
+           "MULTI-VIEW CONSISTENCY paragraph stating that the person's identity and "
+           "the garment's design/fit must be identical to the front view and that "
+           "only the camera angle changes. " if view != "front" else "")
+        + ("Since this is the BACK view, the output prompt must include a "
+           "BACK-OF-GARMENT rule stating that REFERENCE B shows only the front, that "
+           "the back should be a plausible plain reverse side, and that front prints "
+           "or neckline details must NOT be mirrored onto the back. " if view == "back" else "")
+    )
+
     return f"""\
-You are a senior fashion-fit expert AND a prompt engineer for photorealistic image-generation models. Your job: given precise body-vs-garment measurements, write ONE detailed image-generation prompt that tells the model exactly how the garment should physically behave on this specific person.
+You are a senior fashion-fit expert AND a prompt engineer for photorealistic image-generation models. Your job: given precise body-vs-garment measurements, write ONE detailed image-generation prompt that tells the model exactly how the garment should physically behave on this specific person, rendered from a specified camera angle.
 
 INPUTS:
 Garment: "{name}" (catalog ID {gid}, category {category}), labeled size {size}, intended cut "{fit_style}".
 Body zone affected by this garment: {body_zone}.
 Units: {units}.
+View to render: {view.upper()}.
+
+VIEW (this is the camera angle the output image must be rendered from):
+{view_block}
 
 Dimension table (person vs. garment vs. delta):
 {table_rows}
@@ -152,21 +337,25 @@ INTENT MODULATION — interpret each band against the cut ("{fit_style}") AND th
 - Always describe what the wearer would actually look like, not just the abstract physics.
 
 WHAT YOUR OUTPUT PROMPT MUST DO:
-0. IDENTITY LOCK — the very first thing in your output prompt must be a strong identity-lock paragraph: the person in the output is the person from REFERENCE A and no one else. Their face, hair, skin tone, earrings, and body must match REFERENCE A exactly. REFERENCE B's model is a garment-design reference only; her face, hair, and body MUST NOT appear in the output. If the output person's face does not match REFERENCE A, the result is incorrect. State this explicitly and firmly — this rule overrides every other consideration.
+0. IDENTITY LOCK — the very first thing in your output prompt must be a strong identity-lock paragraph. The person in the output is the person from REFERENCE A and no one else. Preserve REFERENCE A's face structure, hair color, hair length and style, skin tone, eye color, eyebrow shape, and all earrings/accessories she is already wearing. The body must be REFERENCE A's body. REFERENCE B's model is a GARMENT-DESIGN reference ONLY; her face, her hair color, her hair length, her skin tone, and her body MUST NOT appear in the output under any circumstance. If REFERENCE B's model has visibly different hair color or facial features than REFERENCE A, treat that as a trap — the answer is always REFERENCE A. If the output person's face does not match REFERENCE A, the result is incorrect. State this explicitly and firmly — this rule overrides every other consideration.
+0b. CAMERA ANGLE + VIEW CONSISTENCY — {view_rule_for_output}
 1. Open with a clear TASK line explaining the two input images. REFERENCE A is the user's photo AND the canvas — the output edits this image. REFERENCE B is an on-body photo of a different model wearing the target garment, used only as a design reference (NOT a flat product photo). The task is to edit REFERENCE A so the user wears the garment design from REFERENCE B; only the {body_zone} clothing changes.
-2. State explicitly what to TAKE from REFERENCE A: face, hair, skin tone, pose and arm position, body proportions, camera angle, lighting direction and color, background, and all non-target clothing (the {other_zone} garment and any accessories the user already has). None of these may change.
+2. State explicitly what to TAKE from REFERENCE A: face, hair, skin tone, pose and arm position, body proportions, lighting direction and color, background, and all non-target clothing (the {other_zone} garment and any accessories the user already has). Camera angle is dictated by the VIEW block above and may differ from REFERENCE A's original angle.
 3. State explicitly what to TAKE from REFERENCE B: ONLY the garment's design — sleeve length and style (preserve EXACTLY as worn on the reference model; do NOT lengthen or shorten), hemline position, neckline, collar, silhouette, print/logo/color blocking, fabric weight and texture, cuffs, buttons, pockets, closures, seams. And what to IGNORE in REFERENCE B: the reference model's face, hair, body, pose, background, lighting, and any pants/skirt/shorts/accessories she is paired with. The model must NOT invent any design element that is not visible in REFERENCE B.
 4. State that the garment is worn UNTUCKED. The hem falls at its designed position as shown in REFERENCE B on this specific wearer. Never tuck the garment into pants, skirts, or any waistband/belt/paperbag on the lower body. If the hem lands above the wearer's natural waist, show bare midriff between the hem and the lower-body garment — do NOT hide the hem under any waistband to "make it look styled".
 5. Go through EACH delta in the dimension table above using the band that the actual numeric delta falls into. Be concrete and physical. Do not blur band boundaries — a -4 must read as "clearly tight with visible tension lines", a -10 must read as "heavily strained", a -20 must read as "fabric at maximum stretch, clearly the wrong size", and so on. Skip dimensions that aren't in the table.
-6. Add an OVERALL SILHOUETTE sentence synthesizing the combined impression and naming the dominant problem area (or confirming a clean fit).
+6. Add an OVERALL SILHOUETTE sentence synthesizing the combined impression and naming the dominant problem area (or confirming a clean fit). For non-front views, describe how that silhouette reads FROM THIS CAMERA ANGLE specifically.
 7. Close with RENDERING instructions: photograph-grade realism, match lighting and shadow softness of REFERENCE A, no painterly/cartoon/stylized effects, single final image only, no added accessories, no background changes, and the result must remain a physically plausible photo even when deltas are extreme.
 
 LENGTH: 450-600 words. Cohesive paragraphs, not bullet lists (except the per-landmark fit analysis may use short bulleted lines if that reads cleaner).
 
-OUTPUT: the prompt text ONLY. No preamble ("Here is the prompt:"), no markdown code fences, no trailing commentary. Start directly with "TASK:"."""
+OUTPUT: the prompt text ONLY. No preamble ("Here is the prompt:"), no markdown code fences, no trailing commentary. Start directly with "IDENTITY LOCK —"."""
 
 
-def build_fit_prompt(fit_result: dict) -> str:
+def build_fit_prompt(fit_result: dict, view: str = "front") -> str:
+    if view not in VALID_VIEWS:
+        raise ValueError(f"view must be one of {VALID_VIEWS}, got {view!r}")
+
     gid = fit_result.get("garment_id", "?")
     name = fit_result.get("garment_name", "the garment")
     size = fit_result.get("garment_size", "unspecified size")
@@ -192,13 +381,16 @@ def build_fit_prompt(fit_result: dict) -> str:
         for dim in deltas
     )
     silhouette = _overall_silhouette(deltas, fit_style)
+    view_block = _view_block(view)
 
     prompt = f"""\
-IDENTITY LOCK — The person in the output image is the person from REFERENCE A and no one else. Their face, hair, skin tone, earrings/accessories, and body must match REFERENCE A exactly. REFERENCE B's model is a garment-design reference ONLY; her face, hair, and body MUST NOT appear in the output. If the output person's face does not match REFERENCE A's face, the result is incorrect. This rule overrides every other consideration in this prompt.
+IDENTITY LOCK — The person in the output image is the person from REFERENCE A and no one else. Preserve REFERENCE A's face structure, hair color, hair length and style, skin tone, eye color, eyebrow shape, and every earring or accessory she is already wearing. The output body must be REFERENCE A's body — same build, same proportions. REFERENCE B's model is a GARMENT-DESIGN reference ONLY; her face, her hair color, her hair length, her skin tone, and her body MUST NOT appear in the output under any circumstance. If REFERENCE B's model has visibly different hair color or facial features than REFERENCE A, treat that as a trap — the answer is always REFERENCE A. If the output person's face does not match REFERENCE A's face, the result is incorrect and must be discarded. This rule overrides every other consideration in this prompt.
 
-TASK — Produce a single photorealistic virtual try-on image from two inputs: REFERENCE A (the user's photo, which is ALSO the canvas — start from this image) and REFERENCE B (an on-body photo of a different model, used ONLY as a garment-design reference). Edit REFERENCE A so the user wears the garment from REFERENCE B, on the {body_zone}.
+{view_block}
 
-FROM REFERENCE A — take and preserve unchanged: face, hair, skin tone, pose and arm position, body proportions, camera angle, lighting, background, and all {other_zone} clothing and accessories the user is already wearing.
+TASK — Produce a single photorealistic virtual try-on image from two inputs: REFERENCE A (the user's photo, which is ALSO the canvas — start from this image) and REFERENCE B (an on-body photo of a different model, used ONLY as a garment-design reference). Edit REFERENCE A so the user wears the garment from REFERENCE B, on the {body_zone}, and render the result from the camera angle specified above.
+
+FROM REFERENCE A — take and preserve unchanged: face, hair, skin tone, pose and arm position, body proportions, lighting, background, and all {other_zone} clothing and accessories the user is already wearing. The camera angle is set by the VIEW block above; rotate the subject accordingly while keeping every other element of REFERENCE A identical.
 
 FROM REFERENCE B — take ONLY the garment's design: sleeve length and style (preserve EXACTLY as shown; do NOT lengthen or shorten), hemline position and shape, neckline, collar, silhouette, print/logo/color blocking, fabric weight and texture, cuffs, buttons, pockets, closures, seams. IGNORE everything else in REFERENCE B: the reference model's face, hair, body, pose, background, lighting, and any pants/skirt/shorts/accessories she is paired with.
 
@@ -214,7 +406,7 @@ FIT ANALYSIS — For each body landmark, the delta (garment dimension minus pers
 
 OVERALL SILHOUETTE — {silhouette}
 
-RENDERING INSTRUCTIONS — Photograph-grade realism, not illustration. Simulate true textile physics: taut fibers and tension lines where the garment is undersized; clean relaxed lines where true-to-size; soft gravity-driven folds and bunching where oversized. Match the lighting direction, color temperature, and shadow softness of REFERENCE A. Keep skin tones accurate, edges sharp, and every printed or embroidered detail on the garment legible. No cartoon, painterly, or stylized effects; no background change; no accessory additions. Output one final image only."""
+RENDERING INSTRUCTIONS — Photograph-grade realism, not illustration. Simulate true textile physics: taut fibers and tension lines where the garment is undersized; clean relaxed lines where true-to-size; soft gravity-driven folds and bunching where oversized. Match the lighting direction, color temperature, and shadow softness of REFERENCE A. Keep skin tones accurate, edges sharp, and every printed or embroidered detail on the garment legible. No cartoon, painterly, or stylized effects; no background change; no accessory additions. Output one final image only, rendered from the camera angle specified in the VIEW block above."""
 
     return prompt
 
@@ -348,148 +540,136 @@ def _describe(dim: str, delta: float, person_val, garment_val, units: str) -> st
             )
         elif delta <= 1:
             body = (
-                f"The shoulders are aligned. Seams sit exactly on the shoulder bone, giving a clean tailored "
-                f"line from neck to sleeve."
+                f"The shoulders are true to size — seams sit cleanly on the shoulder bone with a clean "
+                f"tailored line and no pull on the sleeve."
             )
         elif delta <= 3:
             body = (
-                f"The shoulders sit slightly dropped. Seams fall just past the shoulder bone, giving a "
-                f"relaxed casual line with mild fabric softening at the seam."
+                f"The shoulders are slightly dropped — seams sit just past the shoulder bone with a soft "
+                f"casual line and mild fabric softening at the seam."
             )
         elif delta <= 6:
             body = (
-                f"The shoulders are clearly dropped. Seams fall down the upper arm — several inches past the "
-                f"natural shoulder edge — with pronounced fabric pooling at the armhole and a streetwear-leaning "
-                f"oversized line."
+                f"The shoulders are clearly dropped — seams fall notably past the shoulder bone in a "
+                f"streetwear-style oversized look, with fabric pooling at the armhole."
             )
         else:
             body = (
-                f"The shoulders are extremely dropped. Seams sit at or below the upper bicep, the armhole "
-                f"hangs low and loose, and the silhouette reads as a tent regardless of the intended cut."
+                f"The shoulders are heavily dropped — seams sit down at the upper bicep, giving a full "
+                f"tent-silhouette at the yoke."
             )
 
     elif dim == "length":
         if delta <= -10:
             body = (
-                f"The garment is extremely short for the wearer's torso. Render the hem high on the chest, "
-                f"with the entire midriff and most of the lower ribcage exposed — the garment reads almost "
-                f"like a bandeau or under-bust crop on this body. Keep it plausible, do not redraw it as a "
-                f"different garment."
+                f"The garment is extremely short — the hem sits at chest level, reading almost like a "
+                f"bandeau or under-bust crop on this wearer. Render a very large section of bare midriff "
+                f"from the hem down to the lower-body garment. Keep the render plausible; do not convert "
+                f"the garment into a different type."
             )
         elif delta <= -6:
             body = (
-                f"The garment is heavily cropped on this wearer. Render the hem at the upper ribcage with a "
-                f"large section of midriff skin exposed between the hem and the waistband."
+                f"The garment is heavily cropped — the hem sits near the upper ribcage, with a large "
+                f"section of bare midriff visible between the hem and the lower-body garment."
             )
         elif delta <= -3:
             body = (
-                f"The garment is cropped on this wearer. The hem sits at the lower ribcage with clear midriff "
-                f"exposure between the hem and the waistband."
+                f"The garment is cropped — the hem lands at the lower ribcage with clear midriff exposure "
+                f"between the hem and the lower-body garment."
             )
         elif delta < -1:
             body = (
-                f"The garment is short. The hem sits just above the natural waist, revealing a narrow strip "
-                f"of skin or visible waistband below the hem."
+                f"The garment is short — the hem sits above the natural waist, showing a narrow strip of "
+                f"midriff or waistband between the hem and the lower-body garment."
             )
         elif delta <= 1:
             body = (
-                f"The length is correct. The hem sits cleanly at the natural waistline with a horizontal line "
-                f"across the waist."
+                f"The length is true to size — the hem lands at the natural waist in a clean horizontal line."
             )
         elif delta <= 3:
             body = (
-                f"The garment runs long. The hem drops past the hipbone and fully covers the waistband, with "
-                f"a small amount of fabric pooling near the hips."
+                f"The garment is long — the hem falls past the hip with a small amount of pooling."
             )
         elif delta <= 6:
             body = (
-                f"The garment is tunic-length on this wearer. The hem falls to the upper thigh with visible "
-                f"vertical folds along the torso."
+                f"The garment is tunic-length — the hem sits at the upper thigh with soft vertical folds "
+                f"forming below the waist."
             )
         else:
             body = (
-                f"The garment is dress-length on this wearer. The hem falls toward the knee, producing an "
-                f"elongated dress-like silhouette with heavy vertical drape."
+                f"The garment is very long — the hem reaches mid-thigh or the knee, giving a dress-like "
+                f"silhouette from the shoulders down."
             )
 
     elif dim == "arm_length":
         if delta <= -6:
             body = (
-                f"The sleeves are dramatically short — they barely exist on this wearer. Render the sleeve "
-                f"hems sitting near the shoulder cap, so the garment reads as effectively sleeveless or cap-"
-                f"sleeved regardless of its original sleeve type. Keep the render plausible."
+                f"The sleeves barely exist on this wearer — the hem sits near the shoulder/cap area, reading "
+                f"as nearly sleeveless regardless of the garment's original sleeve type. Keep the render "
+                f"plausible."
             )
         elif delta <= -3:
             body = (
-                f"The sleeves are very short on this wearer. Render the sleeve hems barely past the shoulder, "
-                f"with most of the upper arm or full forearm exposed beyond the cuff."
+                f"The sleeves are very short — they barely cover the upper arm, reading as a cropped or "
+                f"cap sleeve regardless of the original sleeve type."
             )
         elif delta < -1:
             body = (
-                f"The sleeves are clearly short. The hem ends visibly short of the intended landmark — "
-                f"forearm or upper arm exposed beyond the cuff by a small but obvious margin."
+                f"The sleeves are clearly short — visible arm exposure beyond the intended cuff position."
             )
         elif delta <= 1:
             body = (
-                f"The sleeves end at the correct landmark — exactly where the garment's cut intends them to "
-                f"finish on the arm."
+                f"The sleeves are true to size — the cuff lands at the intended landmark on the arm."
             )
         elif delta <= 3:
             body = (
-                f"The sleeves run long. Fabric bunches at the cuff or extends past the wrist, with the hem "
-                f"partially covering the back of the hand."
+                f"The sleeves are long — fabric bunches slightly at the cuff."
             )
         elif delta <= 6:
             body = (
-                f"The sleeves are very long. The cuff fully covers the wrist and most of the back of the hand, "
-                f"with visible fabric bunching above the cuff."
+                f"The sleeves are very long — the cuff covers the wrist and partial back of the hand."
             )
         else:
             body = (
-                f"The sleeves are extremely long. The cuff falls past the fingertips with heavy bunching all "
-                f"along the forearm, producing an exaggerated oversized look."
+                f"The sleeves are extreme — the cuff fully covers the hand or extends past the fingertips."
             )
 
     elif dim == "waist":
         if delta <= -10:
             body = (
-                f"The waistband is far too small to fasten cleanly. Render the closure clearly straining or "
-                f"unable to fully meet, with deep fabric folds radiating from the fly and the band cutting into "
-                f"the skin. Keep the render plausible: the wrong size, not torn."
+                f"The waistband cannot fully fasten on this wearer — render it as the wrong size, with "
+                f"the closure at maximum strain and heavy folds radiating from the front. Keep the render "
+                f"plausible."
             )
         elif delta <= -6:
             body = (
-                f"The waistband is heavily strained. Render visible gaping at the fly or button, fabric folds "
-                f"radiating outward, and a clear indentation where the band presses into the skin."
+                f"The waistband is heavily strained. Render the fly or button gaping, with fabric folds "
+                f"radiating from the closure under load."
             )
         elif delta <= -3:
             body = (
-                f"The waistband is tight. Render visible pull at the closure, the band pressing into the skin, "
-                f"and faint stress lines around the fly."
+                f"The waistband is tight — it presses into the skin with visible pull at the closure."
             )
         elif delta < -1:
             body = (
-                f"The waistband is snug. The band sits in close contact with the natural waist with no gap and "
-                f"a slight indentation, but no straining lines."
+                f"The waistband is snug — slight indentation into the skin, sits without a belt."
             )
         elif delta <= 1:
             body = (
-                f"The waistband sits cleanly at the natural waist with no pull and no slack."
+                f"The waistband is true to size — it sits cleanly on the natural waist with no pull."
             )
         elif delta <= 3:
             body = (
-                f"The waistband is loose. The pant sits slightly low on the waist, with a clear gap that "
-                f"would benefit from a belt."
+                f"The waistband is loose — sits slightly low on the hip and would benefit from a belt."
             )
         elif delta <= 6:
             body = (
-                f"The waistband is clearly loose. The band sags below the natural waist with visible slack and "
-                f"the pant rides low without support."
+                f"The waistband is clearly loose — it sags noticeably below the natural waist."
             )
         else:
             body = (
-                f"The waistband is dramatically loose — the wearer is drowning at the waist. Without a belt, "
-                f"the pant would not stay up; render heavy bunching at any belt and an obviously wrong-size fit."
+                f"The waistband drowns the wearer — fabric bunches heavily under any belt, and the pant "
+                f"is in danger of falling without support."
             )
 
     elif dim == "hip":
@@ -639,6 +819,6 @@ if __name__ == "__main__":
         "garment_dimensions": {"length": 28, "chest": 32, "shoulder": 14, "arm_length": 7},
         "deltas": {"length": 2, "chest": -4, "shoulder": -1, "arm_length": -2},
     }
-    out = build_fit_prompt(sample)
-    print(out)
-    print(f"\n--- word count: {len(out.split())} words ---")
+    for v in VALID_VIEWS:
+        print(f"\n========== VIEW: {v} ==========\n")
+        print(build_fit_prompt(sample, view=v))
