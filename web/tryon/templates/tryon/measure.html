@@ -1,0 +1,59 @@
+{% extends "tryon/base.html" %}
+
+{% block title %}Measure · Fashion Try-On{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Get <span class="accent">measured</span></h1>
+    <p class="lede">
+      Drop a frontal full-body photo and your height. We'll detect your body
+      landmarks with MediaPipe, let you verify the values, and then you pick a
+      garment to try on.
+    </p>
+  </section>
+
+  <form method="post" enctype="multipart/form-data" class="form-stack">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="form-errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="field">
+      <label for="{{ form.frontal_image.id_for_label }}">{{ form.frontal_image.label }}</label>
+      {{ form.frontal_image }}
+      <p class="field-hint">Stand upright, arms slightly away from the body, head to feet visible.</p>
+      {% if form.frontal_image.errors %}<div class="field-error">{{ form.frontal_image.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.side_image.id_for_label }}">{{ form.side_image.label }}</label>
+      {{ form.side_image }}
+      <p class="field-hint">Improves circumference accuracy for chest, waist, hip, thigh.</p>
+      {% if form.side_image.errors %}<div class="field-error">{{ form.side_image.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.height_cm.id_for_label }}">{{ form.height_cm.label }}</label>
+      {{ form.height_cm }}
+      {% if form.height_cm.errors %}<div class="field-error">{{ form.height_cm.errors }}</div>{% endif %}
+    </div>
+
+    <details class="anchors">
+      <summary>Optional correction anchors</summary>
+      <p class="field-hint">Leave blank to skip. Improves accuracy where provided.</p>
+
+      <div class="field">
+        <label for="{{ form.shoulder_cm.id_for_label }}">{{ form.shoulder_cm.label }}</label>
+        {{ form.shoulder_cm }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.waist_cm.id_for_label }}">{{ form.waist_cm.label }}</label>
+        {{ form.waist_cm }}
+      </div>
+    </details>
+
+    <button type="submit" class="btn btn-primary">Detect measurements →</button>
+  </form>
+{% endblock %}

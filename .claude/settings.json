@@ -3,7 +3,45 @@
     "allow": [
       "Bash(./venv/Scripts/python.exe -c \"import mediapipe; print\\('version:', mediapipe.__version__\\); print\\('file:', mediapipe.__file__\\); print\\('attrs:', [a for a in dir\\(mediapipe\\) if not a.startswith\\('_'\\)][:20]\\)\")",
       "Bash(./venv/Scripts/python.exe -c \"import sys; print\\(sys.version\\)\")",
-      "Bash(./venv/Scripts/python.exe -c \"from mediapipe.tasks import python; from mediapipe.tasks.python import vision; print\\('PoseLandmarker:', hasattr\\(vision, 'PoseLandmarker'\\)\\); print\\('PoseLandmarkerOptions:', hasattr\\(vision, 'PoseLandmarkerOptions'\\)\\); print\\('RunningMode:', hasattr\\(vision, 'RunningMode'\\)\\)\")"
+      "Bash(./venv/Scripts/python.exe -c \"from mediapipe.tasks import python; from mediapipe.tasks.python import vision; print\\('PoseLandmarker:', hasattr\\(vision, 'PoseLandmarker'\\)\\); print\\('PoseLandmarkerOptions:', hasattr\\(vision, 'PoseLandmarkerOptions'\\)\\); print\\('RunningMode:', hasattr\\(vision, 'RunningMode'\\)\\)\")",
+      "Bash(venv/Scripts/python.exe -m pip install -q \"fastapi>=0.110.0\" \"uvicorn[standard]>=0.27.0\" \"python-multipart>=0.0.9\")",
+      "Bash(venv/Scripts/python.exe -c \"import fastapi, uvicorn, multipart; print\\('fastapi', fastapi.__version__\\); print\\('uvicorn', uvicorn.__version__\\)\")",
+      "Bash(venv/Scripts/python.exe -c \"import sys; sys.path.insert\\(0, '.'\\); from api.main import app; print\\('app:', app.title, app.version\\); print\\('routes:'\\); [print\\(' -', r.path, getattr\\(r, 'methods', None\\)\\) for r in app.routes]\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8001/api/health)",
+      "Bash(curl -s http://127.0.0.1:8001/api/health)",
+      "Bash(curl -s -X POST http://127.0.0.1:8001/api/measure -F \"frontal_image=@person.jpg\" -F \"height_cm=170\")",
+      "Bash(venv/Scripts/python.exe -c \"import json,sys; d=json.load\\(sys.stdin\\); d['annotated_image_b64'] = \\(d.get\\('annotated_image_b64'\\) or ''\\)[:40]+'...\\(truncated\\)' if d.get\\('annotated_image_b64'\\) else None; print\\(json.dumps\\(d, indent=2\\)\\)\")",
+      "Bash(curl -s -X POST http://127.0.0.1:8001/api/measure -F \"frontal_image=@person.jpg\" -F \"height_cm=170\" -F \"shoulder_cm=42\")",
+      "Bash(venv/Scripts/python.exe -c \"import sys; sys.path.insert\\(0, '.'\\); from api.main import app; print\\('app:', app.title, app.version\\); print\\('routes:'\\); [print\\(' -', r.path, getattr\\(r, 'methods', None\\) or '\\(mount\\)'\\) for r in app.routes]\")",
+      "Bash(GLOG_minloglevel=3 venv/Scripts/python.exe -m uvicorn api.main:app --host 127.0.0.1 --port 8001 --log-level warning)",
+      "Bash(curl -s -o /tmp/r.json -w \"HTTP %{http_code}\\\\n\" -X POST http://127.0.0.1:8001/api/tryon -F \"person_image=@person.jpg\" -F \"garment_id=G2\" -F \"person_dimensions=not-json\" -F \"use_llm_prompt=false\")",
+      "Bash(curl -s -o /tmp/r.json -w \"HTTP %{http_code}\\\\n\" -X POST http://127.0.0.1:8001/api/tryon -F \"person_image=@person.jpg\" -F \"garment_id=DOES_NOT_EXIST\" -F \"person_dimensions={\\\\\"length\\\\\":66,\\\\\"chest\\\\\":91,\\\\\"shoulder\\\\\":38,\\\\\"arm_length\\\\\":23}\" -F \"use_llm_prompt=false\")",
+      "Bash(curl -s -o /tmp/tryon_test.png -w \"HTTP %{http_code}  size=%{size_download} bytes  type=%{content_type}\\\\n\" \"http://127.0.0.1:8001/static/output/tryon_G2_af812357.png\")",
+      "Bash(venv/Scripts/python.exe -m pip install -q \"Django>=5.0,<6.0\" \"httpx>=0.27\")",
+      "Bash(venv/Scripts/python.exe -c \"import django, httpx; print\\('django', django.get_version\\(\\)\\); print\\('httpx', httpx.__version__\\)\")",
+      "Bash(../venv/Scripts/python.exe manage.py migrate)",
+      "Bash(GLOG_minloglevel=3 /c/Users/Dell/Desktop/Project/Fashion_Image/venv/Scripts/python.exe -m uvicorn api.main:app --host 127.0.0.1 --port 8001 --log-level warning --app-dir /c/Users/Dell/Desktop/Project/Fashion_Image)",
+      "Bash(curl -s -c /tmp/cookies.txt -o /tmp/measure.html -w \"HTTP %{http_code}\\\\n\" http://127.0.0.1:8000/)",
+      "Bash(curl -s -b /tmp/cookies.txt -o /tmp/verify.html -w \"HTTP %{http_code}\\\\n\" http://127.0.0.1:8000/verify/)",
+      "Bash(curl -s -c /tmp/cookies2.txt -o /tmp/m.html http://127.0.0.1:8000/)",
+      "Bash(venv/Scripts/python.exe -c \"import json; c=json.load\\(open\\('cloth/garments.json',encoding='utf-8'\\)\\); print\\('total:', len\\(c['garments']\\)\\); print\\('categories:', sorted\\(set\\(g.get\\('category','top'\\) for g in c['garments']\\)\\)\\); [print\\(' -', g['id'], g['name'], '|', g.get\\('category','top'\\)\\) for g in c['garments']]\")",
+      "Bash(/c/Users/Dell/Desktop/Project/Fashion_Image/venv/Scripts/python.exe manage.py check)",
+      "Bash(/c/Users/Dell/Desktop/Project/Fashion_Image/venv/Scripts/python.exe manage.py runserver 127.0.0.1:8000 --noreload)",
+      "Read(//c/c/Users/Dell/Desktop/Project/Fashion_Image/**)",
+      "Bash(curl -s -c /tmp/c.txt -o /tmp/m1.html -w \"HTTP %{http_code}\\\\n\" http://127.0.0.1:8000/)",
+      "Bash(chmod +x run.sh)",
+      "Bash(bash run.sh)",
+      "Bash(curl -s -w \"django /  → HTTP %{http_code}\\\\n\" -o /dev/null http://127.0.0.1:8000/)",
+      "Bash(curl -s -w \"fastapi /api/health → HTTP %{http_code}\\\\n\" -o /dev/null http://127.0.0.1:8001/api/health)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //F //PID 5084 //PID 8296)",
+      "Bash(tasklist //FI \"PID eq 8296\")",
+      "Bash(tasklist //FI \"IMAGENAME eq python.exe\")",
+      "Bash(wmic process *)",
+      "Bash(taskkill //F //IM python.exe)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
     ]
   }
 }

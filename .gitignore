@@ -20,6 +20,30 @@ env/
 # Generated try-on images
 output/
 
+# Bulk garment dataset (~40 MB, regenerable via tools/collect_garments.py + build_catalog.py)
+# Legacy demo set (G1-G11 .jpg at cloth/ root) stays tracked so a fresh clone has working garments.
+cloth/cloth/
+cloth/T-Shirt/
+cloth/Blouse/
+cloth/Crop Top/
+cloth/Sweater/
+cloth/Bodysuit/
+cloth/Tank Top/
+
+# Catalog backups (auto-created by tools/build_catalog.py on first run)
+cloth/*.bak
+cloth/garments.json.bak
+
+# Django runtime artifacts
+web/db.sqlite3
+web/db.sqlite3-journal
+web/staticfiles/
+
+# Editor temp/swap files (vscode/cursor autosave artifacts seen in src/)
+*.tmp
+*.tmp.*
+**/*.tmp.*
+
 # Streamlit
 .streamlit/secrets.toml
 

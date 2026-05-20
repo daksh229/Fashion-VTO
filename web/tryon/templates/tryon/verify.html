@@ -1,0 +1,66 @@
+{% extends "tryon/base.html" %}
+
+{% block title %}Verify · Fashion Try-On{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Verify your <span class="accent">measurements</span></h1>
+    <p class="lede">
+      Edit any value before continuing. Confidence levels:
+      <span class="badge badge--high">high</span>
+      <span class="badge badge--medium">medium</span>
+      <span class="badge badge--low">low</span>.
+    </p>
+  </section>
+
+  {% if warnings %}
+    <ul class="warnings">
+      {% for w in warnings %}
+        <li class="warning">{{ w }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <div class="verify-grid">
+    <form method="post" class="form-stack verify-form">
+      {% csrf_token %}
+      {% for row in rows %}
+        <div class="field">
+          <label for="{{ row.field.id_for_label }}">
+            <span class="badge badge--{{ row.badge }}">{{ row.badge }}</span>
+            {{ row.label }}
+            <span class="conf">conf {{ row.confidence|floatformat:2 }}</span>
+          </label>
+          {{ row.field }}
+          {% if row.field.errors %}<div class="field-error">{{ row.field.errors }}</div>{% endif %}
+          {% if row.detected_value is not None %}
+            <p class="field-hint">Detected: {{ row.detected_value|floatformat:1 }} cm</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">Save &amp; continue →</button>
+        <a href="{% url 'tryon:measure' %}" class="btn btn-secondary">Re-take photo</a>
+      </div>
+    </form>
+
+    {% if annotated_b64 %}
+      <aside class="pose-preview">
+        <h2>Detected pose</h2>
+        <img src="data:image/png;base64,{{ annotated_b64 }}" alt="Pose landmarks overlay">
+        <p class="field-hint" style="margin-top: 0.5rem;">
+          Side photo used: {{ used_side_photo|yesno:"yes,no" }}
+        </p>
+      </aside>
+    {% endif %}
+  </div>
+
+  {% if verified_dimensions %}
+    <section class="saved">
+      <h2>Saved verified dimensions</h2>
+      <pre>{{ verified_dimensions|pprint }}</pre>
+      <a href="{% url 'tryon:wardrobe' %}" class="btn btn-primary">Continue to wardrobe →</a>
+    </section>
+  {% endif %}
+{% endblock %}

@@ -10,7 +10,12 @@
       "size": "M",
       "fit_style": "Relaxed",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "00014_00.jpg",
       "path": "00014_00.jpg",
       "dimensions": {
@@ -28,7 +33,12 @@
       "size": "S",
       "fit_style": "Bodycon",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "00026_00.jpg",
       "path": "00026_00.jpg",
       "dimensions": {
@@ -46,7 +56,12 @@
       "size": "S",
       "fit_style": "Slim",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "00030_00.jpg",
       "path": "00030_00.jpg",
       "dimensions": {
@@ -64,7 +79,12 @@
       "size": "M",
       "fit_style": "Fitted",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "00036_00.jpg",
       "path": "00036_00.jpg",
       "dimensions": {
@@ -82,7 +102,12 @@
       "size": "S",
       "fit_style": "Regular",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "00038_00.jpg",
       "path": "00038_00.jpg",
       "dimensions": {
@@ -100,7 +125,12 @@
       "size": "S",
       "fit_style": "Slim",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "00040_00.jpg",
       "path": "00040_00.jpg",
       "dimensions": {
@@ -118,7 +148,12 @@
       "size": "M",
       "fit_style": "Regular",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "00041_00.jpg",
       "path": "00041_00.jpg",
       "dimensions": {
@@ -136,7 +171,12 @@
       "size": "M",
       "fit_style": "Regular",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "cloth.jpg",
       "path": "cloth.jpg",
       "dimensions": {
@@ -154,7 +194,12 @@
       "size": "S",
       "fit_style": "Slim Fit",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "09163_00.jpg",
       "path": "09163_00.jpg",
       "dimensions": {
@@ -172,7 +217,12 @@
       "size": "XXL",
       "fit_style": "Oversized",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "09166_00.jpg",
       "path": "09166_00.jpg",
       "dimensions": {
@@ -190,7 +240,12 @@
       "size": "XXXL",
       "fit_style": "Relaxed",
       "category": "top",
-      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
       "image": "09176_00.jpg",
       "path": "09176_00.jpg",
       "dimensions": {
@@ -198,6 +253,8010 @@
         "chest": 132,
         "shoulder": 53,
         "arm_length": 66
+      }
+    },
+    {
+      "id": "TSH-XS-01",
+      "name": "T-Shirt XS-01",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00000_00.jpg",
+      "path": "T-Shirt/00000_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 85,
+        "shoulder": 37,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "TSH-S-01",
+      "name": "T-Shirt S-01",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00001_00.jpg",
+      "path": "T-Shirt/00001_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 91,
+        "shoulder": 39,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "TSH-M-01",
+      "name": "T-Shirt M-01",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00002_00.jpg",
+      "path": "T-Shirt/00002_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 96,
+        "shoulder": 41,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-L-01",
+      "name": "T-Shirt L-01",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00003_00.jpg",
+      "path": "T-Shirt/00003_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 102,
+        "shoulder": 42,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "TSH-XL-01",
+      "name": "T-Shirt XL-01",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00005_00.jpg",
+      "path": "T-Shirt/00005_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 109,
+        "shoulder": 44,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XXL-01",
+      "name": "T-Shirt XXL-01",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00007_00.jpg",
+      "path": "T-Shirt/00007_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 115,
+        "shoulder": 47,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XXXL-01",
+      "name": "T-Shirt XXXL-01",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00009_00.jpg",
+      "path": "T-Shirt/00009_00.jpg",
+      "dimensions": {
+        "length": 77,
+        "chest": 122,
+        "shoulder": 49,
+        "arm_length": 25
+      }
+    },
+    {
+      "id": "TSH-XS-02",
+      "name": "T-Shirt XS-02",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00010_00.jpg",
+      "path": "T-Shirt/00010_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 84,
+        "shoulder": 37,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "TSH-S-02",
+      "name": "T-Shirt S-02",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00015_00.jpg",
+      "path": "T-Shirt/00015_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 90,
+        "shoulder": 39,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-M-02",
+      "name": "T-Shirt M-02",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00019_00.jpg",
+      "path": "T-Shirt/00019_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 94,
+        "shoulder": 40,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-L-02",
+      "name": "T-Shirt L-02",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00028_00.jpg",
+      "path": "T-Shirt/00028_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 101,
+        "shoulder": 43,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-XL-02",
+      "name": "T-Shirt XL-02",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00029_00.jpg",
+      "path": "T-Shirt/00029_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 108,
+        "shoulder": 45,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XXL-02",
+      "name": "T-Shirt XXL-02",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00030_00.jpg",
+      "path": "T-Shirt/00030_00.jpg",
+      "dimensions": {
+        "length": 75,
+        "chest": 115,
+        "shoulder": 46,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XXXL-02",
+      "name": "T-Shirt XXXL-02",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00031_00.jpg",
+      "path": "T-Shirt/00031_00.jpg",
+      "dimensions": {
+        "length": 75,
+        "chest": 126,
+        "shoulder": 49,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "TSH-XS-03",
+      "name": "T-Shirt XS-03",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00038_00.jpg",
+      "path": "T-Shirt/00038_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 85,
+        "shoulder": 37,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-S-03",
+      "name": "T-Shirt S-03",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00040_00.jpg",
+      "path": "T-Shirt/00040_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 92,
+        "shoulder": 39,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-M-03",
+      "name": "T-Shirt M-03",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00041_00.jpg",
+      "path": "T-Shirt/00041_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 96,
+        "shoulder": 41,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-L-03",
+      "name": "T-Shirt L-03",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00043_00.jpg",
+      "path": "T-Shirt/00043_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 104,
+        "shoulder": 42,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XL-03",
+      "name": "T-Shirt XL-03",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00044_00.jpg",
+      "path": "T-Shirt/00044_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 109,
+        "shoulder": 45,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XXL-03",
+      "name": "T-Shirt XXL-03",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00045_00.jpg",
+      "path": "T-Shirt/00045_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 116,
+        "shoulder": 46,
+        "arm_length": 23
+      }
+    },
+    {
+      "id": "TSH-XXXL-03",
+      "name": "T-Shirt XXXL-03",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00046_00.jpg",
+      "path": "T-Shirt/00046_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 126,
+        "shoulder": 48,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "TSH-XS-04",
+      "name": "T-Shirt XS-04",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00048_00.jpg",
+      "path": "T-Shirt/00048_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-S-04",
+      "name": "T-Shirt S-04",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00049_00.jpg",
+      "path": "T-Shirt/00049_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 89,
+        "shoulder": 38,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "TSH-M-04",
+      "name": "T-Shirt M-04",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00052_00.jpg",
+      "path": "T-Shirt/00052_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 94,
+        "shoulder": 40,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-L-04",
+      "name": "T-Shirt L-04",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00053_00.jpg",
+      "path": "T-Shirt/00053_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 102,
+        "shoulder": 41,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XL-04",
+      "name": "T-Shirt XL-04",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00054_00.jpg",
+      "path": "T-Shirt/00054_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 110,
+        "shoulder": 45,
+        "arm_length": 23
+      }
+    },
+    {
+      "id": "TSH-XXL-04",
+      "name": "T-Shirt XXL-04",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00058_00.jpg",
+      "path": "T-Shirt/00058_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 117,
+        "shoulder": 46,
+        "arm_length": 23
+      }
+    },
+    {
+      "id": "TSH-XXXL-04",
+      "name": "T-Shirt XXXL-04",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00066_00.jpg",
+      "path": "T-Shirt/00066_00.jpg",
+      "dimensions": {
+        "length": 77,
+        "chest": 126,
+        "shoulder": 49,
+        "arm_length": 25
+      }
+    },
+    {
+      "id": "TSH-XS-05",
+      "name": "T-Shirt XS-05",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00070_00.jpg",
+      "path": "T-Shirt/00070_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 83,
+        "shoulder": 35,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-S-05",
+      "name": "T-Shirt S-05",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00073_00.jpg",
+      "path": "T-Shirt/00073_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 89,
+        "shoulder": 39,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "TSH-M-05",
+      "name": "T-Shirt M-05",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00076_00.jpg",
+      "path": "T-Shirt/00076_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 98,
+        "shoulder": 40,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "TSH-L-05",
+      "name": "T-Shirt L-05",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00078_00.jpg",
+      "path": "T-Shirt/00078_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 100,
+        "shoulder": 43,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-XL-05",
+      "name": "T-Shirt XL-05",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00079_00.jpg",
+      "path": "T-Shirt/00079_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 110,
+        "shoulder": 45,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-XXL-05",
+      "name": "T-Shirt XXL-05",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00080_00.jpg",
+      "path": "T-Shirt/00080_00.jpg",
+      "dimensions": {
+        "length": 75,
+        "chest": 115,
+        "shoulder": 47,
+        "arm_length": 23
+      }
+    },
+    {
+      "id": "TSH-XXXL-05",
+      "name": "T-Shirt XXXL-05",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00083_00.jpg",
+      "path": "T-Shirt/00083_00.jpg",
+      "dimensions": {
+        "length": 75,
+        "chest": 124,
+        "shoulder": 48,
+        "arm_length": 23
+      }
+    },
+    {
+      "id": "TSH-XS-06",
+      "name": "T-Shirt XS-06",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00085_00.jpg",
+      "path": "T-Shirt/00085_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 83,
+        "shoulder": 35,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-S-06",
+      "name": "T-Shirt S-06",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00087_00.jpg",
+      "path": "T-Shirt/00087_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 92,
+        "shoulder": 39,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-M-06",
+      "name": "T-Shirt M-06",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00088_00.jpg",
+      "path": "T-Shirt/00088_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 96,
+        "shoulder": 40,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-L-06",
+      "name": "T-Shirt L-06",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00089_00.jpg",
+      "path": "T-Shirt/00089_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 103,
+        "shoulder": 43,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-XL-06",
+      "name": "T-Shirt XL-06",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00091_00.jpg",
+      "path": "T-Shirt/00091_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 108,
+        "shoulder": 44,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-XXL-06",
+      "name": "T-Shirt XXL-06",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00098_00.jpg",
+      "path": "T-Shirt/00098_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 118,
+        "shoulder": 45,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "TSH-XXXL-06",
+      "name": "T-Shirt XXXL-06",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00099_00.jpg",
+      "path": "T-Shirt/00099_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 123,
+        "shoulder": 49,
+        "arm_length": 23
+      }
+    },
+    {
+      "id": "TSH-XS-07",
+      "name": "T-Shirt XS-07",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00102_00.jpg",
+      "path": "T-Shirt/00102_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 85,
+        "shoulder": 36,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "TSH-S-07",
+      "name": "T-Shirt S-07",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00107_00.jpg",
+      "path": "T-Shirt/00107_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 92,
+        "shoulder": 38,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "TSH-M-07",
+      "name": "T-Shirt M-07",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00113_00.jpg",
+      "path": "T-Shirt/00113_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 95,
+        "shoulder": 41,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-L-07",
+      "name": "T-Shirt L-07",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00118_00.jpg",
+      "path": "T-Shirt/00118_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 103,
+        "shoulder": 41,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "TSH-XL-07",
+      "name": "T-Shirt XL-07",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00120_00.jpg",
+      "path": "T-Shirt/00120_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 107,
+        "shoulder": 45,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-XXL-07",
+      "name": "T-Shirt XXL-07",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00124_00.jpg",
+      "path": "T-Shirt/00124_00.jpg",
+      "dimensions": {
+        "length": 75,
+        "chest": 118,
+        "shoulder": 45,
+        "arm_length": 24
+      }
+    },
+    {
+      "id": "TSH-XXXL-07",
+      "name": "T-Shirt XXXL-07",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00125_00.jpg",
+      "path": "T-Shirt/00125_00.jpg",
+      "dimensions": {
+        "length": 75,
+        "chest": 122,
+        "shoulder": 49,
+        "arm_length": 25
+      }
+    },
+    {
+      "id": "TSH-XS-08",
+      "name": "T-Shirt XS-08",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00132_00.jpg",
+      "path": "T-Shirt/00132_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 82,
+        "shoulder": 35,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "TSH-S-08",
+      "name": "T-Shirt S-08",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00139_00.jpg",
+      "path": "T-Shirt/00139_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 90,
+        "shoulder": 39,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "TSH-M-08",
+      "name": "T-Shirt M-08",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00140_00.jpg",
+      "path": "T-Shirt/00140_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 97,
+        "shoulder": 40,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "TSH-L-08",
+      "name": "T-Shirt L-08",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00143_00.jpg",
+      "path": "T-Shirt/00143_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 103,
+        "shoulder": 41,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "TSH-XL-08",
+      "name": "T-Shirt XL-08",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00146_00.jpg",
+      "path": "T-Shirt/00146_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 110,
+        "shoulder": 43,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "TSH-XXL-08",
+      "name": "T-Shirt XXL-08",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00148_00.jpg",
+      "path": "T-Shirt/00148_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 114,
+        "shoulder": 47,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "TSH-XXXL-08",
+      "name": "T-Shirt XXXL-08",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00152_00.jpg",
+      "path": "T-Shirt/00152_00.jpg",
+      "dimensions": {
+        "length": 77,
+        "chest": 123,
+        "shoulder": 49,
+        "arm_length": 25
+      }
+    },
+    {
+      "id": "TSH-XS-09",
+      "name": "T-Shirt XS-09",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00153_00.jpg",
+      "path": "T-Shirt/00153_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 83,
+        "shoulder": 35,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "TSH-S-09",
+      "name": "T-Shirt S-09",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "T-Shirt/00157_00.jpg",
+      "path": "T-Shirt/00157_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "BLO-XS-01",
+      "name": "Blouse XS-01",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00014_00.jpg",
+      "path": "Blouse/00014_00.jpg",
+      "dimensions": {
+        "length": 56,
+        "chest": 84,
+        "shoulder": 33,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-S-01",
+      "name": "Blouse S-01",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00016_00.jpg",
+      "path": "Blouse/00016_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 86,
+        "shoulder": 37,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-M-01",
+      "name": "Blouse M-01",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00018_00.jpg",
+      "path": "Blouse/00018_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 93,
+        "shoulder": 37,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-L-01",
+      "name": "Blouse L-01",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00032_00.jpg",
+      "path": "Blouse/00032_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 102,
+        "shoulder": 40,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-XL-01",
+      "name": "Blouse XL-01",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00033_00.jpg",
+      "path": "Blouse/00033_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 107,
+        "shoulder": 42,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XXL-01",
+      "name": "Blouse XXL-01",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00042_00.jpg",
+      "path": "Blouse/00042_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 113,
+        "shoulder": 43,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "BLO-XXXL-01",
+      "name": "Blouse XXXL-01",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00047_00.jpg",
+      "path": "Blouse/00047_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 123,
+        "shoulder": 45,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "BLO-XS-02",
+      "name": "Blouse XS-02",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00051_00.jpg",
+      "path": "Blouse/00051_00.jpg",
+      "dimensions": {
+        "length": 56,
+        "chest": 83,
+        "shoulder": 34,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-S-02",
+      "name": "Blouse S-02",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00061_00.jpg",
+      "path": "Blouse/00061_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 88,
+        "shoulder": 35,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-M-02",
+      "name": "Blouse M-02",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00068_00.jpg",
+      "path": "Blouse/00068_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 96,
+        "shoulder": 38,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-L-02",
+      "name": "Blouse L-02",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00090_00.jpg",
+      "path": "Blouse/00090_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 98,
+        "shoulder": 41,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-XL-02",
+      "name": "Blouse XL-02",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00093_00.jpg",
+      "path": "Blouse/00093_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 104,
+        "shoulder": 43,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "BLO-XXL-02",
+      "name": "Blouse XXL-02",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00100_00.jpg",
+      "path": "Blouse/00100_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 115,
+        "shoulder": 44,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XXXL-02",
+      "name": "Blouse XXXL-02",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00101_00.jpg",
+      "path": "Blouse/00101_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 120,
+        "shoulder": 45,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "BLO-XS-03",
+      "name": "Blouse XS-03",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00105_00.jpg",
+      "path": "Blouse/00105_00.jpg",
+      "dimensions": {
+        "length": 55,
+        "chest": 84,
+        "shoulder": 33,
+        "arm_length": 55
+      }
+    },
+    {
+      "id": "BLO-S-03",
+      "name": "Blouse S-03",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00111_00.jpg",
+      "path": "Blouse/00111_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 89,
+        "shoulder": 35,
+        "arm_length": 56
+      }
+    },
+    {
+      "id": "BLO-M-03",
+      "name": "Blouse M-03",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00123_00.jpg",
+      "path": "Blouse/00123_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 96,
+        "shoulder": 38,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-L-03",
+      "name": "Blouse L-03",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00131_00.jpg",
+      "path": "Blouse/00131_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 101,
+        "shoulder": 40,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-XL-03",
+      "name": "Blouse XL-03",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00137_00.jpg",
+      "path": "Blouse/00137_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 107,
+        "shoulder": 43,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XXL-03",
+      "name": "Blouse XXL-03",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00149_00.jpg",
+      "path": "Blouse/00149_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 112,
+        "shoulder": 44,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "BLO-XXXL-03",
+      "name": "Blouse XXXL-03",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00166_00.jpg",
+      "path": "Blouse/00166_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 120,
+        "shoulder": 45,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "BLO-XS-04",
+      "name": "Blouse XS-04",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00170_00.jpg",
+      "path": "Blouse/00170_00.jpg",
+      "dimensions": {
+        "length": 55,
+        "chest": 81,
+        "shoulder": 34,
+        "arm_length": 56
+      }
+    },
+    {
+      "id": "BLO-S-04",
+      "name": "Blouse S-04",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00182_00.jpg",
+      "path": "Blouse/00182_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-M-04",
+      "name": "Blouse M-04",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00184_00.jpg",
+      "path": "Blouse/00184_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 92,
+        "shoulder": 37,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-L-04",
+      "name": "Blouse L-04",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00188_00.jpg",
+      "path": "Blouse/00188_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 99,
+        "shoulder": 39,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XL-04",
+      "name": "Blouse XL-04",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00202_00.jpg",
+      "path": "Blouse/00202_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 106,
+        "shoulder": 41,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-XXL-04",
+      "name": "Blouse XXL-04",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00209_00.jpg",
+      "path": "Blouse/00209_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 116,
+        "shoulder": 43,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XXXL-04",
+      "name": "Blouse XXXL-04",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00211_00.jpg",
+      "path": "Blouse/00211_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 122,
+        "shoulder": 47,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "BLO-XS-05",
+      "name": "Blouse XS-05",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00219_00.jpg",
+      "path": "Blouse/00219_00.jpg",
+      "dimensions": {
+        "length": 55,
+        "chest": 84,
+        "shoulder": 34,
+        "arm_length": 56
+      }
+    },
+    {
+      "id": "BLO-S-05",
+      "name": "Blouse S-05",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00220_00.jpg",
+      "path": "Blouse/00220_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 86,
+        "shoulder": 37,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-M-05",
+      "name": "Blouse M-05",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00226_00.jpg",
+      "path": "Blouse/00226_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 94,
+        "shoulder": 38,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-L-05",
+      "name": "Blouse L-05",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00235_00.jpg",
+      "path": "Blouse/00235_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 100,
+        "shoulder": 40,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-XL-05",
+      "name": "Blouse XL-05",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00248_00.jpg",
+      "path": "Blouse/00248_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 105,
+        "shoulder": 41,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XXL-05",
+      "name": "Blouse XXL-05",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00252_00.jpg",
+      "path": "Blouse/00252_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 115,
+        "shoulder": 45,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "BLO-XXXL-05",
+      "name": "Blouse XXXL-05",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00263_00.jpg",
+      "path": "Blouse/00263_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 123,
+        "shoulder": 47,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "BLO-XS-06",
+      "name": "Blouse XS-06",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00266_00.jpg",
+      "path": "Blouse/00266_00.jpg",
+      "dimensions": {
+        "length": 56,
+        "chest": 82,
+        "shoulder": 35,
+        "arm_length": 55
+      }
+    },
+    {
+      "id": "BLO-S-06",
+      "name": "Blouse S-06",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00267_00.jpg",
+      "path": "Blouse/00267_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 88,
+        "shoulder": 37,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-M-06",
+      "name": "Blouse M-06",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00269_00.jpg",
+      "path": "Blouse/00269_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 95,
+        "shoulder": 38,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-L-06",
+      "name": "Blouse L-06",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00289_00.jpg",
+      "path": "Blouse/00289_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 99,
+        "shoulder": 40,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-XL-06",
+      "name": "Blouse XL-06",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00300_00.jpg",
+      "path": "Blouse/00300_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 107,
+        "shoulder": 41,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-XXL-06",
+      "name": "Blouse XXL-06",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00304_00.jpg",
+      "path": "Blouse/00304_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 116,
+        "shoulder": 43,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XXXL-06",
+      "name": "Blouse XXXL-06",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00307_00.jpg",
+      "path": "Blouse/00307_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 121,
+        "shoulder": 45,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "BLO-XS-07",
+      "name": "Blouse XS-07",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00319_00.jpg",
+      "path": "Blouse/00319_00.jpg",
+      "dimensions": {
+        "length": 56,
+        "chest": 83,
+        "shoulder": 34,
+        "arm_length": 55
+      }
+    },
+    {
+      "id": "BLO-S-07",
+      "name": "Blouse S-07",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00321_00.jpg",
+      "path": "Blouse/00321_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 86,
+        "shoulder": 35,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-M-07",
+      "name": "Blouse M-07",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00346_00.jpg",
+      "path": "Blouse/00346_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 94,
+        "shoulder": 39,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-L-07",
+      "name": "Blouse L-07",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00358_00.jpg",
+      "path": "Blouse/00358_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 100,
+        "shoulder": 40,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XL-07",
+      "name": "Blouse XL-07",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00363_00.jpg",
+      "path": "Blouse/00363_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 104,
+        "shoulder": 41,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-XXL-07",
+      "name": "Blouse XXL-07",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00364_00.jpg",
+      "path": "Blouse/00364_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 112,
+        "shoulder": 43,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "BLO-XXXL-07",
+      "name": "Blouse XXXL-07",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00370_00.jpg",
+      "path": "Blouse/00370_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 120,
+        "shoulder": 47,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "BLO-XS-08",
+      "name": "Blouse XS-08",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00381_00.jpg",
+      "path": "Blouse/00381_00.jpg",
+      "dimensions": {
+        "length": 56,
+        "chest": 80,
+        "shoulder": 35,
+        "arm_length": 56
+      }
+    },
+    {
+      "id": "BLO-S-08",
+      "name": "Blouse S-08",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00384_00.jpg",
+      "path": "Blouse/00384_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 87,
+        "shoulder": 35,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "BLO-M-08",
+      "name": "Blouse M-08",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00386_00.jpg",
+      "path": "Blouse/00386_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 93,
+        "shoulder": 39,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-L-08",
+      "name": "Blouse L-08",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00387_00.jpg",
+      "path": "Blouse/00387_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 100,
+        "shoulder": 41,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BLO-XL-08",
+      "name": "Blouse XL-08",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00389_00.jpg",
+      "path": "Blouse/00389_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 108,
+        "shoulder": 42,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "BLO-XXL-08",
+      "name": "Blouse XXL-08",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00402_00.jpg",
+      "path": "Blouse/00402_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 115,
+        "shoulder": 45,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "BLO-XXXL-08",
+      "name": "Blouse XXXL-08",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00403_00.jpg",
+      "path": "Blouse/00403_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 121,
+        "shoulder": 45,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "BLO-XS-09",
+      "name": "Blouse XS-09",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00414_00.jpg",
+      "path": "Blouse/00414_00.jpg",
+      "dimensions": {
+        "length": 55,
+        "chest": 83,
+        "shoulder": 34,
+        "arm_length": 57
+      }
+    },
+    {
+      "id": "BLO-S-09",
+      "name": "Blouse S-09",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Blouse/00423_00.jpg",
+      "path": "Blouse/00423_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 87,
+        "shoulder": 36,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "CRP-XS-01",
+      "name": "Crop Top XS-01",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00023_00.jpg",
+      "path": "Crop Top/00023_00.jpg",
+      "dimensions": {
+        "length": 39,
+        "chest": 76,
+        "shoulder": 34,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "CRP-S-01",
+      "name": "Crop Top S-01",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00056_00.jpg",
+      "path": "Crop Top/00056_00.jpg",
+      "dimensions": {
+        "length": 40,
+        "chest": 82,
+        "shoulder": 34,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "CRP-M-01",
+      "name": "Crop Top M-01",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00059_00.jpg",
+      "path": "Crop Top/00059_00.jpg",
+      "dimensions": {
+        "length": 42,
+        "chest": 90,
+        "shoulder": 38,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-L-01",
+      "name": "Crop Top L-01",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00065_00.jpg",
+      "path": "Crop Top/00065_00.jpg",
+      "dimensions": {
+        "length": 45,
+        "chest": 93,
+        "shoulder": 40,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-XL-01",
+      "name": "Crop Top XL-01",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00086_00.jpg",
+      "path": "Crop Top/00086_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 102,
+        "shoulder": 42,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XXL-01",
+      "name": "Crop Top XXL-01",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00092_00.jpg",
+      "path": "Crop Top/00092_00.jpg",
+      "dimensions": {
+        "length": 49,
+        "chest": 110,
+        "shoulder": 44,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XXXL-01",
+      "name": "Crop Top XXXL-01",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00117_00.jpg",
+      "path": "Crop Top/00117_00.jpg",
+      "dimensions": {
+        "length": 50,
+        "chest": 115,
+        "shoulder": 46,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XS-02",
+      "name": "Crop Top XS-02",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00129_00.jpg",
+      "path": "Crop Top/00129_00.jpg",
+      "dimensions": {
+        "length": 37,
+        "chest": 75,
+        "shoulder": 32,
+        "arm_length": 13
+      }
+    },
+    {
+      "id": "CRP-S-02",
+      "name": "Crop Top S-02",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00136_00.jpg",
+      "path": "Crop Top/00136_00.jpg",
+      "dimensions": {
+        "length": 39,
+        "chest": 82,
+        "shoulder": 35,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "CRP-M-02",
+      "name": "Crop Top M-02",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00147_00.jpg",
+      "path": "Crop Top/00147_00.jpg",
+      "dimensions": {
+        "length": 41,
+        "chest": 89,
+        "shoulder": 37,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-L-02",
+      "name": "Crop Top L-02",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00164_00.jpg",
+      "path": "Crop Top/00164_00.jpg",
+      "dimensions": {
+        "length": 44,
+        "chest": 96,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XL-02",
+      "name": "Crop Top XL-02",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00225_00.jpg",
+      "path": "Crop Top/00225_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 99,
+        "shoulder": 41,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XXL-02",
+      "name": "Crop Top XXL-02",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00246_00.jpg",
+      "path": "Crop Top/00246_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 106,
+        "shoulder": 42,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XXXL-02",
+      "name": "Crop Top XXXL-02",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00247_00.jpg",
+      "path": "Crop Top/00247_00.jpg",
+      "dimensions": {
+        "length": 50,
+        "chest": 118,
+        "shoulder": 46,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "CRP-XS-03",
+      "name": "Crop Top XS-03",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00251_00.jpg",
+      "path": "Crop Top/00251_00.jpg",
+      "dimensions": {
+        "length": 38,
+        "chest": 75,
+        "shoulder": 32,
+        "arm_length": 13
+      }
+    },
+    {
+      "id": "CRP-S-03",
+      "name": "Crop Top S-03",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00255_00.jpg",
+      "path": "Crop Top/00255_00.jpg",
+      "dimensions": {
+        "length": 39,
+        "chest": 80,
+        "shoulder": 36,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "CRP-M-03",
+      "name": "Crop Top M-03",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00257_00.jpg",
+      "path": "Crop Top/00257_00.jpg",
+      "dimensions": {
+        "length": 43,
+        "chest": 90,
+        "shoulder": 36,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "CRP-L-03",
+      "name": "Crop Top L-03",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00271_00.jpg",
+      "path": "Crop Top/00271_00.jpg",
+      "dimensions": {
+        "length": 45,
+        "chest": 96,
+        "shoulder": 40,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-XL-03",
+      "name": "Crop Top XL-03",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00298_00.jpg",
+      "path": "Crop Top/00298_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 102,
+        "shoulder": 40,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "CRP-XXL-03",
+      "name": "Crop Top XXL-03",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00309_00.jpg",
+      "path": "Crop Top/00309_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 106,
+        "shoulder": 43,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XXXL-03",
+      "name": "Crop Top XXXL-03",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00313_00.jpg",
+      "path": "Crop Top/00313_00.jpg",
+      "dimensions": {
+        "length": 49,
+        "chest": 115,
+        "shoulder": 45,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "CRP-XS-04",
+      "name": "Crop Top XS-04",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00335_00.jpg",
+      "path": "Crop Top/00335_00.jpg",
+      "dimensions": {
+        "length": 38,
+        "chest": 78,
+        "shoulder": 32,
+        "arm_length": 13
+      }
+    },
+    {
+      "id": "CRP-S-04",
+      "name": "Crop Top S-04",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00337_00.jpg",
+      "path": "Crop Top/00337_00.jpg",
+      "dimensions": {
+        "length": 41,
+        "chest": 83,
+        "shoulder": 34,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-M-04",
+      "name": "Crop Top M-04",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00374_00.jpg",
+      "path": "Crop Top/00374_00.jpg",
+      "dimensions": {
+        "length": 42,
+        "chest": 88,
+        "shoulder": 37,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-L-04",
+      "name": "Crop Top L-04",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00375_00.jpg",
+      "path": "Crop Top/00375_00.jpg",
+      "dimensions": {
+        "length": 45,
+        "chest": 94,
+        "shoulder": 39,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "CRP-XL-04",
+      "name": "Crop Top XL-04",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00405_00.jpg",
+      "path": "Crop Top/00405_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 98,
+        "shoulder": 40,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XXL-04",
+      "name": "Crop Top XXL-04",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00433_00.jpg",
+      "path": "Crop Top/00433_00.jpg",
+      "dimensions": {
+        "length": 49,
+        "chest": 107,
+        "shoulder": 43,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "CRP-XXXL-04",
+      "name": "Crop Top XXXL-04",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00437_00.jpg",
+      "path": "Crop Top/00437_00.jpg",
+      "dimensions": {
+        "length": 51,
+        "chest": 116,
+        "shoulder": 44,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XS-05",
+      "name": "Crop Top XS-05",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00461_00.jpg",
+      "path": "Crop Top/00461_00.jpg",
+      "dimensions": {
+        "length": 39,
+        "chest": 77,
+        "shoulder": 33,
+        "arm_length": 13
+      }
+    },
+    {
+      "id": "CRP-S-05",
+      "name": "Crop Top S-05",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00476_00.jpg",
+      "path": "Crop Top/00476_00.jpg",
+      "dimensions": {
+        "length": 40,
+        "chest": 80,
+        "shoulder": 34,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "CRP-M-05",
+      "name": "Crop Top M-05",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00543_00.jpg",
+      "path": "Crop Top/00543_00.jpg",
+      "dimensions": {
+        "length": 42,
+        "chest": 89,
+        "shoulder": 36,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-L-05",
+      "name": "Crop Top L-05",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00636_00.jpg",
+      "path": "Crop Top/00636_00.jpg",
+      "dimensions": {
+        "length": 43,
+        "chest": 95,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XL-05",
+      "name": "Crop Top XL-05",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00637_00.jpg",
+      "path": "Crop Top/00637_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 98,
+        "shoulder": 42,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "CRP-XXL-05",
+      "name": "Crop Top XXL-05",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00647_00.jpg",
+      "path": "Crop Top/00647_00.jpg",
+      "dimensions": {
+        "length": 48,
+        "chest": 107,
+        "shoulder": 43,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XXXL-05",
+      "name": "Crop Top XXXL-05",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00668_00.jpg",
+      "path": "Crop Top/00668_00.jpg",
+      "dimensions": {
+        "length": 49,
+        "chest": 116,
+        "shoulder": 44,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XS-06",
+      "name": "Crop Top XS-06",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00679_00.jpg",
+      "path": "Crop Top/00679_00.jpg",
+      "dimensions": {
+        "length": 39,
+        "chest": 78,
+        "shoulder": 32,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "CRP-S-06",
+      "name": "Crop Top S-06",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00734_00.jpg",
+      "path": "Crop Top/00734_00.jpg",
+      "dimensions": {
+        "length": 40,
+        "chest": 81,
+        "shoulder": 35,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-M-06",
+      "name": "Crop Top M-06",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00741_00.jpg",
+      "path": "Crop Top/00741_00.jpg",
+      "dimensions": {
+        "length": 41,
+        "chest": 90,
+        "shoulder": 37,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-L-06",
+      "name": "Crop Top L-06",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00746_00.jpg",
+      "path": "Crop Top/00746_00.jpg",
+      "dimensions": {
+        "length": 44,
+        "chest": 96,
+        "shoulder": 39,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XL-06",
+      "name": "Crop Top XL-06",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00780_00.jpg",
+      "path": "Crop Top/00780_00.jpg",
+      "dimensions": {
+        "length": 46,
+        "chest": 99,
+        "shoulder": 42,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "CRP-XXL-06",
+      "name": "Crop Top XXL-06",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00804_00.jpg",
+      "path": "Crop Top/00804_00.jpg",
+      "dimensions": {
+        "length": 48,
+        "chest": 107,
+        "shoulder": 42,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XXXL-06",
+      "name": "Crop Top XXXL-06",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00811_00.jpg",
+      "path": "Crop Top/00811_00.jpg",
+      "dimensions": {
+        "length": 51,
+        "chest": 117,
+        "shoulder": 45,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "CRP-XS-07",
+      "name": "Crop Top XS-07",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00834_00.jpg",
+      "path": "Crop Top/00834_00.jpg",
+      "dimensions": {
+        "length": 38,
+        "chest": 78,
+        "shoulder": 33,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "CRP-S-07",
+      "name": "Crop Top S-07",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00844_00.jpg",
+      "path": "Crop Top/00844_00.jpg",
+      "dimensions": {
+        "length": 41,
+        "chest": 82,
+        "shoulder": 36,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "CRP-M-07",
+      "name": "Crop Top M-07",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00869_00.jpg",
+      "path": "Crop Top/00869_00.jpg",
+      "dimensions": {
+        "length": 41,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-L-07",
+      "name": "Crop Top L-07",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00957_00.jpg",
+      "path": "Crop Top/00957_00.jpg",
+      "dimensions": {
+        "length": 43,
+        "chest": 92,
+        "shoulder": 40,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-XL-07",
+      "name": "Crop Top XL-07",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/00996_00.jpg",
+      "path": "Crop Top/00996_00.jpg",
+      "dimensions": {
+        "length": 47,
+        "chest": 98,
+        "shoulder": 40,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XXL-07",
+      "name": "Crop Top XXL-07",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01001_00.jpg",
+      "path": "Crop Top/01001_00.jpg",
+      "dimensions": {
+        "length": 49,
+        "chest": 109,
+        "shoulder": 43,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "CRP-XXXL-07",
+      "name": "Crop Top XXXL-07",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01056_00.jpg",
+      "path": "Crop Top/01056_00.jpg",
+      "dimensions": {
+        "length": 51,
+        "chest": 116,
+        "shoulder": 46,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XS-08",
+      "name": "Crop Top XS-08",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01076_00.jpg",
+      "path": "Crop Top/01076_00.jpg",
+      "dimensions": {
+        "length": 39,
+        "chest": 78,
+        "shoulder": 33,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "CRP-S-08",
+      "name": "Crop Top S-08",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01079_00.jpg",
+      "path": "Crop Top/01079_00.jpg",
+      "dimensions": {
+        "length": 39,
+        "chest": 82,
+        "shoulder": 36,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "CRP-M-08",
+      "name": "Crop Top M-08",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01087_00.jpg",
+      "path": "Crop Top/01087_00.jpg",
+      "dimensions": {
+        "length": 42,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "CRP-L-08",
+      "name": "Crop Top L-08",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01116_00.jpg",
+      "path": "Crop Top/01116_00.jpg",
+      "dimensions": {
+        "length": 43,
+        "chest": 93,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XL-08",
+      "name": "Crop Top XL-08",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01120_00.jpg",
+      "path": "Crop Top/01120_00.jpg",
+      "dimensions": {
+        "length": 45,
+        "chest": 102,
+        "shoulder": 40,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "CRP-XXL-08",
+      "name": "Crop Top XXL-08",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01124_00.jpg",
+      "path": "Crop Top/01124_00.jpg",
+      "dimensions": {
+        "length": 48,
+        "chest": 106,
+        "shoulder": 42,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "CRP-XXXL-08",
+      "name": "Crop Top XXXL-08",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01131_00.jpg",
+      "path": "Crop Top/01131_00.jpg",
+      "dimensions": {
+        "length": 49,
+        "chest": 115,
+        "shoulder": 46,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "CRP-XS-09",
+      "name": "Crop Top XS-09",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01151_00.jpg",
+      "path": "Crop Top/01151_00.jpg",
+      "dimensions": {
+        "length": 37,
+        "chest": 75,
+        "shoulder": 32,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "CRP-S-09",
+      "name": "Crop Top S-09",
+      "type": "Crop Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Crop Top/01153_00.jpg",
+      "path": "Crop Top/01153_00.jpg",
+      "dimensions": {
+        "length": 40,
+        "chest": 81,
+        "shoulder": 35,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "SWT-XS-01",
+      "name": "Sweater XS-01",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00012_00.jpg",
+      "path": "Sweater/00012_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 92,
+        "shoulder": 39,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-S-01",
+      "name": "Sweater S-01",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00022_00.jpg",
+      "path": "Sweater/00022_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 94,
+        "shoulder": 41,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-M-01",
+      "name": "Sweater M-01",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00050_00.jpg",
+      "path": "Sweater/00050_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 103,
+        "shoulder": 42,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-L-01",
+      "name": "Sweater L-01",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00082_00.jpg",
+      "path": "Sweater/00082_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 106,
+        "shoulder": 45,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XL-01",
+      "name": "Sweater XL-01",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00103_00.jpg",
+      "path": "Sweater/00103_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 115,
+        "shoulder": 48,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XXL-01",
+      "name": "Sweater XXL-01",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00104_00.jpg",
+      "path": "Sweater/00104_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 124,
+        "shoulder": 48,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XXXL-01",
+      "name": "Sweater XXXL-01",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00133_00.jpg",
+      "path": "Sweater/00133_00.jpg",
+      "dimensions": {
+        "length": 78,
+        "chest": 130,
+        "shoulder": 52,
+        "arm_length": 67
+      }
+    },
+    {
+      "id": "SWT-XS-02",
+      "name": "Sweater XS-02",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00134_00.jpg",
+      "path": "Sweater/00134_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 89,
+        "shoulder": 40,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-S-02",
+      "name": "Sweater S-02",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00174_00.jpg",
+      "path": "Sweater/00174_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 97,
+        "shoulder": 41,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "SWT-M-02",
+      "name": "Sweater M-02",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00187_00.jpg",
+      "path": "Sweater/00187_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 102,
+        "shoulder": 42,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-L-02",
+      "name": "Sweater L-02",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00204_00.jpg",
+      "path": "Sweater/00204_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 110,
+        "shoulder": 44,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "SWT-XL-02",
+      "name": "Sweater XL-02",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00224_00.jpg",
+      "path": "Sweater/00224_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 116,
+        "shoulder": 48,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "SWT-XXL-02",
+      "name": "Sweater XXL-02",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00227_00.jpg",
+      "path": "Sweater/00227_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 122,
+        "shoulder": 50,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XXXL-02",
+      "name": "Sweater XXXL-02",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00231_00.jpg",
+      "path": "Sweater/00231_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 130,
+        "shoulder": 51,
+        "arm_length": 66
+      }
+    },
+    {
+      "id": "SWT-XS-03",
+      "name": "Sweater XS-03",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00239_00.jpg",
+      "path": "Sweater/00239_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 88,
+        "shoulder": 40,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-S-03",
+      "name": "Sweater S-03",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00240_00.jpg",
+      "path": "Sweater/00240_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 97,
+        "shoulder": 41,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "SWT-M-03",
+      "name": "Sweater M-03",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00243_00.jpg",
+      "path": "Sweater/00243_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 100,
+        "shoulder": 43,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-L-03",
+      "name": "Sweater L-03",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00276_00.jpg",
+      "path": "Sweater/00276_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 106,
+        "shoulder": 45,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XL-03",
+      "name": "Sweater XL-03",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00279_00.jpg",
+      "path": "Sweater/00279_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 115,
+        "shoulder": 48,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XXL-03",
+      "name": "Sweater XXL-03",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00294_00.jpg",
+      "path": "Sweater/00294_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 123,
+        "shoulder": 48,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XXXL-03",
+      "name": "Sweater XXXL-03",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00306_00.jpg",
+      "path": "Sweater/00306_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 134,
+        "shoulder": 51,
+        "arm_length": 66
+      }
+    },
+    {
+      "id": "SWT-XS-04",
+      "name": "Sweater XS-04",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00310_00.jpg",
+      "path": "Sweater/00310_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 89,
+        "shoulder": 38,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-S-04",
+      "name": "Sweater S-04",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00316_00.jpg",
+      "path": "Sweater/00316_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 98,
+        "shoulder": 40,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "SWT-M-04",
+      "name": "Sweater M-04",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00317_00.jpg",
+      "path": "Sweater/00317_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 103,
+        "shoulder": 44,
+        "arm_length": 61
+      }
+    },
+    {
+      "id": "SWT-L-04",
+      "name": "Sweater L-04",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00327_00.jpg",
+      "path": "Sweater/00327_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 109,
+        "shoulder": 46,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XL-04",
+      "name": "Sweater XL-04",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00334_00.jpg",
+      "path": "Sweater/00334_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 117,
+        "shoulder": 46,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XXL-04",
+      "name": "Sweater XXL-04",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00357_00.jpg",
+      "path": "Sweater/00357_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 126,
+        "shoulder": 48,
+        "arm_length": 66
+      }
+    },
+    {
+      "id": "SWT-XXXL-04",
+      "name": "Sweater XXXL-04",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00360_00.jpg",
+      "path": "Sweater/00360_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 134,
+        "shoulder": 52,
+        "arm_length": 66
+      }
+    },
+    {
+      "id": "SWT-XS-05",
+      "name": "Sweater XS-05",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00369_00.jpg",
+      "path": "Sweater/00369_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "SWT-S-05",
+      "name": "Sweater S-05",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00371_00.jpg",
+      "path": "Sweater/00371_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 95,
+        "shoulder": 41,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "SWT-M-05",
+      "name": "Sweater M-05",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00382_00.jpg",
+      "path": "Sweater/00382_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 103,
+        "shoulder": 44,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "SWT-L-05",
+      "name": "Sweater L-05",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00383_00.jpg",
+      "path": "Sweater/00383_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 108,
+        "shoulder": 44,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "SWT-XL-05",
+      "name": "Sweater XL-05",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00392_00.jpg",
+      "path": "Sweater/00392_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 116,
+        "shoulder": 46,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XXL-05",
+      "name": "Sweater XXL-05",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00398_00.jpg",
+      "path": "Sweater/00398_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 125,
+        "shoulder": 50,
+        "arm_length": 66
+      }
+    },
+    {
+      "id": "SWT-XXXL-05",
+      "name": "Sweater XXXL-05",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00408_00.jpg",
+      "path": "Sweater/00408_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 131,
+        "shoulder": 52,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XS-06",
+      "name": "Sweater XS-06",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00410_00.jpg",
+      "path": "Sweater/00410_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 89,
+        "shoulder": 38,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "SWT-S-06",
+      "name": "Sweater S-06",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00418_00.jpg",
+      "path": "Sweater/00418_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 98,
+        "shoulder": 40,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "SWT-M-06",
+      "name": "Sweater M-06",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00420_00.jpg",
+      "path": "Sweater/00420_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 103,
+        "shoulder": 44,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "SWT-L-06",
+      "name": "Sweater L-06",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00425_00.jpg",
+      "path": "Sweater/00425_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 109,
+        "shoulder": 46,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "SWT-XL-06",
+      "name": "Sweater XL-06",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00432_00.jpg",
+      "path": "Sweater/00432_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 118,
+        "shoulder": 47,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XXL-06",
+      "name": "Sweater XXL-06",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00441_00.jpg",
+      "path": "Sweater/00441_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 122,
+        "shoulder": 50,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XXXL-06",
+      "name": "Sweater XXXL-06",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00465_00.jpg",
+      "path": "Sweater/00465_00.jpg",
+      "dimensions": {
+        "length": 78,
+        "chest": 131,
+        "shoulder": 50,
+        "arm_length": 67
+      }
+    },
+    {
+      "id": "SWT-XS-07",
+      "name": "Sweater XS-07",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00479_00.jpg",
+      "path": "Sweater/00479_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 88,
+        "shoulder": 38,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "SWT-S-07",
+      "name": "Sweater S-07",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00488_00.jpg",
+      "path": "Sweater/00488_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 95,
+        "shoulder": 41,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "SWT-M-07",
+      "name": "Sweater M-07",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00493_00.jpg",
+      "path": "Sweater/00493_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 101,
+        "shoulder": 43,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "SWT-L-07",
+      "name": "Sweater L-07",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00501_00.jpg",
+      "path": "Sweater/00501_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 107,
+        "shoulder": 45,
+        "arm_length": 63
+      }
+    },
+    {
+      "id": "SWT-XL-07",
+      "name": "Sweater XL-07",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00506_00.jpg",
+      "path": "Sweater/00506_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 114,
+        "shoulder": 48,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XXL-07",
+      "name": "Sweater XXL-07",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00545_00.jpg",
+      "path": "Sweater/00545_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 125,
+        "shoulder": 48,
+        "arm_length": 66
+      }
+    },
+    {
+      "id": "SWT-XXXL-07",
+      "name": "Sweater XXXL-07",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00574_00.jpg",
+      "path": "Sweater/00574_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 133,
+        "shoulder": 52,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XS-08",
+      "name": "Sweater XS-08",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00575_00.jpg",
+      "path": "Sweater/00575_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 88,
+        "shoulder": 39,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "SWT-S-08",
+      "name": "Sweater S-08",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00585_00.jpg",
+      "path": "Sweater/00585_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 96,
+        "shoulder": 41,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "SWT-M-08",
+      "name": "Sweater M-08",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00590_00.jpg",
+      "path": "Sweater/00590_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 102,
+        "shoulder": 42,
+        "arm_length": 62
+      }
+    },
+    {
+      "id": "SWT-L-08",
+      "name": "Sweater L-08",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00594_00.jpg",
+      "path": "Sweater/00594_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 106,
+        "shoulder": 46,
+        "arm_length": 64
+      }
+    },
+    {
+      "id": "SWT-XL-08",
+      "name": "Sweater XL-08",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00596_00.jpg",
+      "path": "Sweater/00596_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 114,
+        "shoulder": 48,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XXL-08",
+      "name": "Sweater XXL-08",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00602_00.jpg",
+      "path": "Sweater/00602_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 126,
+        "shoulder": 48,
+        "arm_length": 65
+      }
+    },
+    {
+      "id": "SWT-XXXL-08",
+      "name": "Sweater XXXL-08",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00604_00.jpg",
+      "path": "Sweater/00604_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 133,
+        "shoulder": 51,
+        "arm_length": 67
+      }
+    },
+    {
+      "id": "SWT-XS-09",
+      "name": "Sweater XS-09",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00605_00.jpg",
+      "path": "Sweater/00605_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 88,
+        "shoulder": 38,
+        "arm_length": 59
+      }
+    },
+    {
+      "id": "SWT-S-09",
+      "name": "Sweater S-09",
+      "type": "Sweater",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Sweater/00613_00.jpg",
+      "path": "Sweater/00613_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 95,
+        "shoulder": 40,
+        "arm_length": 60
+      }
+    },
+    {
+      "id": "BDS-XS-01",
+      "name": "Bodysuit XS-01",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00011_00.jpg",
+      "path": "Bodysuit/00011_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 82,
+        "shoulder": 32,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-S-01",
+      "name": "Bodysuit S-01",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00025_00.jpg",
+      "path": "Bodysuit/00025_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 85,
+        "shoulder": 35,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-M-01",
+      "name": "Bodysuit M-01",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00026_00.jpg",
+      "path": "Bodysuit/00026_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-L-01",
+      "name": "Bodysuit L-01",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00081_00.jpg",
+      "path": "Bodysuit/00081_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 99,
+        "shoulder": 40,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "BDS-XL-01",
+      "name": "Bodysuit XL-01",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00114_00.jpg",
+      "path": "Bodysuit/00114_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 106,
+        "shoulder": 41,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXL-01",
+      "name": "Bodysuit XXL-01",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00130_00.jpg",
+      "path": "Bodysuit/00130_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 110,
+        "shoulder": 44,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXXL-01",
+      "name": "Bodysuit XXXL-01",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00154_00.jpg",
+      "path": "Bodysuit/00154_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 119,
+        "shoulder": 46,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XS-02",
+      "name": "Bodysuit XS-02",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00179_00.jpg",
+      "path": "Bodysuit/00179_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 79,
+        "shoulder": 32,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-S-02",
+      "name": "Bodysuit S-02",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00210_00.jpg",
+      "path": "Bodysuit/00210_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 84,
+        "shoulder": 35,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-M-02",
+      "name": "Bodysuit M-02",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00213_00.jpg",
+      "path": "Bodysuit/00213_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 93,
+        "shoulder": 36,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-L-02",
+      "name": "Bodysuit L-02",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00256_00.jpg",
+      "path": "Bodysuit/00256_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 100,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-XL-02",
+      "name": "Bodysuit XL-02",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00293_00.jpg",
+      "path": "Bodysuit/00293_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 106,
+        "shoulder": 42,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "BDS-XXL-02",
+      "name": "Bodysuit XXL-02",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00322_00.jpg",
+      "path": "Bodysuit/00322_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 113,
+        "shoulder": 43,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXXL-02",
+      "name": "Bodysuit XXXL-02",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00352_00.jpg",
+      "path": "Bodysuit/00352_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 119,
+        "shoulder": 46,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "BDS-XS-03",
+      "name": "Bodysuit XS-03",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00362_00.jpg",
+      "path": "Bodysuit/00362_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 81,
+        "shoulder": 34,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-S-03",
+      "name": "Bodysuit S-03",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00415_00.jpg",
+      "path": "Bodysuit/00415_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 88,
+        "shoulder": 35,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-M-03",
+      "name": "Bodysuit M-03",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00445_00.jpg",
+      "path": "Bodysuit/00445_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 94,
+        "shoulder": 37,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-L-03",
+      "name": "Bodysuit L-03",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00447_00.jpg",
+      "path": "Bodysuit/00447_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 96,
+        "shoulder": 38,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "BDS-XL-03",
+      "name": "Bodysuit XL-03",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00477_00.jpg",
+      "path": "Bodysuit/00477_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 104,
+        "shoulder": 40,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXL-03",
+      "name": "Bodysuit XXL-03",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00497_00.jpg",
+      "path": "Bodysuit/00497_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 114,
+        "shoulder": 44,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXXL-03",
+      "name": "Bodysuit XXXL-03",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00528_00.jpg",
+      "path": "Bodysuit/00528_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 118,
+        "shoulder": 44,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "BDS-XS-04",
+      "name": "Bodysuit XS-04",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00535_00.jpg",
+      "path": "Bodysuit/00535_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 82,
+        "shoulder": 34,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-S-04",
+      "name": "Bodysuit S-04",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00542_00.jpg",
+      "path": "Bodysuit/00542_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 85,
+        "shoulder": 35,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-M-04",
+      "name": "Bodysuit M-04",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00560_00.jpg",
+      "path": "Bodysuit/00560_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 90,
+        "shoulder": 37,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "BDS-L-04",
+      "name": "Bodysuit L-04",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00564_00.jpg",
+      "path": "Bodysuit/00564_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 99,
+        "shoulder": 39,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "BDS-XL-04",
+      "name": "Bodysuit XL-04",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00578_00.jpg",
+      "path": "Bodysuit/00578_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 104,
+        "shoulder": 40,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXL-04",
+      "name": "Bodysuit XXL-04",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00584_00.jpg",
+      "path": "Bodysuit/00584_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 113,
+        "shoulder": 42,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "BDS-XXXL-04",
+      "name": "Bodysuit XXXL-04",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00618_00.jpg",
+      "path": "Bodysuit/00618_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 118,
+        "shoulder": 44,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "BDS-XS-05",
+      "name": "Bodysuit XS-05",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00632_00.jpg",
+      "path": "Bodysuit/00632_00.jpg",
+      "dimensions": {
+        "length": 57,
+        "chest": 81,
+        "shoulder": 34,
+        "arm_length": 14
+      }
+    },
+    {
+      "id": "BDS-S-05",
+      "name": "Bodysuit S-05",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00643_00.jpg",
+      "path": "Bodysuit/00643_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 87,
+        "shoulder": 35,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-M-05",
+      "name": "Bodysuit M-05",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00662_00.jpg",
+      "path": "Bodysuit/00662_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 90,
+        "shoulder": 36,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-L-05",
+      "name": "Bodysuit L-05",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00671_00.jpg",
+      "path": "Bodysuit/00671_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 100,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-XL-05",
+      "name": "Bodysuit XL-05",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00774_00.jpg",
+      "path": "Bodysuit/00774_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 105,
+        "shoulder": 40,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "BDS-XXL-05",
+      "name": "Bodysuit XXL-05",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00775_00.jpg",
+      "path": "Bodysuit/00775_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 112,
+        "shoulder": 44,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXXL-05",
+      "name": "Bodysuit XXXL-05",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00779_00.jpg",
+      "path": "Bodysuit/00779_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 121,
+        "shoulder": 44,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "BDS-XS-06",
+      "name": "Bodysuit XS-06",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00796_00.jpg",
+      "path": "Bodysuit/00796_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 81,
+        "shoulder": 32,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-S-06",
+      "name": "Bodysuit S-06",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00863_00.jpg",
+      "path": "Bodysuit/00863_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 88,
+        "shoulder": 35,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-M-06",
+      "name": "Bodysuit M-06",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00919_00.jpg",
+      "path": "Bodysuit/00919_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-L-06",
+      "name": "Bodysuit L-06",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00963_00.jpg",
+      "path": "Bodysuit/00963_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 97,
+        "shoulder": 38,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-XL-06",
+      "name": "Bodysuit XL-06",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/00967_00.jpg",
+      "path": "Bodysuit/00967_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 102,
+        "shoulder": 41,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "BDS-XXL-06",
+      "name": "Bodysuit XXL-06",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01002_00.jpg",
+      "path": "Bodysuit/01002_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 111,
+        "shoulder": 42,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XXXL-06",
+      "name": "Bodysuit XXXL-06",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01007_00.jpg",
+      "path": "Bodysuit/01007_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 120,
+        "shoulder": 45,
+        "arm_length": 22
+      }
+    },
+    {
+      "id": "BDS-XS-07",
+      "name": "Bodysuit XS-07",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01022_00.jpg",
+      "path": "Bodysuit/01022_00.jpg",
+      "dimensions": {
+        "length": 57,
+        "chest": 80,
+        "shoulder": 33,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-S-07",
+      "name": "Bodysuit S-07",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01027_00.jpg",
+      "path": "Bodysuit/01027_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 87,
+        "shoulder": 35,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-M-07",
+      "name": "Bodysuit M-07",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01032_00.jpg",
+      "path": "Bodysuit/01032_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 91,
+        "shoulder": 36,
+        "arm_length": 17
+      }
+    },
+    {
+      "id": "BDS-L-07",
+      "name": "Bodysuit L-07",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01080_00.jpg",
+      "path": "Bodysuit/01080_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 100,
+        "shoulder": 38,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "BDS-XL-07",
+      "name": "Bodysuit XL-07",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01089_00.jpg",
+      "path": "Bodysuit/01089_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 105,
+        "shoulder": 42,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "BDS-XXL-07",
+      "name": "Bodysuit XXL-07",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01093_00.jpg",
+      "path": "Bodysuit/01093_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 113,
+        "shoulder": 42,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "BDS-XXXL-07",
+      "name": "Bodysuit XXXL-07",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01166_00.jpg",
+      "path": "Bodysuit/01166_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 122,
+        "shoulder": 45,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "BDS-XS-08",
+      "name": "Bodysuit XS-08",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01182_00.jpg",
+      "path": "Bodysuit/01182_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 81,
+        "shoulder": 34,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-S-08",
+      "name": "Bodysuit S-08",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01230_00.jpg",
+      "path": "Bodysuit/01230_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 87,
+        "shoulder": 36,
+        "arm_length": 15
+      }
+    },
+    {
+      "id": "BDS-M-08",
+      "name": "Bodysuit M-08",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01262_00.jpg",
+      "path": "Bodysuit/01262_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 91,
+        "shoulder": 37,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-L-08",
+      "name": "Bodysuit L-08",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01274_00.jpg",
+      "path": "Bodysuit/01274_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 99,
+        "shoulder": 38,
+        "arm_length": 19
+      }
+    },
+    {
+      "id": "BDS-XL-08",
+      "name": "Bodysuit XL-08",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01306_00.jpg",
+      "path": "Bodysuit/01306_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 106,
+        "shoulder": 40,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "BDS-XXL-08",
+      "name": "Bodysuit XXL-08",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01370_00.jpg",
+      "path": "Bodysuit/01370_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 112,
+        "shoulder": 42,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "BDS-XXXL-08",
+      "name": "Bodysuit XXXL-08",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01404_00.jpg",
+      "path": "Bodysuit/01404_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 118,
+        "shoulder": 44,
+        "arm_length": 21
+      }
+    },
+    {
+      "id": "BDS-XS-09",
+      "name": "Bodysuit XS-09",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01420_00.jpg",
+      "path": "Bodysuit/01420_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 79,
+        "shoulder": 32,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "BDS-S-09",
+      "name": "Bodysuit S-09",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Bodysuit/01425_00.jpg",
+      "path": "Bodysuit/01425_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 88,
+        "shoulder": 36,
+        "arm_length": 16
+      }
+    },
+    {
+      "id": "TNK-XS-01",
+      "name": "Tank Top XS-01",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00024_00.jpg",
+      "path": "Tank Top/00024_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 79,
+        "shoulder": 33,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-01",
+      "name": "Tank Top S-01",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00077_00.jpg",
+      "path": "Tank Top/00077_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 85,
+        "shoulder": 35,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-01",
+      "name": "Tank Top M-01",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00115_00.jpg",
+      "path": "Tank Top/00115_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 91,
+        "shoulder": 35,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-01",
+      "name": "Tank Top L-01",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00119_00.jpg",
+      "path": "Tank Top/00119_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 98,
+        "shoulder": 38,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-01",
+      "name": "Tank Top XL-01",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00122_00.jpg",
+      "path": "Tank Top/00122_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 101,
+        "shoulder": 40,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-01",
+      "name": "Tank Top XXL-01",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00155_00.jpg",
+      "path": "Tank Top/00155_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 111,
+        "shoulder": 41,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-01",
+      "name": "Tank Top XXXL-01",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00156_00.jpg",
+      "path": "Tank Top/00156_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 120,
+        "shoulder": 44,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-02",
+      "name": "Tank Top XS-02",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00180_00.jpg",
+      "path": "Tank Top/00180_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 79,
+        "shoulder": 33,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-02",
+      "name": "Tank Top S-02",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00216_00.jpg",
+      "path": "Tank Top/00216_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 83,
+        "shoulder": 34,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-02",
+      "name": "Tank Top M-02",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00233_00.jpg",
+      "path": "Tank Top/00233_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 89,
+        "shoulder": 37,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-02",
+      "name": "Tank Top L-02",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00238_00.jpg",
+      "path": "Tank Top/00238_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 98,
+        "shoulder": 38,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-02",
+      "name": "Tank Top XL-02",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00241_00.jpg",
+      "path": "Tank Top/00241_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 104,
+        "shoulder": 40,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-02",
+      "name": "Tank Top XXL-02",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00283_00.jpg",
+      "path": "Tank Top/00283_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 109,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-02",
+      "name": "Tank Top XXXL-02",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00296_00.jpg",
+      "path": "Tank Top/00296_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 120,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-03",
+      "name": "Tank Top XS-03",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00303_00.jpg",
+      "path": "Tank Top/00303_00.jpg",
+      "dimensions": {
+        "length": 57,
+        "chest": 80,
+        "shoulder": 32,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-03",
+      "name": "Tank Top S-03",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00356_00.jpg",
+      "path": "Tank Top/00356_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 85,
+        "shoulder": 33,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-03",
+      "name": "Tank Top M-03",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00412_00.jpg",
+      "path": "Tank Top/00412_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 90,
+        "shoulder": 37,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-03",
+      "name": "Tank Top L-03",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00413_00.jpg",
+      "path": "Tank Top/00413_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 97,
+        "shoulder": 38,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-03",
+      "name": "Tank Top XL-03",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00424_00.jpg",
+      "path": "Tank Top/00424_00.jpg",
+      "dimensions": {
+        "length": 68,
+        "chest": 103,
+        "shoulder": 40,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-03",
+      "name": "Tank Top XXL-03",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00443_00.jpg",
+      "path": "Tank Top/00443_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 111,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-03",
+      "name": "Tank Top XXXL-03",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00451_00.jpg",
+      "path": "Tank Top/00451_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 118,
+        "shoulder": 45,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-04",
+      "name": "Tank Top XS-04",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00453_00.jpg",
+      "path": "Tank Top/00453_00.jpg",
+      "dimensions": {
+        "length": 57,
+        "chest": 79,
+        "shoulder": 33,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-04",
+      "name": "Tank Top S-04",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00472_00.jpg",
+      "path": "Tank Top/00472_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 85,
+        "shoulder": 35,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-04",
+      "name": "Tank Top M-04",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00473_00.jpg",
+      "path": "Tank Top/00473_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 89,
+        "shoulder": 37,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-04",
+      "name": "Tank Top L-04",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00483_00.jpg",
+      "path": "Tank Top/00483_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 95,
+        "shoulder": 39,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-04",
+      "name": "Tank Top XL-04",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00492_00.jpg",
+      "path": "Tank Top/00492_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 103,
+        "shoulder": 40,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-04",
+      "name": "Tank Top XXL-04",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00517_00.jpg",
+      "path": "Tank Top/00517_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 111,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-04",
+      "name": "Tank Top XXXL-04",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00519_00.jpg",
+      "path": "Tank Top/00519_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 116,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-05",
+      "name": "Tank Top XS-05",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00526_00.jpg",
+      "path": "Tank Top/00526_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 76,
+        "shoulder": 33,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-05",
+      "name": "Tank Top S-05",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00532_00.jpg",
+      "path": "Tank Top/00532_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 82,
+        "shoulder": 35,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-05",
+      "name": "Tank Top M-05",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00547_00.jpg",
+      "path": "Tank Top/00547_00.jpg",
+      "dimensions": {
+        "length": 63,
+        "chest": 91,
+        "shoulder": 36,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-05",
+      "name": "Tank Top L-05",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00550_00.jpg",
+      "path": "Tank Top/00550_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 97,
+        "shoulder": 37,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-05",
+      "name": "Tank Top XL-05",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00555_00.jpg",
+      "path": "Tank Top/00555_00.jpg",
+      "dimensions": {
+        "length": 69,
+        "chest": 101,
+        "shoulder": 40,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-05",
+      "name": "Tank Top XXL-05",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00557_00.jpg",
+      "path": "Tank Top/00557_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 109,
+        "shoulder": 42,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-05",
+      "name": "Tank Top XXXL-05",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00569_00.jpg",
+      "path": "Tank Top/00569_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 116,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-06",
+      "name": "Tank Top XS-06",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00572_00.jpg",
+      "path": "Tank Top/00572_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 77,
+        "shoulder": 32,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-06",
+      "name": "Tank Top S-06",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00577_00.jpg",
+      "path": "Tank Top/00577_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 83,
+        "shoulder": 33,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-06",
+      "name": "Tank Top M-06",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00581_00.jpg",
+      "path": "Tank Top/00581_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 89,
+        "shoulder": 36,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-06",
+      "name": "Tank Top L-06",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00608_00.jpg",
+      "path": "Tank Top/00608_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 94,
+        "shoulder": 38,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-06",
+      "name": "Tank Top XL-06",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00614_00.jpg",
+      "path": "Tank Top/00614_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 102,
+        "shoulder": 41,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-06",
+      "name": "Tank Top XXL-06",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00628_00.jpg",
+      "path": "Tank Top/00628_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 112,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-06",
+      "name": "Tank Top XXXL-06",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00635_00.jpg",
+      "path": "Tank Top/00635_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 118,
+        "shoulder": 44,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-07",
+      "name": "Tank Top XS-07",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00686_00.jpg",
+      "path": "Tank Top/00686_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 79,
+        "shoulder": 33,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-07",
+      "name": "Tank Top S-07",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00689_00.jpg",
+      "path": "Tank Top/00689_00.jpg",
+      "dimensions": {
+        "length": 59,
+        "chest": 83,
+        "shoulder": 34,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-07",
+      "name": "Tank Top M-07",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00702_00.jpg",
+      "path": "Tank Top/00702_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 92,
+        "shoulder": 36,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-07",
+      "name": "Tank Top L-07",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00710_00.jpg",
+      "path": "Tank Top/00710_00.jpg",
+      "dimensions": {
+        "length": 67,
+        "chest": 97,
+        "shoulder": 39,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-07",
+      "name": "Tank Top XL-07",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00712_00.jpg",
+      "path": "Tank Top/00712_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 104,
+        "shoulder": 41,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-07",
+      "name": "Tank Top XXL-07",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00719_00.jpg",
+      "path": "Tank Top/00719_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 108,
+        "shoulder": 42,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-07",
+      "name": "Tank Top XXXL-07",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00720_00.jpg",
+      "path": "Tank Top/00720_00.jpg",
+      "dimensions": {
+        "length": 74,
+        "chest": 117,
+        "shoulder": 45,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-08",
+      "name": "Tank Top XS-08",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00730_00.jpg",
+      "path": "Tank Top/00730_00.jpg",
+      "dimensions": {
+        "length": 57,
+        "chest": 76,
+        "shoulder": 31,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-08",
+      "name": "Tank Top S-08",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00783_00.jpg",
+      "path": "Tank Top/00783_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 82,
+        "shoulder": 34,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-M-08",
+      "name": "Tank Top M-08",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00784_00.jpg",
+      "path": "Tank Top/00784_00.jpg",
+      "dimensions": {
+        "length": 62,
+        "chest": 88,
+        "shoulder": 36,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-L-08",
+      "name": "Tank Top L-08",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "L",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00787_00.jpg",
+      "path": "Tank Top/00787_00.jpg",
+      "dimensions": {
+        "length": 65,
+        "chest": 96,
+        "shoulder": 37,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XL-08",
+      "name": "Tank Top XL-08",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00798_00.jpg",
+      "path": "Tank Top/00798_00.jpg",
+      "dimensions": {
+        "length": 70,
+        "chest": 101,
+        "shoulder": 39,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXL-08",
+      "name": "Tank Top XXL-08",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00799_00.jpg",
+      "path": "Tank Top/00799_00.jpg",
+      "dimensions": {
+        "length": 72,
+        "chest": 109,
+        "shoulder": 42,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XXXL-08",
+      "name": "Tank Top XXXL-08",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00801_00.jpg",
+      "path": "Tank Top/00801_00.jpg",
+      "dimensions": {
+        "length": 73,
+        "chest": 118,
+        "shoulder": 43,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-XS-09",
+      "name": "Tank Top XS-09",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "XS",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00815_00.jpg",
+      "path": "Tank Top/00815_00.jpg",
+      "dimensions": {
+        "length": 58,
+        "chest": 79,
+        "shoulder": 32,
+        "arm_length": 0
+      }
+    },
+    {
+      "id": "TNK-S-09",
+      "name": "Tank Top S-09",
+      "type": "Tank Top",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": [
+        "length",
+        "chest",
+        "shoulder",
+        "arm_length"
+      ],
+      "image": "Tank Top/00870_00.jpg",
+      "path": "Tank Top/00870_00.jpg",
+      "dimensions": {
+        "length": 60,
+        "chest": 84,
+        "shoulder": 33,
+        "arm_length": 0
       }
     }
   ]

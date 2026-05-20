@@ -1,0 +1,50 @@
+{% extends "tryon/base.html" %}
+
+{% block title %}Wardrobe · Fashion Try-On{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Pick a <span class="accent">garment</span></h1>
+    <p class="lede">
+      Click <strong>Try now</strong> on any garment to render a photorealistic
+      try-on against your verified measurements.
+    </p>
+  </section>
+
+  <section class="dim-summary">
+    <h2>Your dimensions</h2>
+    <ul class="chips">
+      {% for key, val in dims.items %}
+        <li class="chip"><span class="chip-key">{{ key }}</span> {{ val|floatformat:1 }} cm</li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'tryon:verify' %}" class="btn-link" style="margin-left: auto;">Edit →</a>
+  </section>
+
+  <div class="wardrobe-grid">
+    {% for g in garments %}
+      <article class="garment-card">
+        <img src="{{ cloth_url }}{{ g.path }}" alt="{{ g.name }}" class="garment-img" loading="lazy">
+        <div class="garment-meta">
+          <h3>{{ g.name }}</h3>
+          <p class="garment-sub">{{ g.type }} · {{ g.fit_style }} · size {{ g.size }}</p>
+          <ul class="garment-dims">
+            {% for k, v in g.dimensions.items %}
+              <li><span class="dim-key">{{ k }}</span>{{ v }} cm</li>
+            {% endfor %}
+          </ul>
+          <form method="post" action="{% url 'tryon:tryon_start' g.id %}" class="garment-form">
+            {% csrf_token %}
+            <label class="toggle">
+              <input type="checkbox" name="use_llm_prompt" checked>
+              <span>Groq prompt</span>
+            </label>
+            <button type="submit" class="btn btn-primary">Try now →</button>
+          </form>
+        </div>
+      </article>
+    {% empty %}
+      <p>No garments yet — add some to <code>cloth/garments.json</code>.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

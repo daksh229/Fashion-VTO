@@ -1,0 +1,48 @@
+{% extends "tryon/base.html" %}
+{% load static %}
+
+{% block title %}Generating · Fashion Try-On{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1 id="result-heading">Generating your <span class="accent">try-on</span>…</h1>
+    <p id="result-status" class="lede">
+      Job <code>{{ job_id }}</code> queued. Usually 10–30 seconds: first the
+      prompt is written, then Gemini renders the image.
+    </p>
+  </section>
+
+  <div class="result-layout">
+    <div id="result-pane" class="result-pane">
+      <div id="result-spinner" class="spinner-wrap">
+        <div class="spinner" aria-hidden="true"></div>
+        <span class="dot-pulse" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </div>
+    </div>
+
+    <aside id="prompt-pane" class="prompt-pane" data-state="queued">
+      <h2>
+        <span class="stream-dot" aria-hidden="true"></span>
+        <span id="prompt-pane-title">Live prompt</span>
+      </h2>
+      <p id="prompt-stage" class="prompt-stage-label">Waiting for the worker…</p>
+      <div id="prompt-text" class="prompt-text"></div>
+    </aside>
+  </div>
+
+  <section id="result-meta" class="result-meta" hidden>
+    <h2>Fit details</h2>
+    <pre id="result-fit"></pre>
+  </section>
+
+  <div class="actions">
+    <a href="{{ wardrobe_url }}" class="btn btn-secondary">← Back to wardrobe</a>
+  </div>
+
+  <script>
+    window.TRYON_STATUS_URL = "{{ status_url|escapejs }}";
+  </script>
+  <script src="{% static 'tryon/js/poll.js' %}"></script>
+{% endblock %}
