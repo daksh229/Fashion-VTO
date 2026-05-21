@@ -2,7 +2,12 @@
 .env
 .env.*
 !.env.example
-
+cloth/Blouse/
+cloth/Bodysuit/
+cloth/Crop Top/
+cloth/Sweater/
+cloth/T-shirt/
+cloth/Tank Top/
 # Python
 __pycache__/
 *.py[cod]

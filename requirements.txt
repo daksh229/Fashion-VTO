@@ -4,6 +4,8 @@ Pillow>=10.0
 python-dotenv>=1.0
 pandas>=2.0
 groq
+requests>=2.31
+huggingface_hub>=0.26
 mediapipe>=0.10.0
 opencv-python>=4.8.0
 numpy>=1.24.0

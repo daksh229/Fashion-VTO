@@ -1,0 +1,204 @@
+{
+  "units": "cm",
+  "notes": "Dimensions are visual estimates based on garment images, in centimetres. Chest/waist/hip values are circumferences. Verify against actual product specs before use.",
+  "garments": [
+    {
+      "id": "G1",
+      "name": "Black Pleated Long-Sleeve Blouse",
+      "type": "Blouse",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Relaxed",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "00014_00.jpg",
+      "path": "00014_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 102,
+        "shoulder": 41,
+        "arm_length": 58
+      }
+    },
+    {
+      "id": "G2",
+      "name": "Adidas Navy Striped Bodysuit",
+      "type": "Bodysuit",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Bodycon",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "00026_00.jpg",
+      "path": "00026_00.jpg",
+      "dimensions": {
+        "length": 71,
+        "chest": 81,
+        "shoulder": 36,
+        "arm_length": 18
+      }
+    },
+    {
+      "id": "G3",
+      "name": "Adidas Blue 3-Stripe Tee",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Slim",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "00030_00.jpg",
+      "path": "00030_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "G4",
+      "name": "Black Ribbed Button Henley",
+      "type": "Henley",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Fitted",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "00036_00.jpg",
+      "path": "00036_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 28
+      }
+    },
+    {
+      "id": "G5",
+      "name": "Lee Black Logo Tee",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "00038_00.jpg",
+      "path": "00038_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 91,
+        "shoulder": 38,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "G6",
+      "name": "Calvin Klein Grey Logo Tee",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Slim",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "00040_00.jpg",
+      "path": "00040_00.jpg",
+      "dimensions": {
+        "length": 61,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "G7",
+      "name": "Tommy Hilfiger White Logo Tee",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "00041_00.jpg",
+      "path": "00041_00.jpg",
+      "dimensions": {
+        "length": 66,
+        "chest": 97,
+        "shoulder": 38,
+        "arm_length": 23
+      }
+    },
+    {
+      "id": "G8",
+      "name": "Levi's White Batwing Tee",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "M",
+      "fit_style": "Regular",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "cloth.jpg",
+      "path": "cloth.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 97,
+        "shoulder": 38,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "G9",
+      "name": "Blue Color-Block Polo",
+      "type": "Polo",
+      "gender": "Women",
+      "size": "S",
+      "fit_style": "Slim Fit",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "09163_00.jpg",
+      "path": "09163_00.jpg",
+      "dimensions": {
+        "length": 64,
+        "chest": 86,
+        "shoulder": 36,
+        "arm_length": 20
+      }
+    },
+    {
+      "id": "G10",
+      "name": "Gucci White Logo Tee",
+      "type": "T-Shirt",
+      "gender": "Women",
+      "size": "XXL",
+      "fit_style": "Oversized",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "09166_00.jpg",
+      "path": "09166_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 122,
+        "shoulder": 51,
+        "arm_length": 28
+      }
+    },
+    {
+      "id": "G11",
+      "name": "Red Gingham Long-Sleeve Shirt",
+      "type": "Shirt",
+      "gender": "Women",
+      "size": "XXXL",
+      "fit_style": "Relaxed",
+      "category": "top",
+      "fit_relevant_keys": ["length", "chest", "shoulder", "arm_length"],
+      "image": "09176_00.jpg",
+      "path": "09176_00.jpg",
+      "dimensions": {
+        "length": 76,
+        "chest": 132,
+        "shoulder": 53,
+        "arm_length": 66
+      }
+    }
+  ]
+}

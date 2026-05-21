@@ -34,7 +34,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.fit_calculator import calculate_fit
 from src.prompt_builder import build_fit_prompt, build_meta_prompt
-from src.gemini_client import generate_tryon
+from src.gemini_client import generate_tryon as generate_tryon_gemini
+from src.flux_client import generate_tryon as generate_tryon_flux
 from src.groq_client import generate_text_stream
 from src.measurement import (
     MeasurementError,
@@ -353,17 +354,35 @@ with st.sidebar:
         st.session_state.selected_garment_id = None
 
     st.divider()
+    backend = st.radio(
+        "Image generation backend",
+        ["Gemini 2.5 Flash Image", "FLUX.1 Kontext [dev] (HF)"],
+        horizontal=True,
+        help=(
+            "Gemini: Google's Nano Banana, ~$0.04/image, current default. "
+            "FLUX.1 Kontext [dev]: open-weights model from Black Forest Labs, "
+            "called via Hugging Face Inference Providers. HF gives a small monthly "
+            "inference credit to free accounts."
+        ),
+    )
+
     use_llm_prompt = st.toggle(
         "Use Groq to write the prompt",
         value=True,
         help=(
-            "ON: Groq writes the fit-aware text prompt, then Gemini Nano Banana uses that "
+            "ON: Groq writes the fit-aware text prompt, then the selected backend uses that "
             "prompt to generate the final try-on image. OFF: use the deterministic rule-based prompt."
         ),
     )
 
-    if not (os.environ.get("api_key") or os.environ.get("GEMINI_API_KEY")):
+    if backend == "Gemini 2.5 Flash Image" and not (
+        os.environ.get("api_key") or os.environ.get("GEMINI_API_KEY")
+    ):
         st.warning("Gemini API key not found in `.env`. Image generation will fail until you add it.")
+    if backend == "FLUX.1 Kontext [dev] (HF)" and not (
+        os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_TOKEN")
+    ):
+        st.warning("`HF_TOKEN` not found in `.env`. FLUX image generation will fail until you add it.")
     if use_llm_prompt and not os.environ.get("GROQ_API_KEY"):
         st.warning("`GROQ_API_KEY` not found in `.env`. Groq prompt generation will fail until you add it.")
 
@@ -448,6 +467,10 @@ if st.session_state.selected_garment_id:
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_file = OUTPUT_DIR / f"{gid}_{timestamp}.png"
+
+    generate_tryon = (
+        generate_tryon_flux if backend == "FLUX.1 Kontext [dev] (HF)" else generate_tryon_gemini
+    )
 
     try:
         result_path = generate_tryon(

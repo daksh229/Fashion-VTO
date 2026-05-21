@@ -1,0 +1,174 @@
+"""Call FLUX.1 Kontext Pro via the Black Forest Labs direct API.
+
+New BFL accounts receive a starter credit allowance on signup; one Pro
+generation costs 1 credit. The API is asynchronous — submit a request,
+poll the returned polling_url until status is "Ready", then download the
+result image.
+
+Requires:
+    pip install requests
+    .env must contain:  BFL_API_KEY=...
+"""
+
+import base64
+import os
+import time
+import urllib.request
+from io import BytesIO
+from pathlib import Path
+
+from dotenv import load_dotenv
+from PIL import Image
+
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+
+API_BASE = "https://api.bfl.ai"
+ENDPOINT = f"{API_BASE}/v1/flux-kontext-pro"
+
+POLL_INTERVAL_S = 0.6
+POLL_TIMEOUT_S = 120.0
+TERMINAL_FAILURE_STATUSES = {
+    "Error",
+    "Failed",
+    "Content Moderated",
+    "Request Moderated",
+    "TaskNotFound",
+}
+
+# BFL requires aspect_ratio as a literal "W:H" string. Snap the actual person
+# photo to the closest of these — covers every common phone/camera orientation
+# and stays inside BFL's accepted ratio range (~9:21 to 21:9).
+_COMMON_ASPECT_RATIOS = [
+    ("21:9", 21 / 9),
+    ("16:9", 16 / 9),
+    ("3:2", 3 / 2),
+    ("4:3", 4 / 3),
+    ("1:1", 1.0),
+    ("3:4", 3 / 4),
+    ("2:3", 2 / 3),
+    ("9:16", 9 / 16),
+    ("9:21", 9 / 21),
+]
+
+
+def _bfl_aspect_ratio(img: Image.Image) -> str:
+    w, h = img.size
+    ratio = (w / h) if h else 1.0
+    return min(_COMMON_ASPECT_RATIOS, key=lambda x: abs(x[1] - ratio))[0]
+
+
+def _ensure_key() -> str:
+    key = os.environ.get("BFL_API_KEY")
+    if not key:
+        raise RuntimeError(
+            "No BFL API key found. Set `BFL_API_KEY` in your .env file. "
+            "Sign up at https://dashboard.bfl.ai to get a starter credit."
+        )
+    return key
+
+
+def _open_image(source) -> Image.Image:
+    if isinstance(source, Image.Image):
+        return source
+    if isinstance(source, (bytes, bytearray)):
+        return Image.open(BytesIO(source))
+    return Image.open(source)
+
+
+def _compress_to_b64_jpeg(img: Image.Image, max_dim: int = 1280, quality: int = 85) -> str:
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    w, h = img.size
+    if max(w, h) > max_dim:
+        scale = max_dim / max(w, h)
+        img = img.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
+    buf = BytesIO()
+    img.save(buf, format="JPEG", quality=quality, optimize=True)
+    return base64.b64encode(buf.getvalue()).decode("ascii")
+
+
+def generate_tryon(
+    person_image,
+    garment_image_path: str,
+    prompt: str,
+    output_path: str = "output.png",
+) -> str:
+    """Generate a try-on image via FLUX.1 Kontext Pro on the BFL direct API.
+
+    Signature matches `src.gemini_client.generate_tryon` so app.py can dispatch
+    between backends with no other changes.
+    """
+    import requests
+
+    api_key = _ensure_key()
+
+    person_img = _open_image(person_image)
+    person_b64 = _compress_to_b64_jpeg(person_img)
+    garment_b64 = _compress_to_b64_jpeg(_open_image(garment_image_path))
+    aspect = _bfl_aspect_ratio(person_img)
+
+    submit = requests.post(
+        ENDPOINT,
+        headers={"x-key": api_key, "Content-Type": "application/json"},
+        json={
+            "prompt": prompt,
+            "input_image": person_b64,
+            "input_image_2": garment_b64,
+            "aspect_ratio": aspect,
+            "safety_tolerance": 2,
+            "output_format": "png",
+            "prompt_upsampling": False,
+        },
+        timeout=30,
+    )
+    if not submit.ok:
+        raise RuntimeError(
+            f"BFL submit failed: HTTP {submit.status_code} — {submit.text[:300]}"
+        )
+    submitted = submit.json()
+    polling_url = submitted.get("polling_url")
+    request_id = submitted.get("id", "<unknown>")
+    if not polling_url:
+        raise RuntimeError(f"BFL response missing polling_url: {submitted!r}")
+
+    deadline = time.monotonic() + POLL_TIMEOUT_S
+    result_url: str | None = None
+    while time.monotonic() < deadline:
+        poll = requests.get(
+            polling_url,
+            headers={"x-key": api_key, "accept": "application/json"},
+            timeout=30,
+        )
+        if not poll.ok:
+            raise RuntimeError(
+                f"BFL poll failed for request {request_id}: "
+                f"HTTP {poll.status_code} — {poll.text[:300]}"
+            )
+        poll_data = poll.json()
+        status = poll_data.get("status", "")
+        if status == "Ready":
+            result_url = (poll_data.get("result") or {}).get("sample")
+            break
+        if status in TERMINAL_FAILURE_STATUSES:
+            raise RuntimeError(
+                f"BFL request {request_id} terminated with status {status!r}: {poll_data!r}"
+            )
+        time.sleep(POLL_INTERVAL_S)
+
+    if not result_url:
+        raise RuntimeError(
+            f"BFL request {request_id} did not finish within {POLL_TIMEOUT_S:.0f} seconds."
+        )
+
+    urllib.request.urlretrieve(result_url, output_path)
+    return output_path
+
+
+if __name__ == "__main__":
+    out = generate_tryon(
+        person_image="person.jpg",
+        garment_image_path="cloth/00041_00.jpg",
+        prompt="Place the garment on the person, photorealistic, natural lighting.",
+        output_path="output_flux.png",
+    )
+    print(f"Saved: {out}")
